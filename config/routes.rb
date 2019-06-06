@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
-  get 'clip/index'
-  get 'article/new'
-  get 'article/edit'
-  get 'timelines/index'
-  get 'timelines/show'
-  get 'timelines/edit'
-  get 'timelines/new'
-  get 'timelines/lanking'
-  get 'users/show'
-  get 'users/index'
-  get 'users/edit'
+  get 'articles/new'
+  get 'articles/edit'
+  get 'clips/index'
+  resources :clips, only:[:index, :create, :destroy, :update]
+  # get '/clips/current_user'
+  # get '/clips/other'
+  resources :articles, only:[:new, :create, :edit, :update, :destroy]
+  resources :timelines
+  get 'timelines/lanking_clip', as: 'lanking_clip'
+  # get '/lankings/article', as: 'lanking_article'
+  resources :users, only:[:index, :show, :edit, :update, :destroy]
   get 'users/destroy_confirm'
-  get 'homes/index'
+  resource :homes, only: [:index]
   devise_for :users
+  root 'homes#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

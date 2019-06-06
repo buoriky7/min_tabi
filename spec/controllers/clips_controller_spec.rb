@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ClipController, type: :controller do
+RSpec.describe ClipsController, type: :controller do
 
   describe "GET #index" do
     it "returns http success" do
