@@ -16,3 +16,27 @@
  /* bootstrap読み込み */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	color: #222;
+}
+
+#main {
+	background-color: #ccc;
+	padding: 20px 0;
+}
+
+/*devise周り*/
+.sign_wrapper {
+	margin: 0 auto;
+	width: 800px;
+	background-color: #fff;
+	border-radius: 10px;
+}
+
+.sign_up {
+	padding: 20px;
+}
