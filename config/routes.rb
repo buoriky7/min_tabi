@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   resources :timelines
   get 'timelines/lanking_clip', as: 'lanking_clip'
   # get '/lankings/article', as: 'lanking_article'
+  devise_for :users
   resources :users, only:[:index, :show, :edit, :update, :destroy]
   get 'users/destroy_confirm'
   resource :homes, only: [:index]
-  devise_for :users
   root 'homes#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
