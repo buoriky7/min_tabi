@@ -34,7 +34,7 @@
 	z-index: 50;
 }
 
-/*devise周り*/
+/* devise周り */
 .sign_wrapper {
 	margin: 0 auto;
 	width: 800px;
@@ -48,4 +48,12 @@
 
 .sign_in_title {
 	background-color: #ddd;
+}
+
+/* フォームの幅 */
+.f_short {
+	width: 80px;
+}
+.f_long {
+	width: 70%;
 }

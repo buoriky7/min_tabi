@@ -1,3 +1,30 @@
 // Place all the styles related to the Articles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// new
+.test {
+	background-color: #ccf;
+}
+.test2 {
+	background-color: #fcc;
+}
+
+.article_wrapper {
+	display: flex;
+}
+
+.catch_copy_wrapper {
+	width: 50%;
+	background-color: #cfc;
+}
+.catch_copy {
+	font-size: 30px;
+	color: rgba(50, 50, 150, 0.8);
+	padding: 3%;
+}
+
+.article_form_wrapper {
+	width: 50%;
+	background-color: #333;
+}
