@@ -27,9 +27,9 @@ ja:
         remember_me: パスワードを記憶する
       article:
         caption: 記事のタイトル
-        article_image_id: 記事の画像
+        article_image: 記事の画像
         body: 記事本文
-        star: 星評価
+        star: 評価
       place:
         place_name: 地名
       timeline:

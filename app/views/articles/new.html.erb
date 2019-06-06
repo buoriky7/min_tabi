@@ -2,6 +2,9 @@
 <p>Find me in app/views/articles/new.html.erb</p>
 
 <!-- ここから編集ずみページ -->
+<!-- TODO: Timelineのidを取ってこられない　改善が必要 -->
+<!-- TODO: Placeの保存方法をどうするか考える -->
+
 <div class="article_wrapper">
   <!-- 左カラム -->
     <div class="catch_copy_wrapper test">
@@ -11,17 +14,38 @@
   <div class="article_form_wrapper test2">
   	<h2>New Article</h2>
     <%= form_for(@article) do |f| %>
+    <!-- エラーメッセージ -->
+      <%if @article.errors.any? %>
+        <h3><%= @article.errors.count %>件のエラーが発生しました</h3>
+          <ul>
+        	<% @article.errors.full_messages.each do |message| %>
+        	<li><%= message %></li>
+        	<% end %>
+          </ul>
+      <% end %>
+    <!-- エラーメッセージここまで -->
       <div class="form-group">
       	<%= f.label :caption %><br>
-        <%= f.text_field :caption, class: "f_long" %>
+        <%= f.text_field :caption, autofocus: true, class: "f_long" %>
       </div>
       <div class="form-group">
+      	<%= f.label :article_image %><br>
       	<%= f.attachment_field :article_image %>
       </div>
       <div class="form-group">
       	<%= f.label :body %><br>
         <%= f.text_area :body, class: "f_long", :maxlength => "200", rows: 5 %>
       </div>
+      <!-- Placeの保存は保留 -->
+      <div class="form-group">
+        <%= f.label :star %><br>
+          <%= f.radio_button :star, "1" %><span class="star">★☆☆☆☆</span><br>
+          <%= f.radio_button :star, "2" %><span class="star">★★☆☆☆</span><br>
+          <%= f.radio_button :star, "3" %><span class="star">★★★☆☆</span><br>
+          <%= f.radio_button :star, "4" %><span class="star">★★★★☆</span><br>
+          <%= f.radio_button :star, "5" %><span class="star">★★★★★</span>
+      </div>
+      <!-- Placeの保存ここまで -->
       <div class="form-group">
         <%= f.submit "投稿", class: "btn btn-info" %>
       </div>

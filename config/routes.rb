@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :timelines
   get 'timelines/lanking_clip', as: 'lanking_clip'
   # get '/lankings/article', as: 'lanking_article'
+  resources :places, only:[:new, :create, :destroy, :update]
   devise_for :users
   resources :users, only:[:index, :show, :edit, :update, :destroy]
   get 'users/destroy_confirm'
