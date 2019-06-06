@@ -24,6 +24,7 @@ ja:
         profile: プロフィール文
         profile_image_id: ユーザー画像
         header_image_id: ヘッダー画像
+        remember_me: パスワードを記憶する
       article:
         caption: 記事のタイトル
         article_image_id: 記事の画像
