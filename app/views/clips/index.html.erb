@@ -6,6 +6,7 @@
 
 	<h2 class="text-center">Clip</h2>
 
+	<div class="container">
 		<div class="timeline-thumbnail-wrapper">
 			<div class="timeline-thumbnail">
 				<%= attachment_image_tag @product, :image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
@@ -17,8 +18,13 @@
 				</div>
 				<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
 				<p>
-					<span class="label label-info">New</span>
-					<span>title</span>
+					<!-- TODO:timelineのcreated_at == TimeWithZone.now  モデルにメソッド作るかコントローラーにメソッド作る。複数のページで使うのでapplicationかも -->
+					<!-- 24時間以内ならlabel表示、ってしたい -->
+					<!-- https://qiita.com/jnchito/items/cae89ee43c30f5d6fa2c -->
+					<!-- % if () %> -->
+						<span class="label label-info">New</span>
+						<span>title</span>
+					<!-- % end %> -->
 				</p>
 			</div>
 
@@ -41,3 +47,4 @@
 		<% end %>
 
 		</div>
+	</div>
