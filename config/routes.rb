@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # get '/lankings/article', as: 'lanking_article'
   resources :places, only:[:new, :create, :destroy, :update]
   devise_for :users
+  get 'users/index_desc' => 'users#index_desc', as: 'users_index_desc'
   resources :users, only:[:index, :show, :edit, :update, :destroy]
   get 'users/destroy_confirm'
   resource :homes, only: [:index]
