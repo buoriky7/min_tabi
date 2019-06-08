@@ -56,6 +56,7 @@ group :development do
   # [Add]エラー画面を詳しくする
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'pry-byebug'
 end
 
 group :test do
