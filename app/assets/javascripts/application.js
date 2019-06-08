@@ -20,3 +20,19 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function () {
+	$('.timeline-thumbnail').hover(
+		function() {
+			$(this).find('.timeline-thumbnail-text_js').animate({
+				fontSize: '120%',
+				Color: 'red'
+			}, 100);
+		},
+		function() {
+			$(this).find('.timeline-thumbnail-text_js').animate({
+				fontSize: '100%'
+			}, 50);
+		}
+	);
+});

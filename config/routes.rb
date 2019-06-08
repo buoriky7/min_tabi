@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :clips, only:[:index, :create, :destroy, :update]
-  # get '/clips/current_user'
-  # get '/clips/other'
+  get 'clips/current_user' => 'clips#index_user'
+  get 'clips/other' => 'clips#index_other'
   resources :articles, only:[:new, :create, :edit, :update, :destroy]
   resources :timelines
   get 'timelines/lanking_clip', as: 'lanking_clip'
