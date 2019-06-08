@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   get 'clips/current_user' => 'clips#index_user', as: 'clips_user'
   get 'clips/other' => 'clips#index_other', as: 'clips_other'
   resources :articles, only:[:new, :create, :edit, :update, :destroy]
+  get 'timelines/lanking_clip' => 'timelines#lanking_clip', as: 'lanking_clip'
+  get 'timelines/lanking_article' => 'timelines#lanking_article', as: 'lanking_article'
   resources :timelines
-  get 'timelines/lanking_clip', as: 'lanking_clip'
-  # get '/lankings/article', as: 'lanking_article'
   resources :places, only:[:new, :create, :destroy, :update]
   devise_for :users
   get 'users/index_desc' => 'users#index_desc', as: 'users_index_desc'

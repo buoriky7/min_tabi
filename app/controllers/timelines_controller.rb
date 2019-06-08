@@ -11,6 +11,9 @@ class TimelinesController < ApplicationController
   def new
   end
 
-  def lanking
+  def lanking_clip
+  end
+
+  def lanking_article
   end
 end

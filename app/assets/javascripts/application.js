@@ -17,11 +17,11 @@
 //= require jquery_ujs
 //= require cocoon
 //[Add]---
-//= require turbolinks
+//[Delete]turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
 
-$(document).ready(function () {
+$(function () {
 	$('.timeline-thumbnail').hover(
 		function() {
 			$(this).find('.timeline-thumbnail-text_js').animate({
