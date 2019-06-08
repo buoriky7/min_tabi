@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'articles/new'
-  get 'articles/edit'
-  get 'clips/index'
   resources :clips, only:[:index, :create, :destroy, :update]
   # get '/clips/current_user'
   # get '/clips/other'
