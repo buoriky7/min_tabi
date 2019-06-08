@@ -18,9 +18,10 @@
 				</div>
 				<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
 				<p>
-					<!-- TODO:timelineのcreated_at == TimeWithZone.now  モデルにメソッド作るかコントローラーにメソッド作る。複数のページで使うのでapplicationかも -->
-					<!-- 24時間以内ならlabel表示、ってしたい -->
-					<!-- https://qiita.com/jnchito/items/cae89ee43c30f5d6fa2c -->
+					<!--  TODO:timelineのcreated_at <= TimeWithZone.current.since(1.day)  モデルにメソッド作るかコントローラーにメソッド作る。複数のページで使うのでapplicationかも -->
+					<!--  24時間以内ならlabel表示、ってしたい -->
+					<!--  https://qiita.com/jnchito/items/cae89ee43c30f5d6fa2c -->
+					<!--  https://qiita.com/ryonext/items/4ed2f7635135a7b388f3 の方が有効かも -->
 					<!-- % if () %> -->
 						<span class="label label-info">New</span>
 						<span>title</span>
