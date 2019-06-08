@@ -118,13 +118,38 @@
 }
 
 // user#edit
-.user_edit_wrapper {
+.user_edit_wrapper, .user_destroy_confirm_wrapper {
 	margin: 0 auto;
 	width: 800px;
+	padding-bottom: 20px;
 }
 .user_edit {
 	padding: 30px 10px;
 }
 .user_edit_field {
 	width: 400px;
+}
+
+// user#destroy_confirm
+.user_destroy_confirm_wrapper h2 {
+	line-height: 50px;
+}
+
+.destroy_confirm_induction {
+	padding: 15px;
+	line-height: 40px;
+	font-size: 18px;
+}
+
+.destroy_confirm_induction a {
+	color: #333;
+	text-decoration: none;
+}
+
+.destroy_confirm_btn {
+	margin: 20px 30px;
+}
+
+.mg50 {
+	margin-right: 50px;
 }

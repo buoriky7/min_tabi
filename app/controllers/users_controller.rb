@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   end
 
   def destroy_confirm
+  	@user = User.find(params[:id])
   end
 
   private
