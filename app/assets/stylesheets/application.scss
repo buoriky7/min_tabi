@@ -57,3 +57,20 @@
 .f_long {
 	width: 70%;
 }
+
+// 404エラー画面
+.error_wrapper {
+	margin: 0 50px;
+	padding: 50px 0;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.error_container {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.error_container_message {
+	font-size: 22px;
+	padding: 30px 0;
+}
