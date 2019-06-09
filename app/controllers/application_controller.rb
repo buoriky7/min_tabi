@@ -1,5 +1,11 @@
 class ApplicationController < ActionController::Base
 	before_action :configure_permitted_parameters, if: :devise_controller?
+	helper_method :timeline_flag
+
+	def timeline_flag
+		@timeline_flag = Timeline.find_by(user_id: session[:user.id])
+		# return timeline_flag
+	end
 
 	# deviseストロングパラメーター
 	protected

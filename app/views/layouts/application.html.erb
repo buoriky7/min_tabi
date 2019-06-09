@@ -26,7 +26,13 @@
           </div>
             <div class="collapse navbar-collapse navbar-right" id="navbarEexample3">
               <ul class="nav navbar-nav">
-                <li><%= link_to "新規投稿", new_article_path %></li>
+                <li>
+                  <% if @timeline_flag.nil? || @timeline_flag.post_flag == 1 %>
+                    <%= link_to "新しい旅日記を投稿する", timelines_path, method: :post %>
+                  <% else %>
+                    <%= link_to "新規投稿", new_article_path %>
+                  <% end %>
+                </li>
                 <li><%= link_to "みんなの投稿", timelines_path %></li>
                 <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
               </ul>
