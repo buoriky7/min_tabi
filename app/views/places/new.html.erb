@@ -1,0 +1,40 @@
+<h1>PlaceArticles#new</h1>
+<p>Find me in app/views/articles/new.html.erb</p>
+
+<!-- ここから編集ずみページ -->
+<!-- TODO: Article#newでネストしたデータは保存できないのか？　と思い、新設。しかし不要か？ -->
+
+<div class="article_wrapper">
+  <!-- 左カラム -->
+    <div class="catch_copy_wrapper test">
+    	<span class="catch_copy">新しい旅の記録を投稿します。</span>
+    </div>
+  <!-- 右カラム -->
+  <div class="article_form_wrapper test2">
+  	<h2>New Article</h2>
+    <%= form_for(@place) do |f| %>
+      <!-- Article の保存 -->
+      <%= f.fields_for :article do |a| %>
+        <div class="form-group">
+          <%= a.label :caption %><br>
+          <%= a.text_field :caption, class: "f_long" %>
+        </div>
+        <div class="form-group">
+          <%= a.attachment_field :article_image %>
+        </div>
+        <div class="form-group">
+          <%= a.label :body %><br>
+          <%= a.text_area :body, class: "f_long", :maxlength => "200", rows: 5 %>
+        </div>
+      <% end %>
+      <!-- Article の保存ここまで -->
+      <div class="form-group">
+      	<%= f.text_field :place_name %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "投稿", class: "btn btn-info" %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

@@ -24,18 +24,31 @@
 	color: #222;
 }
 
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+
+html, body {
+	height: 100%;
+}
+
 #main {
+	height: 100%;
 	background-color: #ccc;
 	padding-top: 65px;
+	// max-width:1000px;
+	// margin: 0 auto;
 }
 
 /* ヘッダー */
 #header_wrapper {
-	background-color: #888;
-	height: 100px;
+	z-index: 50;
 }
 
-/*devise周り*/
+/* devise周り */
 .sign_wrapper {
 	margin: 0 auto;
 	width: 800px;
@@ -49,4 +62,71 @@
 
 .sign_in_title {
 	background-color: #ddd;
+}
+
+/* フォームの幅 */
+.f_short {
+	width: 80px;
+}
+.f_long {
+	width: 70%;
+}
+
+// 404エラー画面
+.error_wrapper {
+	margin: 0 50px;
+	padding: 50px 0;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.error_container {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.error_container_message {
+	font-size: 22px;
+	padding: 30px 0;
+}
+
+// timelineのindexサムネイル
+.timeline-thumbnail-wrapper {
+	display: flex;
+}
+.timeline-thumbnail {
+	margin: 10px;
+	width: 200px;
+	height: 160px;
+	position: relative;
+}
+.timeline-thumbnail-text {
+	width: 200px;
+	height: 160px;
+	padding-top: 30px;
+	text-align: center;
+	word-wrap: break-word;
+	background-color: rgba(0, 0, 0, 0.4);
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.timeline-thumbnail-text h3 {
+	font-size: 150%;
+}
+.clip-btn {
+	width: 30px;
+	height: 30px;
+	padding: 5px;
+	border-radius: 15px;
+	background-color: #fff;
+	opacity: 0.5;
+	text-align: center;
+	font-size: 20px;
+	color: #ccc;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+.clip-btn:hover {
+	opacity: 0.7;
 }

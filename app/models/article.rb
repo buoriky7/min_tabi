@@ -5,4 +5,7 @@ class Article < ApplicationRecord
 		belongs_to :place
 		belongs_to :timeline
 
+	# 画像投稿
+		attachment :article_image
+
 end

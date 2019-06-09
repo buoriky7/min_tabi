@@ -6,11 +6,23 @@ class TimelinesController < ApplicationController
   end
 
   def edit
+    # @timeline = Timeline.find(current_user.id)
+  end
+
+  def update
+    #
   end
 
   def new
   end
 
-  def lanking
+  def create
+    #
+  end
+
+  def lanking_clip
+  end
+
+  def lanking_article
   end
 end

@@ -1,3 +1,155 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// user#show
+.user_show_wrapper {
+	display: flex;
+}
+.user_left_column {
+	width: 25%;
+	background-color: #cfc;
+}
+.user_left_column_content {
+	padding: 0 3%;
+}
+
+.user_show_wrapper hr {
+	margin: 30px 0 3px;
+}
+
+.user_right_column {
+	width: 75%;
+	background-color: #ccf;
+}
+.user_header {
+	width: 100%;
+	height: 250px;
+	background-color: #0d0;
+	position: relative;
+	border-bottom: 4px solid #ccc;
+}
+.user_show_content {
+	padding: 0 5%;
+}
+
+.image-radius {
+	width: 30px;
+	height: 30px;
+	padding: 5px;
+	border-radius: 15px;
+	background-color: #fff;
+	text-align: center;
+	font-size: 15px;
+	color: #ccc;
+}
+.image-radius:hover {
+	background-color: #ddd;
+	color: #000;
+}
+.header-image-btn {
+	position: absolute;
+	top: 200px;
+	right: 30px;
+}
+.profile-image_wrapper {
+	width: 120px;
+	height: 120px;
+	position: relative;
+	top: -60px;
+	left: 40px;
+}
+.profile-image {
+	width: 120px;
+	height: 120px;
+	border-radius: 60px;
+	background-color: #fff;
+	border: 4px solid #ccc;
+}
+.profile-image-btn {
+	position: absolute;
+	top: 85px;
+	right: 5px;
+}
+
+.inline {
+	display: inline-block;
+}
+.timeline-image {
+	width: 100px;
+	height: 100px;
+	border-radius: 5px;
+}
+
+// user#index
+.user-index-title {
+	background-color: #888;
+	padding: 5px 0;
+	padding-left: 50px;
+}
+
+.user-index-title h2 {
+	font-size: 20px;
+}
+
+.user-index-btn_wrapper {
+	text-align: right;
+	padding: 10px 0;
+	padding-right: 30px;
+}
+
+.user-index-content {
+	margin: 0 auto;
+	padding: 20px 50px;
+}
+
+.user-index-content th {
+	font-size: 16px;
+	font-weight: lighter;
+	padding: 3px;
+}
+
+.user-index-profile-image {
+	width: 100px;
+	height: 100px;
+	border-radius: 50px;
+	background-color: #fff;
+	border: 4px solid #555;
+}
+
+// user#edit
+.user_edit_wrapper, .user_destroy_confirm_wrapper {
+	margin: 0 auto;
+	width: 800px;
+	padding-bottom: 20px;
+}
+.user_edit {
+	padding: 30px 10px;
+}
+.user_edit_field {
+	width: 400px;
+}
+
+// user#destroy_confirm
+.user_destroy_confirm_wrapper h2 {
+	line-height: 50px;
+}
+
+.destroy_confirm_induction {
+	padding: 15px;
+	line-height: 40px;
+	font-size: 18px;
+}
+
+.destroy_confirm_induction a {
+	color: #333;
+	text-decoration: none;
+}
+
+.destroy_confirm_btn {
+	margin: 20px 30px;
+}
+
+.mg50 {
+	margin-right: 50px;
+}
