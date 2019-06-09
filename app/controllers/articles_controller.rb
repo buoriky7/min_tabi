@@ -18,7 +18,9 @@ class ArticlesController < ApplicationController
   def create
   	@article = Article.new(article_params)
   	@article.user_id = current_user.id
-  	@article.timeline_id = 0
+  	timeline = Timeline.where(id: current_user.id).last
+    @article.timeline_id = timeline.id
+    binding.pry
   	@article.place_id = 1
     if @article.save
     	flash[:success] = "記事を投稿しました！"

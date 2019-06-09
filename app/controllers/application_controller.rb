@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 	before_action :configure_permitted_parameters, if: :devise_controller?
+	# timelineが投稿済みが否か判断する
 	helper_method :timeline_flag
 
 	def timeline_flag
