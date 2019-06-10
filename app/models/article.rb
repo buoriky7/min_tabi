@@ -8,4 +8,8 @@ class Article < ApplicationRecord
 	# 画像投稿
 		attachment :article_image
 
+	# バリデーション
+		validates :caption, presence: true, length: { maximum: 200 }
+		validates :body, presence: true, length: { maximum: 300 }
+
 end

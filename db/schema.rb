@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_05_094152) do
+ActiveRecord::Schema.define(version: 2019_06_09_072338) do
 
   create_table "article_icons", force: :cascade do |t|
     t.integer "article_id"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2019_06_05_094152) do
     t.integer "clips_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "post_flag", default: 0
   end
 
   create_table "users", force: :cascade do |t|
