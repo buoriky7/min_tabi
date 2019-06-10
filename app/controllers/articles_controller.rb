@@ -13,8 +13,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-  	article = Article.find(current_user.id)
-  	article.update
+  	@article = Article.find(params[:id])
   end
 
   def create
@@ -42,6 +41,17 @@ class ArticlesController < ApplicationController
     else
     	flash[:danger] = "記事の投稿に失敗しました"
     	render :new
+    end
+  end
+
+  def destroy
+    @article = Article.find(params[:id])
+    if @article.destroy
+      flash[:success] = "記事を削除しました！"
+      redirect_to timelines_path
+    else
+      flash[:danger] = "記事の削除に失敗しました。"
+      redirect_to timelines_path
     end
   end
 

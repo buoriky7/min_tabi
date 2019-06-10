@@ -6,7 +6,7 @@ class TimelinesController < ApplicationController
   end
 
   def edit
-    # @timeline = Timeline.find(current_user.id)
+    @timeline = Timeline.find(params[:id])
   end
 
   def update
@@ -14,6 +14,20 @@ class TimelinesController < ApplicationController
   end
 
   def new
+    @timeline = Timeline.find(params[:id])
+    @articles = current_user.articles
+  end
+
+  def post
+    timeline = Timeline.find(params[:id])
+    timeline.post_flag = 1
+    if timeline.save
+      flash[:success] = "タイムラインを投稿しました！"
+      redirect_to timeline_path(timeline.id)
+    else
+      flash[:danger] = "投稿に失敗しました"
+      render :new
+    end
   end
 
   def create

@@ -38,7 +38,7 @@ html, body {
 #main {
 	height: 100%;
 	background-color: #ccc;
-	padding-top: 65px;
+	padding-top: 50px;
 	// max-width:1000px;
 	// margin: 0 auto;
 }
@@ -129,4 +129,9 @@ html, body {
 }
 .clip-btn:hover {
 	opacity: 0.7;
+}
+// Articleの星評価
+.star {
+	font-size: 12px;
+	color: orange;
 }
