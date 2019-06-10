@@ -9,6 +9,16 @@
 	<% if @timeline.user_id == current_user.id %>
 		<%= link_to "タイトルを編集する", edit_timeline_path, class: 'timeline-show-edit_icon' %>
 	<% end %>
+	<!-- お気に入り（Clip）機能 -->
+	<% if @timeline.cliped_by?(current_user) %>
+		<%= link_to clip_path(@timeline.id), method: :delete do %>
+			<span class="glyphicon glyphicon-paperclip" aria-hidden="true">クリップを解除</span>
+		<% end %>
+	<% else %>
+		<%= link_to clips_create_path(@timeline.id), method: :post do %>
+			<span class="glyphicon glyphicon-paperclip" aria-hidden="true">この日記をクリップ</span>
+		<% end %>
+	<% end %>
 </div>
 
 <div class="timeline_show_content_wrapper">
@@ -72,8 +82,6 @@
 									<% else %>
 									<% end %>
 								<p>
-									<!-- お気に入りボタン -->
-									<span class="glyphicon glyphicon-paperclip" aria-hidden="true">記事をクリップ</span>
 								</p>
 									<div class="timeline-show-btn">
 										<% if (@timeline.user_id == current_user.id) %>
