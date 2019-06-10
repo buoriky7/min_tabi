@@ -1,8 +1,15 @@
 class ArticlesController < ApplicationController
   def new
-  	@place = Place.new
-  	@place.articles.build
-  	@article = Article.new
+    timeline = Timeline.where(user_id: current_user.id).last
+    # TODO:タイムラインは親切ボタンを作成するのがいいのでは？
+    # if timeline_flag.nil? || timeline.post_flag == 1
+    #   flash[:danger] = "記事を新規作成できませんでした。<br>ログインするか、こちらのページからタイムラインを新規作成してください。"
+    #   redirect_to timelines_exception_create_path
+    # else
+      @place = Place.new
+      @place.articles.build
+      @article = Article.new
+    # end
   end
 
   def edit
