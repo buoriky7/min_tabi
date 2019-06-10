@@ -3,6 +3,7 @@ class TimelinesController < ApplicationController
   end
 
   def show
+    @timeline = Timeline.find(params[:id])
   end
 
   def edit
