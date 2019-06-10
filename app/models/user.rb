@@ -4,6 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # バリデーション
+  validates :last_name, presence: true, length: { maximum: 20 }
+  validates :first_name, presence: true, length: { maximum: 20 }
+  validates :nickname, presence: true, length: { maximum: 20 }
+
   # アソシエーション
   	has_many :timelines, dependent: :destroy
   	has_many :clips, dependent: :destroy

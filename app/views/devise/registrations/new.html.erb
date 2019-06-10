@@ -6,14 +6,19 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field">
-        <%= f.label :last_name %><br />
-        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder: "旅行", class: "form-group" %>
-        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder: "太郎", class: "form-group" %>
+        <span>お名前</span>><br />
+        <%= f.text_field :last_name, required: true, autofocus: true, autocomplete: "last_name", placeholder: "旅行", class: "form-group" %>
+        <%= f.text_field :first_name, required: true, autocomplete: "first_name", placeholder: "太郎", class: "form-group" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :nickname %><br />
+        <%= f.text_field :nickname, required: true, autocomplete: "nickname", placeholder: "サイト上で表示する名前" %>
       </div>
 
       <div class="field">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "mintabi@email.com", class: "form-group" %>
+        <%= f.email_field :email, required: true, autocomplete: "email", placeholder: "mintabi@email.com", class: "form-group" %>
       </div>
 
       <div class="field">
@@ -21,12 +26,12 @@
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上の英数字" %>
+        <%= f.password_field :password, required: true, autocomplete: "new-password", placeholder: "6文字以上の英数字" %>
       </div>
 
       <div class="field">
         <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上の英数字" %>
+        <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password", placeholder: "6文字以上の英数字" %>
       </div>
 
       <div class="actions">
