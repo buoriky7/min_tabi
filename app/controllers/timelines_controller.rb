@@ -16,7 +16,7 @@ class TimelinesController < ApplicationController
 
   def new
     @timeline = Timeline.find(params[:id])
-    @articles = current_user.articles.order(id: "DESC")
+    @articles = Article.where(timeline_id: @timeline.id).order(id: "DESC")
   end
 
   def post

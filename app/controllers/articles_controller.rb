@@ -20,7 +20,7 @@ class ArticlesController < ApplicationController
   def create
   	@article = Article.new(article_params)
   	@article.user_id = current_user.id
-  	timeline = Timeline.where(id: current_user.id).last
+  	timeline = Timeline.where(user_id: current_user.id).last
     @article.timeline_id = timeline.id
     @article.article_icons.each do |article_icon|
         article_icon.timeline_id = timeline.id
