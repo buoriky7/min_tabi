@@ -9,6 +9,7 @@ class ArticlesController < ApplicationController
       @place = Place.new
       @place.articles.build
       @article = Article.new
+      @article.article_icons.build
     # end
   end
 
@@ -21,19 +22,26 @@ class ArticlesController < ApplicationController
   	@article.user_id = current_user.id
   	timeline = Timeline.where(id: current_user.id).last
     @article.timeline_id = timeline.id
+    @article.article_icons.each do |article_icon|
+        article_icon.timeline_id = timeline.id
+    end
+    # 以下Placeモデルへの保存処理
+    # Placeモデルが空の時は新規作成
     if Place.all.empty?
       @place = Place.new(place_params)
       @place.user_id = @article.user_id #TODO:user_idがname_error(userとアソシエーション中だと)
       @place.save
     else
       # TODO:もっと良いコードにできないだろうか？
-      @place = Place.find_or_initialize_by(place_params)
+      # Placeモデルに「current_userと同じuser_id」があればLoad, なければ.new
+      @place = Place.find_or_initialize_by(place_params) #引数がストロングパラメーターだけだと、.newの時に困る
       if @place.new_record?
          @place.place_name = place_params
          @place.user_id = current_user.id #TODO:user_idがname_error(userとアソシエーション中だと)
          @place.save
       end
     end
+    # Placeモデルへの保存処理ここまで。以下article保存
   	@article.place_id = @place.id
     if @article.save
     	flash[:success] = "記事を投稿しました！"
@@ -57,7 +65,10 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-  	params.require(:article).permit(:article_image, :caption, :body, :star)
+  	params.require(:article).permit(
+      :article_image, :caption, :body, :star,
+      article_icons_attributes: [:id, :icon_id]
+      )
   end
   def place_params
     params.require(:place).permit(:place_name)

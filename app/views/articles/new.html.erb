@@ -1,8 +1,4 @@
-<h1>Articles#new</h1>
-<p>Find me in app/views/articles/new.html.erb</p>
-
-<!-- ここから編集ずみページ -->
-<!-- TODO: Placeの保存方法をどうするか考える -->
+<!-- TODO: Placeの保存・・・keyも文字列で保存されている、をどうするか考える -->
 
 <div class="article_wrapper">
   <!-- 左カラム -->
@@ -51,6 +47,16 @@
         <% end %>
       </div>
       <!-- Placeの保存ここまで -->
+      <!-- Article_iconの保存 -->
+      <div class="form-group">
+        <%= f.fields_for :article_icons do |i| %>
+          <%= i.radio_button :icon_id, "0" %><span>観光</span>
+          <%= i.radio_button :icon_id, "1" %><span>グルメ</span>
+          <%= i.radio_button :icon_id, "2" %><span>ショッピング</span>
+          <%= i.radio_button :icon_id, "3" %><span>出会い、出来事</span>
+        <% end %>
+      </div>
+      <!-- Article_iconの保存ここまで -->
       <div class="form-group">
         <%= f.submit "投稿", class: "btn btn-info" %>
       </div>
