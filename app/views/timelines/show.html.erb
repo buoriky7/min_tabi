@@ -37,8 +37,19 @@
 							<div class="timeline_left_column_t">
 								<table>
 									<tr>
-										<!-- TODO:article_iconに変更 -->
-										<td><span class="glyphicon glyphicon-globe lank-btn" aria-hidden="true"></span></td>
+										<!-- article_iconの表示 -->
+										<!-- 3:出会い、出来事　2:ショッピング 1:グルメ 0:観光　default:0 -->
+										<td>
+											<% if article.article_icons.first.icon_id == 3 %>
+												<span class="glyphicon glyphicon-comment lank-btn" aria-hidden="true"></span>
+											<% elsif article.article_icons.first.icon_id ==2 %>
+												<span class="glyphicon glyphicon-shopping-cart lank-btn" aria-hidden="true"></span>
+											<% elsif article.article_icons.first.icon_id ==1 %>
+												<span class="glyphicon glyphicon-cutlery lank-btn" aria-hidden="true"></span>
+											<% else %>
+												<span class="glyphicon glyphicon-globe lank-btn" aria-hidden="true"></span>
+											<% end %>
+										</td>
 										<td></td>
 									</tr>
 									<tr>
