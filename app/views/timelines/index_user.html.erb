@@ -13,10 +13,11 @@
 					<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
 					<div class="timeline-thumbnail-text">
 						<div class="timeline-thumbnail-text_js">
-							<h3><%= timeline.title %></h3>
+							<h3><%= timeline.title.truncate(28) %></h3>
 							<span><%= timeline.created_at.strftime('%Y.%m.%d') %></span>
 						</div>
 					</div>
+					<!-- Clipボタン -->
 					<% if timeline.cliped_by?(current_user) %>
 						<%= link_to clip_path(timeline.id), method: :delete do %>
 							<span class="glyphicon glyphicon-paperclip clip-btn clipped" aria-hidden="true"></span>
