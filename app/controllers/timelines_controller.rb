@@ -6,11 +6,11 @@ class TimelinesController < ApplicationController
   end
 
   def index_user
-    @timelines = Timeline.where(id: current_user.id).page(params[:page]).per(10)
+    @timelines = Timeline.where(user_id: current_user.id).page(params[:page]).per(10)
   end
 
   def index_other
-    @timelines = Timeline.all.where.not(id: current_user.id).page(params[:page]).per(10)
+    @timelines = Timeline.all.where.not(user_id: current_user.id).page(params[:page]).per(10)
   end
 
   def show
@@ -59,6 +59,17 @@ class TimelinesController < ApplicationController
     else
       flash[:danger] = '[Error!]記事の新規投稿に失敗しました'
       redirect_to "/"
+    end
+  end
+
+  def destroy
+    timeline = Timeline.find(params[:id])
+    if timeline.destroy
+      flash[:success] = "記事を削除しました"
+      redirect_to timelines_path
+    else
+      flash[:danger] = '[Error!]記事を削除できませんでした'
+      redirect_to timelines_path
     end
   end
 
