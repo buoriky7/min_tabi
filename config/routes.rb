@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'clips/current_user' => 'clips#index_user', as: 'clips_user'
+  get 'clips/user' => 'clips#index_user', as: 'clips_user'
   get 'clips/other' => 'clips#index_other', as: 'clips_other'
   post 'clips/:id' => 'clips#create', as: 'clips_create'
   resources :clips, only:[:index, :destroy, :update]

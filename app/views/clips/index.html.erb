@@ -1,51 +1,38 @@
-<div class="clips-wrapper">
-		<%= link_to "全ての投稿", clips_path, class: "clips-nav" %>
-		<%= link_to "あなたの投稿", clips_user_path, class: "clips-nav" %>
-		<%= link_to "他の人の投稿", clips_other_path, class: "clips-nav" %>
-</div>
+<!-- TODO: timelineのuser_idでソートする方法を思いつかなかったので後回し -->
+<!-- <div class="clips-wrapper">
+		%= link_to "全ての投稿", clips_path, class: "clips-nav" %>
+		%= link_to "あなたの投稿", clips_user_path, class: "clips-nav" %>
+		%= link_to "他の人の投稿", clips_other_path, class: "clips-nav" %>
+</div> -->
 
+<div class="container">
 	<h2 class="text-center">Clip</h2>
-
-	<div class="container">
 		<div class="timeline-thumbnail-wrapper">
-			<div class="timeline-thumbnail">
-				<%= attachment_image_tag @product, :image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
-				<div class="timeline-thumbnail-text">
-					<div class="timeline-thumbnail-text_js">
-						<h3>title文字列最初の10文字..</h3>
-						<span>xxxx.xx.xx</span>
+			<% @clips.each do |clip| %>
+				<div class="timeline-thumbnail">
+					<%= attachment_image_tag clip.timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
+					<div class="timeline-thumbnail-text">
+						<div class="timeline-thumbnail-text_js">
+							<h3><%= clip.timeline.title.truncate(28) %></h3>
+							<span><%= clip.timeline.created_at.strftime('%Y.%m.%d') %></span>
+						</div>
 					</div>
-				</div>
-				<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-				<p>
-					<!--  TODO:timelineのcreated_at <= TimeWithZone.current.since(1.day)  モデルにメソッド作るかコントローラーにメソッド作る。複数のページで使うのでapplicationかも -->
-					<!--  24時間以内ならlabel表示、ってしたい -->
-					<!--  https://qiita.com/jnchito/items/cae89ee43c30f5d6fa2c -->
-					<!--  https://qiita.com/ryonext/items/4ed2f7635135a7b388f3 の方が有効かも -->
-					<!-- % if () %> -->
+					<!-- Clipボタン -->
+					<% if clip.timeline.cliped_by?(current_user) %>
+						<%= link_to clip_path(clip.timeline.id), method: :delete do %>
+							<span class="glyphicon glyphicon-paperclip clip-btn clipped" aria-hidden="true"></span>
+						<% end %>
+					<% else %>
+						<%= link_to clip_path(clip.timeline.id), method: :post do %>
+							<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
+						<% end %>
+					<% end %>
+					<p>
 						<span class="label label-info">New</span>
-						<span>title</span>
-					<!-- % end %> -->
-				</p>
-			</div>
-
-		<% @clips.each do |clip| %>
-			<!-- TODO:@user, :profile_image, に変更 -->
-			<div class="timeline-thumbnail">
-				<%= attachment_image_tag @product, :image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
-				<div class="timeline-thumbnail-text">
-					<div class="timeline-thumbnail-text_js">
-						<h3>title文字列最初の10文字..</h3>
-						<span>xxxx.xx.xx</span>
-					</div>
+						<span><%= clip.timeline.title %></span>
+					</p>
 				</div>
-				<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-				<p>
-					<span class="label label-info">New</span>
-					<span>title</span>
-				</p>
-			</div>
-		<% end %>
-
+			<% end %>
 		</div>
-	</div>
+	<%= paginate @clips %>
+</div>
