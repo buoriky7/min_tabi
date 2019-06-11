@@ -3,7 +3,7 @@
 		<span class="glyphicon glyphicon-user lank-btn" aria-hidden="true"></span><!-- TODO:css共通 -->
 	<% end %>
 	<span class="timeline_show_title">
-		<%= @timeline.id %>
+		<%= @timeline.title %>
 	</span>
 	<!-- ログイン中のユーザーだけ編集ボタンを押せる -->
 	<% if @timeline.user_id == current_user.id %>
