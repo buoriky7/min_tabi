@@ -1,4 +1,6 @@
 class TimelinesController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :new, :post, :create]
+
   def index
     @timelines = Timeline.all.page(params[:page]).per(10)
   end
@@ -20,7 +22,14 @@ class TimelinesController < ApplicationController
   end
 
   def update
-    #
+    timeline = Timeline.find(params[:id])
+    if timeline.update(timeline_up_params)
+      flash[:success] = "タイトルを更新しました！"
+      redirect_to timeline_path(timeline.id)
+    else
+      flash[:danger] = "タイトルの更新に失敗しました"
+      render :edit
+    end
   end
 
   def new
@@ -57,5 +66,10 @@ class TimelinesController < ApplicationController
   end
 
   def lanking_article
+  end
+
+  private
+  def timeline_up_params
+    params.require(:timeline).permit(:title)
   end
 end
