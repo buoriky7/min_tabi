@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:show, :index, :index_desc, :edit, :update, :destroy_confirm]
+
   def show
   	@user = User.find(current_user.id)
   end

@@ -12,26 +12,27 @@
 	width: 100%;
 }
 
-// timeline#show
+// timeline#show,new
 .timeline_show_nav {
 	background-color: #888;
-	padding: 5px 0;
-	padding-left: 50px;
+	padding: 10px 0 5px 50px;
 }
 .timeline_show_title {
 	font-size: 15px;
 }
-.timeline-show-right {
+.timeline-show-edit_icon {
+	display: inline-block;
+	padding: 5px;
 	margin-left: 50px;
 }
 
 .timeline_show_content_wrapper {
 	width: 100%;
-	background-color: #ddf;
+	background-color: #ccf;
 }
 .timeline_show_day {
 	width: 100%;
-	background-color: #ff0;
+	background-color: #cc3;
 	padding-bottom: 15px;
 	padding-left: 10px;
 	font-size: 25px;
@@ -44,23 +45,32 @@
 
 .timeline_show_content {
 	display: flex;
-	background-color: red;
+	background-color: #eee;
 	margin-left: 50px;
 	border-left: 5px solid #338;
 }
 .timeline_left_column_t {
+	width: 200px;
 	padding-top: 20px;
 	padding-right: 20px;
 	position: relative;
 	top: -35px;
  	left: -18px;
 }
+.timeline_left_column_t table {
+	font-size: 16px;
+	width: 180px;
+}
 .timeline-show-article-wrapper {
 	width: 80%;
 	padding-top: 10px;
 	padding-left: 20px;
 	border-bottom: 1px solid #333;
-	background-color: #bbf;
+	background-color: #ddf;
+}
+.timeline-show-btn {
+	display: inline-block;
+	padding: 10px;
 }
 
 // 右カラム

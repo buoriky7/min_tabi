@@ -74,9 +74,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # sign_in,up
 gem 'devise'
 
-# 画像のアップロード
-gem "refile", require: "refile/rails", github: 'manfe/refile'
-gem "refile-mini_magick"
+
 
 # 一対多のフォーム作成
 gem 'cocoon'
@@ -92,4 +90,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 # 検索バー
 gem 'ransack'
+
+# 画像のアップロード
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_09_072338) do
+ActiveRecord::Schema.define(version: 2019_06_10_112910) do
 
   create_table "article_icons", force: :cascade do |t|
     t.integer "article_id"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2019_06_09_072338) do
     t.integer "user_id"
     t.integer "place_id"
     t.string "caption", null: false
-    t.integer "article_image_id"
+    t.string "article_image_id"
     t.text "body"
     t.integer "star", default: 0
     t.datetime "created_at", null: false
