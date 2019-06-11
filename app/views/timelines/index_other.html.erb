@@ -9,29 +9,31 @@
 
 	<div class="container">
 			<% @timelines.each do |timeline| %>
-				<div class="timeline-thumbnail">
-					<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
-					<div class="timeline-thumbnail-text">
-						<div class="timeline-thumbnail-text_js">
-							<h3><%= timeline.title.truncate(20) %></h3>
-							<span><%= timeline.created_at.strftime('%Y.%m.%d') %></span>
+				<%= link_to timeline_path(timeline.id) do %>
+					<div class="timeline-thumbnail">
+						<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
+						<div class="timeline-thumbnail-text">
+							<div class="timeline-thumbnail-text_js">
+								<h3><%= timeline.title.truncate(20) %></h3>
+								<span><%= timeline.created_at.strftime('%Y.%m.%d') %></span>
+							</div>
 						</div>
+						<!-- Clipボタン -->
+						<% if timeline.cliped_by?(current_user) %>
+							<%= link_to clip_path(timeline.id), method: :delete do %>
+								<span class="glyphicon glyphicon-paperclip clip-btn clipped" aria-hidden="true"></span>
+							<% end %>
+						<% else %>
+							<%= link_to clip_path(timeline.id), method: :post do %>
+								<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
+							<% end %>
+						<% end %>
+						<p>
+							<span class="label label-info">New</span>
+							<span><%= timeline.title.truncate(20) %></span>
+						</p>
 					</div>
-					<!-- Clipボタン -->
-					<% if timeline.cliped_by?(current_user) %>
-						<%= link_to clip_path(timeline.id), method: :delete do %>
-							<span class="glyphicon glyphicon-paperclip clip-btn clipped" aria-hidden="true"></span>
-						<% end %>
-					<% else %>
-						<%= link_to clip_path(timeline.id), method: :post do %>
-							<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-						<% end %>
-					<% end %>
-					<p>
-						<span class="label label-info">New</span>
-						<span><%= timeline.title.truncate(20) %></span>
-					</p>
-				</div>
+				<% end %>
 			<% end %>
 		<%= paginate @timelines %>
 	</div>

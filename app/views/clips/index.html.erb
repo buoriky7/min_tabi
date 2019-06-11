@@ -9,29 +9,31 @@
 	<h2 class="text-center">Clip</h2>
 		<div class="timeline-thumbnail-wrapper">
 			<% @clips.each do |clip| %>
-				<div class="timeline-thumbnail">
-					<%= attachment_image_tag clip.timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
-					<div class="timeline-thumbnail-text">
-						<div class="timeline-thumbnail-text_js">
-							<h3><%= clip.timeline.title.truncate(20) %></h3>
-							<span><%= clip.timeline.created_at.strftime('%Y.%m.%d') %></span>
+				<%= link_to timeline_path(clip.timeline.id) do %>
+					<div class="timeline-thumbnail">
+						<%= attachment_image_tag clip.timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
+						<div class="timeline-thumbnail-text">
+							<div class="timeline-thumbnail-text_js">
+								<h3><%= clip.timeline.title.truncate(20) %></h3>
+								<span><%= clip.timeline.created_at.strftime('%Y.%m.%d') %></span>
+							</div>
 						</div>
+						<!-- Clipボタン -->
+						<% if clip.timeline.cliped_by?(current_user) %>
+							<%= link_to clip_path(clip.timeline.id), method: :delete do %>
+								<span class="glyphicon glyphicon-paperclip clip-btn clipped" aria-hidden="true"></span>
+							<% end %>
+						<% else %>
+							<%= link_to clip_path(clip.timeline.id), method: :post do %>
+								<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
+							<% end %>
+						<% end %>
+						<p>
+							<span class="label label-info">New</span>
+							<span><%= clip.timeline.title %></span>
+						</p>
 					</div>
-					<!-- Clipボタン -->
-					<% if clip.timeline.cliped_by?(current_user) %>
-						<%= link_to clip_path(clip.timeline.id), method: :delete do %>
-							<span class="glyphicon glyphicon-paperclip clip-btn clipped" aria-hidden="true"></span>
-						<% end %>
-					<% else %>
-						<%= link_to clip_path(clip.timeline.id), method: :post do %>
-							<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-						<% end %>
-					<% end %>
-					<p>
-						<span class="label label-info">New</span>
-						<span><%= clip.timeline.title %></span>
-					</p>
-				</div>
+				<% end %>
 			<% end %>
 		</div>
 	<%= paginate @clips %>
