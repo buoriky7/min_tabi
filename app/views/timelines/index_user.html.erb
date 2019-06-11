@@ -3,7 +3,7 @@
 </div>
  <div class="clips-wrapper">
 		<%= link_to "全ての投稿", timelines_path, class: "clips-nav" %>
-		<%= link_to "あなたの投稿", timelines_user_path(current_user.id), class: "clips-nav" %>
+		<%= link_to "あなたの投稿", timelines_user_path, class: "clips-nav" %>
 		<%= link_to "他の人の投稿", timelines_other_path, class: "clips-nav" %>
 </div>
 
@@ -13,7 +13,7 @@
 					<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
 					<div class="timeline-thumbnail-text">
 						<div class="timeline-thumbnail-text_js">
-							<h3><%= timeline.title.truncate(28) %></h3>
+							<h3><%= timeline.title.truncate(20) %></h3>
 							<span><%= timeline.created_at.strftime('%Y.%m.%d') %></span>
 						</div>
 					</div>
@@ -29,7 +29,7 @@
 					<% end %>
 					<p>
 						<span class="label label-info">New</span>
-						<span>title</span>
+						<span><%= timeline.title.truncate(20) %></span>
 					</p>
 				</div>
 			<% end %>

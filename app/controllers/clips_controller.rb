@@ -1,4 +1,6 @@
 class ClipsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
   	@clips = Clip.all.page(params[:page]).per(15)
   end

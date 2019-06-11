@@ -6,17 +6,19 @@
 		<%= @timeline.title %>
 	</span>
 	<!-- ログイン中のユーザーだけ編集ボタンを押せる -->
-	<% if @timeline.user_id == current_user.id %>
-		<%= link_to "タイトルを編集する", edit_timeline_path, class: 'timeline-show-edit_icon' %>
-	<% end %>
-	<!-- お気に入り（Clip）機能 -->
-	<% if @timeline.cliped_by?(current_user) %>
-		<%= link_to clip_path(@timeline.id), method: :delete do %>
-			<span class="glyphicon glyphicon-paperclip" aria-hidden="true">クリップを解除</span>
+	<% if user_signed_in? %>
+		<% if @timeline.user_id == current_user.id %>
+			<%= link_to "タイトルを編集する", edit_timeline_path, class: 'timeline-show-edit_icon' %>
 		<% end %>
-	<% else %>
-		<%= link_to clips_create_path(@timeline.id), method: :post do %>
-			<span class="glyphicon glyphicon-paperclip" aria-hidden="true">この日記をクリップ</span>
+		<!-- お気に入り（Clip）機能 -->
+		<% if @timeline.cliped_by?(current_user) %>
+			<%= link_to clip_path(@timeline.id), method: :delete do %>
+				<span class="glyphicon glyphicon-paperclip" aria-hidden="true">クリップを解除</span>
+			<% end %>
+		<% else %>
+			<%= link_to clips_create_path(@timeline.id), method: :post do %>
+				<span class="glyphicon glyphicon-paperclip" aria-hidden="true">この日記をクリップ</span>
+			<% end %>
 		<% end %>
 	<% end %>
 </div>
@@ -95,10 +97,12 @@
 								<p>
 								</p>
 									<div class="timeline-show-btn">
-										<% if (@timeline.user_id == current_user.id) %>
-											<!-- Article編集、削除 -->
-												<%= link_to "編集", edit_article_path(article.id), class: "btn btn-warning btn-xs" %>
-												<%= link_to "削除", article_path(article.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-xs" %>
+										<% if user_signed_in? %>
+											<% if (@timeline.user_id == current_user.id) %>
+												<!-- Article編集、削除 -->
+													<%= link_to "編集", edit_article_path(article.id), class: "btn btn-warning btn-xs" %>
+													<%= link_to "削除", article_path(article.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-xs" %>
+											<% end %>
 										<% end %>
 									</div>
 								</p>

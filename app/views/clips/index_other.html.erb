@@ -12,7 +12,7 @@
 					<%= attachment_image_tag clip.timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
 					<div class="timeline-thumbnail-text">
 						<div class="timeline-thumbnail-text_js">
-							<h3><%= clip.timeline.title.truncate(28) %></h3>
+							<h3><%= clip.timeline.title.truncate(20) %></h3>
 							<span><%= clip.timeline.created_at.strftime('%Y.%m.%d') %></span>
 						</div>
 					</div>

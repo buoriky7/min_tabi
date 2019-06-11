@@ -1,4 +1,5 @@
 class PlacesController < ApplicationController
+	before_action :authenticate_user!
 	# TODO: Article#newでネストしたデータは保存できないのか？　と思い、新設。しかし不要か？
 	# rails delete controller Places
 	def new
