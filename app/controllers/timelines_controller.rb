@@ -1,5 +1,6 @@
 class TimelinesController < ApplicationController
-  before_action :authenticate_user!, only: [:index_user, :index_other ,:edit, :update, :new, :post, :create]
+  include CommonActions
+  before_action :authenticate_user!, only: [:index_user, :index_other ,:edit, :update, :new, :post, :create, :destroy]
 
   def index
     @timelines = Timeline.all.page(params[:page]).per(10)
@@ -83,4 +84,5 @@ class TimelinesController < ApplicationController
   def timeline_up_params
     params.require(:timeline).permit(:title)
   end
+
 end

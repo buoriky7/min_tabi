@@ -53,8 +53,9 @@ class UsersController < ApplicationController
 
   def user_confirm!
     if current_user.id != params[:id].to_i
-      flash[:notice] = "あなたのIDでは、このユーザー情報の削除、編集はできません。"
+      flash[:notice] = "あなたのIDでは、この情報の削除、編集はできません。"
       redirect_to timelines_path
     end
   end
+
 end
