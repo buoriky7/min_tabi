@@ -25,6 +25,16 @@
         <%= f.text_area :profile, autocomplete: "profile", class: "user_edit_field" %>
       </div>
 
+      <div class="form-group">
+        <%= f.label :profile_image %><br>
+        <%= f.attachment_field :profile_image %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :header_image %><br>
+        <%= f.attachment_field :header_image %>
+      </div>
+
       <div class="actions">
         <%= f.submit "更新", class: "btn btn-info" %>
       </div>

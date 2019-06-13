@@ -15,4 +15,8 @@ class User < ApplicationRecord
 	has_many :articles, dependent: :destroy
 	has_many :places, dependent: :destroy
 
+  # 画像投稿
+    attachment :profile_image
+    attachment :header_image
+
 end

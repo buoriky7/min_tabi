@@ -25,11 +25,12 @@
 	<!-- 右カラム -->
 	<div class="user_right_column">
 		<div class="user_header">
+			<%= attachment_image_tag @user, :header_image, :fill, 1000, 250, format: 'jpeg', fallback: "no_image.jpg", class: "user_header_image" %>
 			<div class="image-radius header-image-btn"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></div>
 		</div>
 		<div class="profile-image_wrapper">
 			<!-- TODO:@user, :profile_image, に変更 -->
-			<%= attachment_image_tag @product, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "profile-image" %>
+			<%= attachment_image_tag @user, :profile_image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "profile-image" %>
 			<% if @user.id == current_user.id %>
 				<div class="image-radius profile-image-btn"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></div>
 			<% end %>
