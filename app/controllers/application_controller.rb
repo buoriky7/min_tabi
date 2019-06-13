@@ -1,10 +1,16 @@
 class ApplicationController < ActionController::Base
 	before_action :configure_permitted_parameters, if: :devise_controller?
+	before_action :set_search
 	# timelineが投稿済みが否か判断する
 	helper_method :timeline_flag
 
 	def timeline_flag
 		@timeline_flag = Timeline.where(user_id: current_user.id).last
+	end
+
+	def set_search
+		@q = Timeline.ransack(params[:q])
+		@s_times = @q.result.page(params[:page]).per(10).reverse_order
 	end
 
 

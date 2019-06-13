@@ -24,6 +24,13 @@
             </button>
             <%=link_to "みんなの旅日記", user_path(current_user.id) ,class: "navbar-brand" %>
           </div>
+          <!-- 検索フォーム -->
+          <div class="search">
+            <%= search_form_for @q do |f| %>
+              <%= f.search_field :title_cont, placeholde: "タイムラインのタイトル" %>
+              <%= f.submit %>
+            <% end %>
+          </div>
             <div class="collapse navbar-collapse navbar-right" id="navbarEexample3">
               <ul class="nav navbar-nav">
                 <li>
