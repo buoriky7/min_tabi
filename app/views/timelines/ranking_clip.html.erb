@@ -8,6 +8,41 @@
 <div class="container">
 	<div class="row">
 
+		<!-- TODO: レイアウト１　1〜3位のみ別レイアウト --> 
+<!-- 		!-- １位 --
+		<div class="col-sm-4">
+			<div class="rank">
+					<%= attachment_image_tag @all_ranks.first.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
+					<p>
+						<span class="glyphicon glyphicon-tower rank-btn rank_1" aria-hidden="true"></span>
+						<span><%= @all_ranks.first.title %></span>
+						<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
+					</p>
+			</div>
+		</div>
+		!-- ２位 --
+		<div class="col-sm-4">
+			<div class="rank">
+					<%= attachment_image_tag @product, :image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
+					<p>
+						<span class="glyphicon glyphicon-tower rank-btn rank_2" aria-hidden="true"></span>
+						<span>title</span>
+						<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
+					</p>
+			</div>
+		</div>
+		!-- ３位 --
+		<div class="col-sm-4">
+			<div class="rank">
+					<%= attachment_image_tag @product, :image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
+					<p>
+						<span class="glyphicon glyphicon-tower rank-btn rank_3" aria-hidden="true"></span>
+						<span>title</span>
+						<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
+					</p>
+			</div>
+		</div>
+	</div> -->
 
 		<!-- TODO: レイアウト２　テーブルタグで表示 --> 
 		<% @all_ranks.each.with_index(1) do |timeline, i| %>
@@ -50,5 +85,35 @@
 	</div>
 
 
-
+		<!-- TODO: レイアウト３　rowで分割 --> 
+	<div class="row">
+		<% @all_ranks.each.with_index(1) do |timeline, i| %>
+					<p>
+						<!-- 1,2,3位にはアイコンを表示 -->
+						<% if i == 1 %>
+							<span class="glyphicon glyphicon-tower rank-btn rank_1" aria-hidden="true"></span>
+						<% elsif i == 2 %>
+							<span class="glyphicon glyphicon-tower rank-btn rank_2" aria-hidden="true"></span>
+						<% elsif i == 3 %>
+							<span class="glyphicon glyphicon-tower rank-btn rank_3" aria-hidden="true"></span>
+						<% end %>
+						第<%= i %>位
+					</p>
+					<%= link_to timeline_path(timeline.id) do %>
+						<div class="timeline-thumbnail">
+							<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
+							<div class="timeline-thumbnail-text">
+								<div class="timeline-thumbnail-text_js">
+									<h3><%= timeline.title.truncate(20) %></h3>
+									<span><%= timeline.created_at.strftime('%Y.%m.%d') %></span>
+								</div>
+							</div>
+							<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
+							<p>
+								<span><%= timeline.title.truncate(20) %></span>
+							</p>
+						</div>
+					<% end %>
+		<% end %>
+	</div>
 </div>
