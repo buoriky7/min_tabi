@@ -6,7 +6,7 @@ class TimelinesController < ApplicationController
   end
 
   def index_user
-    @timelines = Timeline.where(user_id: current_user.id).page(params[:page]).per(10)
+    @timelines = Timeline.where(user_id: params[:id]).page(params[:page]).per(10)
   end
 
   def index_other
