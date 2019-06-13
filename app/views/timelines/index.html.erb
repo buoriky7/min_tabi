@@ -12,39 +12,41 @@
 
 	<div class="container">
 			<% @s_times.each do |timeline| %>
-				<%= link_to timeline_path(timeline.id) do %>
-					<div class="timeline-thumbnail">
-						<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
-						<div class="timeline-thumbnail-text">
-							<div class="timeline-thumbnail-text_js">
-								<h3><%= timeline.title.truncate(20) %></h3>
-								<span><%= timeline.created_at.strftime('%Y.%m.%d') %></span>
+				<% if timeline.post_flag != 0 %>
+					<%= link_to timeline_path(timeline.id) do %>
+						<div class="timeline-thumbnail">
+							<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
+							<div class="timeline-thumbnail-text">
+								<div class="timeline-thumbnail-text_js">
+									<h3><%= timeline.title.truncate(20) %></h3>
+									<span><%= timeline.created_at.strftime('%Y.%m.%d') %></span>
+								</div>
 							</div>
+							<!-- Clipボタン -->
+							<%if user_signed_in? %>
+								<% if timeline.cliped_by?(current_user) %>
+									<%= link_to clip_path(timeline.id), method: :delete do %>
+										<span class="glyphicon glyphicon-paperclip clip-btn clipped" aria-hidden="true"></span>
+									<% end %>
+								<% else %>
+									<%= link_to clip_path(timeline.id), method: :post do %>
+										<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
+									<% end %>
+								<% end %>
+							<% end %>
+							<p class="timeline_title_box">
+								<span class="label label-info">New</span>
+								<span><%= timeline.title.truncate(20) %></span>
+							</p>
+							<% if user_signed_in? %>
+								<% if (timeline.user_id == current_user.id) %>
+									<%= link_to "削除", timeline_path(timeline.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-xs" %>
+								<% else %>
+									<span class="btn btn-xs opasity: 1"></span>
+								<% end %>
+							<% end %>
 						</div>
-						<!-- Clipボタン -->
-						<%if user_signed_in? %>
-							<% if timeline.cliped_by?(current_user) %>
-								<%= link_to clip_path(timeline.id), method: :delete do %>
-									<span class="glyphicon glyphicon-paperclip clip-btn clipped" aria-hidden="true"></span>
-								<% end %>
-							<% else %>
-								<%= link_to clip_path(timeline.id), method: :post do %>
-									<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-								<% end %>
-							<% end %>
-						<% end %>
-						<p class="timeline_title_box">
-							<span class="label label-info">New</span>
-							<span><%= timeline.title.truncate(20) %></span>
-						</p>
-						<% if user_signed_in? %>
-							<% if (timeline.user_id == current_user.id) %>
-								<%= link_to "削除", timeline_path(timeline.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-xs" %>
-							<% else %>
-								<span class="btn btn-xs opasity: 1"></span>
-							<% end %>
-						<% end %>
-					</div>
+					<% end %>
 				<% end %>
 			<% end %>
 		<%= paginate @timelines %>
