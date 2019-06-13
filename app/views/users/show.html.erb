@@ -4,8 +4,6 @@
 		<div class="user_left_column_content">
 			<hr>
 			<%= link_to "プロフィール", user_path %>
-			<hr>
-			<%= link_to "お気に入り一覧", clips_path %>
 			<!-- % if  %> --><!-- TODO:最後に投稿したTimelineの投稿フラグオン→new_timeline, オフ→timelines 過去に投稿した記事を見る -->
                 <% if timeline_flag.nil? %>
 	            <% elsif timeline_flag.post_flag == 0 %>
@@ -27,6 +25,8 @@
                   <% end %>
 				<hr>
 				<!-- % end %> -->
+				<%= link_to "お気に入り一覧", clips_path %>
+				<hr>
 				<%= link_to "ユーザー情報を編集する", edit_user_path %>
 				<hr>
 				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
