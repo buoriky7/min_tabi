@@ -27,6 +27,9 @@
                   <% end %>
 			<!-- % end %> -->
 			<%= link_to "ユーザー情報を編集する", edit_user_path %>
+			<hr>
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			<%= link_to "退会する", destroy_confirm_path %>
 		</div>
 	</div>
 	<!-- 右カラム -->
@@ -60,15 +63,19 @@
 				<p><%= @user.profile %></p>
 			<hr>
 			<h3 class="inline">最近の旅</h3>
-			<span class="user_show_tineline_last"><%= link_to @user.timelines.last.title, timeline_path(@user.timelines.last.id) %><span>
-			<hr>
-				<div>
-					<% @user.timelines.last(10).each do |timeline| %>
-						<%= link_to timeline_path(timeline.id) do %>
-							<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "timeline-image" %>
+			<% if timeline_flag.nil? || timeline_flag.post_flag == 0 %>
+			<span>まだ旅行記を投稿していません。</span>
+			<% else %>
+				<span class="user_show_tineline_last"><%= link_to @user.timelines.last.title, timeline_path(@user.timelines.last.id) %><span>
+				<hr>
+					<div>
+						<% @user.timelines.last(10).each do |timeline| %>
+							<%= link_to timeline_path(timeline.id) do %>
+								<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "timeline-image" %>
+							<% end %>
 						<% end %>
+						<p><%= link_to "もっと見る", timelines_user_path %></p>
 					<% end %>
-					<p><%= link_to "もっと見る", timelines_user_path %></p>
 				</div>
 			<hr>
 		</div>
