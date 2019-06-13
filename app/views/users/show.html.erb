@@ -7,31 +7,25 @@
 			<hr>
 			<%= link_to "お気に入り一覧", clips_path %>
 			<!-- % if  %> --><!-- TODO:最後に投稿したTimelineの投稿フラグオン→new_timeline, オフ→timelines 過去に投稿した記事を見る -->
-                  <% if timeline_flag.nil? %>
-	                <% if (current_user.id == params[:id]) %>
-	                  <% elsif timeline_flag.post_flag == 0 %>
-							<hr>
-			                    <%= link_to "編集中の記事を見る", new_timeline_path(timeline_flag.id) %>
-		                    <hr>
-	                  <% else %>
-						<hr>
-		                    <%= link_to "過去に投稿した記事を見る", timelines_user_path %>
-	                    <hr>
-	                  <% end %>
-	                <% else %>
-						<hr>
-		                    <%= link_to "このユーザーの投稿記事を見る", timelines_user_path() %>
-	                    <hr>
-                    <% end %>
+                <% if timeline_flag.nil? %>
+	            <% elsif timeline_flag.post_flag == 0 %>
+					<hr>
+			            <%= link_to "編集中の記事を見る", new_timeline_path(timeline_flag.id) %>
+		            <hr>
+	            <% else %>
+					<hr>
+		                <%= link_to "過去の投稿記事を見る", timelines_user_path(params[:id]) %>
+	                <hr>
+                <% end %>
 			<!-- % end %> -->
-			<% if (current_user.id == params[:id]) %>
-				<hr>
+			<% if @user.id == current_user.id %>
 				<!-- % if  %> --><!-- TODO:最後に投稿したTimelineの投稿フラグオン→new_timeline, オフ→new_article -->
                   <% if timeline_flag.nil? || timeline_flag.post_flag == 1 %>
                     <%= link_to "新しい旅日記を投稿する", timelines_path, method: :post %>
                   <% else %>
                     <%= link_to "新規投稿", new_article_path %>
                   <% end %>
+				<hr>
 				<!-- % end %> -->
 				<%= link_to "ユーザー情報を編集する", edit_user_path %>
 				<hr>
@@ -44,7 +38,7 @@
 	<div class="user_right_column">
 		<div class="user_header">
 			<%= attachment_image_tag @user, :header_image, :fill, 1000, 250, format: 'jpeg', fallback: "no_image.jpg", class: "user_header_image" %>
-			<% if (current_user.id == params[:id]) %>
+			<% if @user.id == current_user.id %>
 				<%= link_to edit_user_path(current_user.id) do %>
 					<div class="image-radius header-image-btn"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></div>
 				<% end %>
@@ -84,7 +78,7 @@
 								<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "timeline-image" %>
 							<% end %>
 						<% end %>
-						<p><%= link_to "もっと見る", timelines_user_path %></p>
+						<p><%= link_to "もっと見る", timelines_user_path(params[:id]) %></p>
 					<% end %>
 				</div>
 			<hr>
