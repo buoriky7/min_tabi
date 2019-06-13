@@ -18,6 +18,11 @@ class ArticlesController < ApplicationController
   def edit
   	@article = Article.find(params[:id])
     @place = Place.find_by(id: @article.place_id)
+    # TODO: timeline#edit,newと共通の処理。まとめたい
+    if @article.user_id != current_user.id
+      flash[:notice] = "あなたのIDでは、この情報の削除、編集はできません。"
+      redirect_to timelines_path
+    end
   end
 
   def create

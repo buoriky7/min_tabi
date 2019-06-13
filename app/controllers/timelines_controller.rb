@@ -20,6 +20,11 @@ class TimelinesController < ApplicationController
 
   def edit
     @timeline = Timeline.find(params[:id])
+    # TODO: newと共通の処理。まとめたい
+    if @timeline.user_id != current_user.id
+      flash[:notice] = "あなたのIDでは、この情報の削除、編集はできません。"
+      redirect_to timelines_path
+    end
   end
 
   def update
@@ -36,6 +41,11 @@ class TimelinesController < ApplicationController
   def new
     @timeline = Timeline.find(params[:id])
     @articles = Article.where(timeline_id: @timeline.id).order(id: "DESC")
+    # TODO: editと共通の処理。まとめたい
+    if @timeline.user_id != current_user.id
+      flash[:notice] = "あなたのIDでは、この情報の削除、編集はできません。"
+      redirect_to timelines_path
+    end
   end
 
   def post
