@@ -68,7 +68,7 @@ class ArticlesController < ApplicationController
     else
       # TODO:もっと良いコードにできないだろうか？
       # Placeモデルに「current_userと同じuser_id」があればLoad, なければ.new
-      @place = Place.find_or_initialize_by(place_params) #引数がストロングパラメーターだけだと、.newの時に困る
+      @place = Place.find_or_initialize_by(place_params)
       if @place.new_record?
          @place.user_id = current_user.id #TODO:user_idがname_error(userとアソシエーション中だと)
          @place.save
