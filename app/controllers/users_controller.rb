@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show, :index, :index_desc, :edit, :update, :destroy_confirm]
+  before_action :user_confirm!, only: [:edit, :update, :destroy_confirm, :destroy]
 
   def show
   	@user = User.find(current_user.id)
@@ -48,5 +49,12 @@ class UsersController < ApplicationController
   private
   def user_params
   	params.require(:user).permit(:last_name, :first_name, :nickname, :email, :profile,  :header_image, :profile_image)
+  end
+
+  def user_confirm!
+    if current_user.id != params[:id].to_i
+      flash[:notice] = "あなたのIDでは、このユーザー情報の削除、編集はできません。"
+      redirect_to timelines_path
+    end
   end
 end
