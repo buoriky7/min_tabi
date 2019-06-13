@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :user_confirm!, only: [:edit, :update, :destroy_confirm, :destroy]
 
   def show
-  	@user = User.find(current_user.id)
+  	@user = User.find(params[:id])
   end
 
   def index

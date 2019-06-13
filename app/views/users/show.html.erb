@@ -6,38 +6,48 @@
 			<%= link_to "プロフィール", user_path %>
 			<hr>
 			<%= link_to "お気に入り一覧", clips_path %>
-			<hr>
-			<!-- % if  %> --><!-- TODO:最後に投稿したTimelineの投稿フラグオン→new_timeline, オフ→new_article -->
+			<!-- % if  %> --><!-- TODO:最後に投稿したTimelineの投稿フラグオン→new_timeline, オフ→timelines 過去に投稿した記事を見る -->
+                  <% if timeline_flag.nil? %>
+	                <% if (current_user.id == params[:id]) %>
+	                  <% elsif timeline_flag.post_flag == 0 %>
+							<hr>
+			                    <%= link_to "編集中の記事を見る", new_timeline_path(timeline_flag.id) %>
+		                    <hr>
+	                  <% else %>
+						<hr>
+		                    <%= link_to "過去に投稿した記事を見る", timelines_user_path %>
+	                    <hr>
+	                  <% end %>
+	                <% else %>
+						<hr>
+		                    <%= link_to "このユーザーの投稿記事を見る", timelines_user_path() %>
+	                    <hr>
+                    <% end %>
+			<!-- % end %> -->
+			<% if (current_user.id == params[:id]) %>
+				<hr>
+				<!-- % if  %> --><!-- TODO:最後に投稿したTimelineの投稿フラグオン→new_timeline, オフ→new_article -->
                   <% if timeline_flag.nil? || timeline_flag.post_flag == 1 %>
                     <%= link_to "新しい旅日記を投稿する", timelines_path, method: :post %>
                   <% else %>
                     <%= link_to "新規投稿", new_article_path %>
                   <% end %>
-			<!-- % end %> -->
-			<!-- % if  %> --><!-- TODO:最後に投稿したTimelineの投稿フラグオン→new_timeline, オフ→timelines 過去に投稿した記事を見る -->
-                  <% if timeline_flag.nil? %>
-                  <% elsif timeline_flag.post_flag == 0 %>
-					<hr>
-	                    <%= link_to "編集中の記事を見る", new_timeline_path(timeline_flag.id) %>
-                    <hr>
-                  <% else %>
-					<hr>
-	                    <%= link_to "過去に投稿した記事を見る", timelines_user_path %>
-                    <hr>
-                  <% end %>
-			<!-- % end %> -->
-			<%= link_to "ユーザー情報を編集する", edit_user_path %>
-			<hr>
-			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-			<%= link_to "退会する", destroy_confirm_path %>
+				<!-- % end %> -->
+				<%= link_to "ユーザー情報を編集する", edit_user_path %>
+				<hr>
+				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				<%= link_to "退会する", destroy_confirm_path %>
+			<% end %>
 		</div>
 	</div>
 	<!-- 右カラム -->
 	<div class="user_right_column">
 		<div class="user_header">
 			<%= attachment_image_tag @user, :header_image, :fill, 1000, 250, format: 'jpeg', fallback: "no_image.jpg", class: "user_header_image" %>
-			<%= link_to edit_user_path(current_user.id) do %>
-				<div class="image-radius header-image-btn"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></div>
+			<% if (current_user.id == params[:id]) %>
+				<%= link_to edit_user_path(current_user.id) do %>
+					<div class="image-radius header-image-btn"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></div>
+				<% end %>
 			<% end %>
 		</div>
 		<div class="profile-image_wrapper">
