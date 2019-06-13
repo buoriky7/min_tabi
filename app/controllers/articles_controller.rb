@@ -102,7 +102,15 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     if @article.destroy
       flash[:success] = "記事を削除しました！"
-      redirect_to timelines_path
+      timeline_posted = Timeline.where(user_id: current_user.id).last
+      if timeline_posted.post_flag == 1
+        redirect_to timeline_path(timeline_posted.id)
+      elsif timeline_posted.post_flag == 0
+          redirect_to new_timeline_path(timeline_posted.id)
+      else
+        flash[:danger] = "予期せぬエラーです"
+        redirect_to timelines_path
+      end
     else
       flash[:danger] = "記事の削除に失敗しました。"
       redirect_to timelines_path
