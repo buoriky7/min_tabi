@@ -6,20 +6,22 @@
 			<%= link_to "プロフィール", user_path %>
         	<hr>
             <%= link_to "過去の投稿記事を見る", timelines_user_path(params[:id]) %>
+			<hr>
 			<% if @user.id == current_user.id %>
+				<!-- 最後に投稿したTimelineの投稿フラグオフの時のみ「投稿前の記事（new_timeline_path）」が確認できる -->
                 <% if timeline_flag.nil? %>
 	            <% elsif timeline_flag.post_flag == 0 %>
-					<hr>
-			            <%= link_to "編集中の記事を見る", new_timeline_path(timeline_flag.id) %>
+			        <%= link_to "編集中の記事を見る", new_timeline_path(timeline_flag.id) %>
 		            <hr>
                 <% end %>
-				<!-- % if  %> --><!-- TODO:最後に投稿したTimelineの投稿フラグオン→new_timeline, オフ→new_article -->
+				<!-- 最後に投稿したTimelineの投稿フラグオン→new_timeline, オフ→new_article リンク分岐 -->
                   <% if timeline_flag.nil? || timeline_flag.post_flag == 1 %>
-                    <%= link_to "新しい旅日記を投稿する", timelines_path, method: :post %>
+	                <%= link_to "新しい旅日記を投稿する", timelines_path, method: :post %>
+					<hr>
                   <% else %>
-                    <%= link_to "新規投稿", new_article_path %>
+	                <%= link_to "新規投稿", new_article_path %>
+					<hr>
                   <% end %>
-				<hr>
 				<!-- % end %> -->
 				<%= link_to "お気に入り一覧", clips_path %>
 				<hr>
