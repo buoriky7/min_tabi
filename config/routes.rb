@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   post 'clips/:id' => 'clips#create', as: 'clips_create'
   resources :clips, only:[:index, :destroy, :update]
   resources :articles, only:[:new, :create, :edit, :update, :destroy]
-  get 'timelines/lanking_clip' => 'timelines#lanking_clip', as: 'lanking_clip'
-  get 'timelines/lanking_article' => 'timelines#lanking_article', as: 'lanking_article'
+  get 'timelines/ranking_clip' => 'timelines#ranking_clip', as: 'ranking_clip'
+  get 'timelines/ranking_article' => 'timelines#ranking_article', as: 'ranking_article'
   patch 'timelines/:id/post' => 'timelines#post', as: 'timeline_post'
   get 'timelines/new/:id' => 'timelines#new', as: 'new_timeline'
   get 'timelines/user/:id' => 'timelines#index_user', as: 'timelines_user'

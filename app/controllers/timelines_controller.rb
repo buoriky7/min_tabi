@@ -84,10 +84,10 @@ class TimelinesController < ApplicationController
     end
   end
 
-  def lanking_clip
+  def ranking_clip
   end
 
-  def lanking_article
+  def ranking_article
   end
 
   private
