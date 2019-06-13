@@ -8,13 +8,24 @@
 			<%= link_to "お気に入り一覧", clips_path %>
 			<hr>
 			<!-- % if  %> --><!-- TODO:最後に投稿したTimelineの投稿フラグオン→new_timeline, オフ→new_article -->
-				<%= link_to "新規投稿", new_article_path %>
+                  <% if timeline_flag.nil? || timeline_flag.post_flag == 1 %>
+                    <%= link_to "新しい旅日記を投稿する", timelines_path, method: :post %>
+                  <% else %>
+                    <%= link_to "新規投稿", new_article_path %>
+                  <% end %>
 			<!-- % end %> -->
-			<hr>
 			<!-- % if  %> --><!-- TODO:最後に投稿したTimelineの投稿フラグオン→new_timeline, オフ→timelines 過去に投稿した記事を見る -->
-				<%= link_to "編集中の記事を見る", clips_path %><!-- TODO:リンク先を変更 -->
+                  <% if timeline_flag.nil? %>
+                  <% elsif timeline_flag.post_flag == 0 %>
+					<hr>
+	                    <%= link_to "編集中の記事を見る", new_timeline_path(timeline_flag.id) %>
+                    <hr>
+                  <% else %>
+					<hr>
+	                    <%= link_to "過去に投稿した記事を見る", timelines_user_path %>
+                    <hr>
+                  <% end %>
 			<!-- % end %> -->
-			<hr>
 			<%= link_to "ユーザー情報を編集する", edit_user_path %>
 		</div>
 	</div>
