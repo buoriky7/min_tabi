@@ -1,12 +1,13 @@
 class TimelinesController < ApplicationController
-  before_action :authenticate_user!, only: [:index_user, :index_other ,:edit, :update, :new, :post, :create]
+  include CommonActions
+  before_action :authenticate_user!, only: [:index_user, :index_other ,:edit, :update, :new, :post, :create, :destroy]
 
   def index
     @timelines = Timeline.all.page(params[:page]).per(10)
   end
 
   def index_user
-    @timelines = Timeline.where(user_id: current_user.id).page(params[:page]).per(10)
+    @timelines = Timeline.where(user_id: params[:id]).page(params[:page]).per(10)
   end
 
   def index_other
@@ -19,6 +20,11 @@ class TimelinesController < ApplicationController
 
   def edit
     @timeline = Timeline.find(params[:id])
+    # TODO: newと共通の処理。まとめたい
+    if @timeline.user_id != current_user.id
+      flash[:notice] = "あなたのIDでは、この情報の削除、編集はできません。"
+      redirect_to timelines_path
+    end
   end
 
   def update
@@ -35,6 +41,11 @@ class TimelinesController < ApplicationController
   def new
     @timeline = Timeline.find(params[:id])
     @articles = Article.where(timeline_id: @timeline.id).order(id: "DESC")
+    # TODO: editと共通の処理。まとめたい
+    if @timeline.user_id != current_user.id
+      flash[:notice] = "あなたのIDでは、この情報の削除、編集はできません。"
+      redirect_to timelines_path
+    end
   end
 
   def post
@@ -83,4 +94,5 @@ class TimelinesController < ApplicationController
   def timeline_up_params
     params.require(:timeline).permit(:title)
   end
+
 end

@@ -6,10 +6,9 @@ Rails.application.routes.draw do
   resources :articles, only:[:new, :create, :edit, :update, :destroy]
   get 'timelines/lanking_clip' => 'timelines#lanking_clip', as: 'lanking_clip'
   get 'timelines/lanking_article' => 'timelines#lanking_article', as: 'lanking_article'
-  # get 'timelines/exception_create' => 'timelines#exception_create', as: 'timelines_exception_create'
   patch 'timelines/:id/post' => 'timelines#post', as: 'timeline_post'
   get 'timelines/new/:id' => 'timelines#new', as: 'new_timeline'
-  get 'timelines/user' => 'timelines#index_user', as: 'timelines_user'
+  get 'timelines/user/:id' => 'timelines#index_user', as: 'timelines_user'
   get 'timelines/other' => 'timelines#index_other', as: 'timelines_other'
   resources :timelines, only: [:index, :create, :edit, :show, :destroy, :update]
   resources :places, only:[:new, :create, :destroy, :update]

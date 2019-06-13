@@ -5,7 +5,7 @@
 <% if user_signed_in? %>
 	 <div class="clips-wrapper">
 			<%= link_to "全ての投稿", timelines_path, class: "clips-nav" %>
-			<%= link_to "あなたの投稿", timelines_user_path, class: "clips-nav" %>
+			<%= link_to "あなたの投稿", timelines_user_path(current_user.id), class: "clips-nav" %>
 			<%= link_to "他の人の投稿", timelines_other_path, class: "clips-nav" %>
 	</div>
 <% end %>
