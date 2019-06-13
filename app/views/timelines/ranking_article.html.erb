@@ -1,18 +1,18 @@
-<div class="timelines-wrapper">
+<div class="ranking-wrapper">
 		<%= link_to "クリップ数", ranking_clip_path, class: "timelines-nav" %>
 		<%= link_to "投稿数", ranking_article_path, class: "timelines-nav" %>
 </div>
 
-<h2 class="text-center">Lanking</h2>
+<h2 class="text-center">ranking</h2>
 
 <div class="container">
 	<div class="row">
 		<!-- １位 -->
 		<div class="col-sm-4">
-			<div class="lank">
+			<div class="rank">
 					<%= attachment_image_tag @product, :image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
 					<p>
-						<span class="glyphicon glyphicon-tower lank-btn lank_1" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-tower rank-btn rank_1" aria-hidden="true"></span>
 						<span>title</span>
 						<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
 					</p>
@@ -20,10 +20,10 @@
 		</div>
 		<!-- ２位 -->
 		<div class="col-sm-4">
-			<div class="lank">
+			<div class="rank">
 					<%= attachment_image_tag @product, :image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
 					<p>
-						<span class="glyphicon glyphicon-tower lank-btn lank_2" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-tower rank-btn rank_2" aria-hidden="true"></span>
 						<span>title</span>
 						<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
 					</p>
@@ -31,10 +31,10 @@
 		</div>
 		<!-- ３位 -->
 		<div class="col-sm-4">
-			<div class="lank">
+			<div class="rank">
 					<%= attachment_image_tag @product, :image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
 					<p>
-						<span class="glyphicon glyphicon-tower lank-btn lank_3" aria-hidden="true"></span>
+						<span class="glyphicon glyphicon-tower rank-btn rank_3" aria-hidden="true"></span>
 						<span>title</span>
 						<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
 					</p>

@@ -1,77 +1,54 @@
-<div class="timelines-wrapper">
+<div class="ranking-wrapper">
 		<%= link_to "クリップ数", ranking_clip_path, class: "timelines-nav" %>
 		<%= link_to "投稿数", ranking_article_path, class: "timelines-nav" %>
 </div>
 
-<h2 class="text-center">Lanking</h2>
+<h2 class="text-center">ranking</h2>
 
 <div class="container">
 	<div class="row">
-		<!-- １位 -->
-		<div class="col-sm-4">
-			<div class="lank">
-					<%= attachment_image_tag @, :image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
-					<p>
-						<span class="glyphicon glyphicon-tower lank-btn lank_1" aria-hidden="true"></span>
-						<span>title</span>
-						<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-					</p>
-			</div>
-		</div>
-		<!-- ２位 -->
-		<div class="col-sm-4">
-			<div class="lank">
-					<%= attachment_image_tag @product, :image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
-					<p>
-						<span class="glyphicon glyphicon-tower lank-btn lank_2" aria-hidden="true"></span>
-						<span>title</span>
-						<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-					</p>
-			</div>
-		</div>
-		<!-- ３位 -->
-		<div class="col-sm-4">
-			<div class="lank">
-					<%= attachment_image_tag @product, :image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
-					<p>
-						<span class="glyphicon glyphicon-tower lank-btn lank_3" aria-hidden="true"></span>
-						<span>title</span>
-						<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-					</p>
-			</div>
-		</div>
+
+
+		<!-- TODO: レイアウト２　テーブルタグで表示 --> 
+		<% @all_ranks.each.with_index(1) do |timeline, i| %>
+			<table class="table">
+				<tr>
+					<td>
+						<!-- 1,2,3位にはアイコンを表示 -->
+						<% if i == 1 %>
+							<span class="glyphicon glyphicon-tower rank-btn rank_1" aria-hidden="true"></span>
+						<% elsif i == 2 %>
+							<span class="glyphicon glyphicon-tower rank-btn rank_2" aria-hidden="true"></span>
+						<% elsif i == 3 %>
+							<span class="glyphicon glyphicon-tower rank-btn rank_3" aria-hidden="true"></span>
+						<% end %>
+						第<%= i %>位
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<%= link_to timeline_path(timeline.id) do %>
+						<div class="timeline-thumbnail">
+							<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
+							<div class="timeline-thumbnail-text">
+								<div class="timeline-thumbnail-text_js">
+									<h3><%= timeline.title.truncate(20) %></h3>
+									<span><%= timeline.created_at.strftime('%Y.%m.%d') %></span>
+								</div>
+							</div>
+							<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
+							<p>
+								<span><%= timeline.title.truncate(20) %></span>
+							</p>
+						</div>
+					<% end %>
+				</td>
+				</tr>
+			</table>
+		<% end %>
+
 	</div>
 
-		<div class="timeline-thumbnail-wrapper">
-			<div class="timeline-thumbnail">
-				<%= attachment_image_tag @product, :image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
-				<div class="timeline-thumbnail-text">
-					<div class="timeline-thumbnail-text_js">
-						<h3>title文字列最初の10文字..</h3>
-						<span>xxxx.xx.xx</span>
-					</div>
-				</div>
-				<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-				<p>
-					<span>title</span>
-				</p>
-			</div>
 
-		<!-- % @timelines.each do |timeline| %> -->
-			<!-- TODO:@user, :profile_image, に変更 -->
-			<div class="timeline-thumbnail">
-				<%= attachment_image_tag @product, :image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
-				<div class="timeline-thumbnail-text">
-					<div class="timeline-thumbnail-text_js">
-						<h3>title文字列最初の10文字..</h3>
-						<span>xxxx.xx.xx</span>
-					</div>
-				</div>
-				<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-				<p>
-					<span>title</span>
-				</p>
-			</div>
-		<!-- % end %> -->
-	</div>
+
 </div>

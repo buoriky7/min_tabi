@@ -85,9 +85,13 @@ class TimelinesController < ApplicationController
   end
 
   def ranking_clip
+    # Clipをtimeline_idごとにグループ化、timeline_idが多いごとに並べ、10個取得、最終的にtimeline_idを取り出し、Timeline.findの引数に使用
+    # https://qiita.com/MitsuguSueyoshi/items/18fa5e49a27e727f00b4
+    @all_ranks = Timeline.find(Clip.group(:timeline_id).order('count(timeline_id) desc').limit(10).pluck(:timeline_id))
   end
 
   def ranking_article
+    @all_ranks = Timeline.find(Article.group(:timeline_id).order('count(timeline_id) desc').limit(10).pluck(:timeline_id))
   end
 
   private
