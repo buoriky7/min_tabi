@@ -1,7 +1,3 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-
-<!-- ここから編集 -->
 <div class="user_show_wrapper">
 	<!-- 左カラム -->
 	<div class="user_left_column">
@@ -53,19 +49,17 @@
 				<p><%= @user.profile %></p>
 			<hr>
 			<h3 class="inline">最近の旅</h3>
-			<span>一番最近に更新したやつのタイトル<span>
+			<span class="user_show_tineline_last"><%= link_to @user.timelines.last.title, timeline_path(@user.timelines.last.id) %><span>
 			<hr>
 				<div>
-					<!-- TODO:@user, :profile_image, に変更 -->
-					<p>
-						<%= attachment_image_tag @product, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "timeline-image" %>
-					</p>
-					<p>
-						<%= attachment_image_tag @product, :image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "timeline-image" %>
-					</p>
+					<% @user.timelines.last(10).each do |timeline| %>
+						<%= link_to timeline_path(timeline.id) do %>
+							<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "timeline-image" %>
+						<% end %>
+					<% end %>
+					<p><%= link_to "もっと見る", timelines_user_path %></p>
 				</div>
 			<hr>
-			<%= link_to "もっと見る", timelines_path %>
 		</div>
 	</div>
 </div>
