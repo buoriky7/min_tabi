@@ -3,52 +3,15 @@
 		<%= link_to "投稿数", ranking_article_path, class: "timelines-nav" %>
 </div>
 
-<h2 class="text-center">ranking</h2>
+<h2 class="text-center">クリップ数ランキング</h2>
 
 <div class="container">
 	<div class="row">
 
-		<!-- TODO: レイアウト１　1〜3位のみ別レイアウト --> 
-<!-- 		!-- １位 --
-		<div class="col-sm-4">
-			<div class="rank">
-					<%= attachment_image_tag @all_ranks.first.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
-					<p>
-						<span class="glyphicon glyphicon-tower rank-btn rank_1" aria-hidden="true"></span>
-						<span><%= @all_ranks.first.title %></span>
-						<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-					</p>
-			</div>
-		</div>
-		!-- ２位 --
-		<div class="col-sm-4">
-			<div class="rank">
-					<%= attachment_image_tag @product, :image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
-					<p>
-						<span class="glyphicon glyphicon-tower rank-btn rank_2" aria-hidden="true"></span>
-						<span>title</span>
-						<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-					</p>
-			</div>
-		</div>
-		!-- ３位 --
-		<div class="col-sm-4">
-			<div class="rank">
-					<%= attachment_image_tag @product, :image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
-					<p>
-						<span class="glyphicon glyphicon-tower rank-btn rank_3" aria-hidden="true"></span>
-						<span>title</span>
-						<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-					</p>
-			</div>
-		</div>
-	</div> -->
-
-		<!-- TODO: レイアウト２　テーブルタグで表示 --> 
 		<% @all_ranks.each.with_index(1) do |timeline, i| %>
 			<table class="table">
 				<tr>
-					<td>
+					<td colspan="2">
 						<!-- 1,2,3位にはアイコンを表示 -->
 						<% if i == 1 %>
 							<span class="glyphicon glyphicon-tower rank-btn rank_1" aria-hidden="true"></span>
@@ -61,59 +24,48 @@
 					</td>
 				</tr>
 				<tr>
-					<td>
-					<%= link_to timeline_path(timeline.id) do %>
-						<div class="timeline-thumbnail">
-							<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
-							<div class="timeline-thumbnail-text">
-								<div class="timeline-thumbnail-text_js">
-									<h3><%= timeline.title.truncate(20) %></h3>
-									<span><%= timeline.created_at.strftime('%Y.%m.%d') %></span>
+					<td rowspan="2" class="rank_image">
+						<%= link_to timeline_path(timeline.id) do %>
+							<div class="timeline-thumbnail">
+								<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
+								<div class="timeline-thumbnail-text">
+									<div class="timeline-thumbnail-text_js">
+										<h3><%= timeline.title.truncate(20) %></h3>
+										<span><%= timeline.created_at.strftime('%Y.%m.%d') %></span>
+									</div>
 								</div>
+								<!-- Clipボタン -->
+								<!-- TODO: 非同期でクリップさせる -->
+								<% if user_signed_in? %>
+									<%if timeline.cliped_by?(current_user) %>
+										<%= link_to clip_path(timeline.id), method: :delete do %>
+											<span class="glyphicon glyphicon-paperclip clip-btn clipped" aria-hidden="true"></span>
+										<% end %>
+									<% else %>
+										<%= link_to clip_path(timeline.id), method: :post do %>
+											<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
+										<% end %>
+									<% end %>
+								<% end %>
+								<p>
+									<span><%= timeline.title.truncate(20) %></span>
+								</p>
+								<td style="text-align: left;">
+									<p>（クリップ数：<%= timeline.clips.size %>）</p>
+									<% timeline.articles.first(10).each do |article| %>
+										<%= attachment_image_tag article, :article_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", :size =>'50x50' %>
+									<% end %>
+								</td>
 							</div>
-							<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-							<p>
-								<span><%= timeline.title.truncate(20) %></span>
-							</p>
-						</div>
-					<% end %>
-				</td>
+						<% end %>
+					</td>
+				</tr>
+				<tr><td>
+					<% if timeline.articles.first != nil %><%= timeline.articles.first.body.truncate(80) %><% end %>
+				</td></tr>
 				</tr>
 			</table>
 		<% end %>
 
-	</div>
-
-
-		<!-- TODO: レイアウト３　rowで分割 --> 
-	<div class="row">
-		<% @all_ranks.each.with_index(1) do |timeline, i| %>
-					<p>
-						<!-- 1,2,3位にはアイコンを表示 -->
-						<% if i == 1 %>
-							<span class="glyphicon glyphicon-tower rank-btn rank_1" aria-hidden="true"></span>
-						<% elsif i == 2 %>
-							<span class="glyphicon glyphicon-tower rank-btn rank_2" aria-hidden="true"></span>
-						<% elsif i == 3 %>
-							<span class="glyphicon glyphicon-tower rank-btn rank_3" aria-hidden="true"></span>
-						<% end %>
-						第<%= i %>位
-					</p>
-					<%= link_to timeline_path(timeline.id) do %>
-						<div class="timeline-thumbnail">
-							<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
-							<div class="timeline-thumbnail-text">
-								<div class="timeline-thumbnail-text_js">
-									<h3><%= timeline.title.truncate(20) %></h3>
-									<span><%= timeline.created_at.strftime('%Y.%m.%d') %></span>
-								</div>
-							</div>
-							<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-							<p>
-								<span><%= timeline.title.truncate(20) %></span>
-							</p>
-						</div>
-					<% end %>
-		<% end %>
 	</div>
 </div>
