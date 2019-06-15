@@ -34,7 +34,6 @@
 }
 .timeline_show_day {
 	width: 100%;
-	// background-color: #cc3;
 	padding-bottom: 15px;
 	padding-left: 10px;
 	font-size: 25px;
@@ -145,4 +144,33 @@
 }
 .rank_3 {
 	color: beige;
+}
+
+// レスポンシブ
+@media screen and (max-width: 750px) {
+
+
+	.timeline_show_content {
+		display: block;
+		margin-left: 0;
+		border-left: none;
+	}
+	.timeline_left_column_t {
+		width: 100%;
+		padding-top: 5px;
+		padding-right: 0;
+		position: static;
+	}
+	.timeline_left_column_t table {
+		width: 100%;
+	}
+	.timeline-show-article-wrapper {
+		width: 90%;
+		margin: 0 auto;
+	}
+	.timeline_article_icon {
+		width: 45px;
+		text-align: center;
+	}
+
 }
