@@ -1,7 +1,7 @@
 <div class="timeline_show_nav"><!-- TODO:css共通 user-index-title -->
 	<!-- ログイン中のユーザーだけ編集完了ボタンを押せる -->
 	<% if @timeline.user_id == current_user.id %>
-		<%= link_to "新しい記事を投稿する", new_article_path, class: 'btn btn-info' %>
+		<%= link_to "新しい記事を投稿する", new_article_path, class: 'btn btn-info btn_spacing' %>
 		<%= link_to "タイムラインを投稿する", timeline_post_path(@timeline.id), method: :patch, class: 'btn btn-info' %>
 	<% end %>
 </div>
@@ -26,13 +26,13 @@
 										<!-- 3:出会い、出来事　2:ショッピング 1:グルメ 0:観光　default:0 -->
 										<td>
 											<% if article.article_icons.first.icon_id == 3 %>
-												<span class="glyphicon glyphicon-comment lank-btn" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-comment rank-btn" aria-hidden="true"></span>
 											<% elsif article.article_icons.first.icon_id ==2 %>
-												<span class="glyphicon glyphicon-shopping-cart lank-btn" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-shopping-cart rank-btn" aria-hidden="true"></span>
 											<% elsif article.article_icons.first.icon_id ==1 %>
-												<span class="glyphicon glyphicon-cutlery lank-btn" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-cutlery rank-btn" aria-hidden="true"></span>
 											<% else %>
-												<span class="glyphicon glyphicon-globe lank-btn" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-globe rank-btn" aria-hidden="true"></span>
 											<% end %>
 										</td>
 										<td></td>

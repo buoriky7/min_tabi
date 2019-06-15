@@ -1,6 +1,6 @@
 <div class="timeline_show_nav"><!-- TODO:css共通 user-index-title -->
-	<%= link_to user_path(@timeline.id) do %>
-		<span class="glyphicon glyphicon-user lank-btn" aria-hidden="true"></span><!-- TODO:css共通 -->
+	<%= link_to user_path(@timeline.user_id) do %>
+		<span class="glyphicon glyphicon-user rank-btn" aria-hidden="true"></span><!-- TODO:css共通 -->
 	<% end %>
 	<span class="timeline_show_title">
 		<%= @timeline.title %>
@@ -43,13 +43,13 @@
 										<!-- 3:出会い、出来事　2:ショッピング 1:グルメ 0:観光　default:0 -->
 										<td>
 											<% if article.article_icons.first.icon_id == 3 %>
-												<span class="glyphicon glyphicon-comment lank-btn" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-comment rank-btn" aria-hidden="true"></span>
 											<% elsif article.article_icons.first.icon_id ==2 %>
-												<span class="glyphicon glyphicon-shopping-cart lank-btn" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-shopping-cart rank-btn" aria-hidden="true"></span>
 											<% elsif article.article_icons.first.icon_id ==1 %>
-												<span class="glyphicon glyphicon-cutlery lank-btn" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-cutlery rank-btn" aria-hidden="true"></span>
 											<% else %>
-												<span class="glyphicon glyphicon-globe lank-btn" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-globe rank-btn" aria-hidden="true"></span>
 											<% end %>
 										</td>
 										<td></td>
