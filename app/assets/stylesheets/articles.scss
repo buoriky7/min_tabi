@@ -3,9 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // new
-.test {
-	background-color: #ccf;
-}
 .test2 {
 	background-color: #fcc;
 }
@@ -27,4 +24,15 @@
 .article_form_wrapper {
 	width: 50%;
 	padding-left: 3%;
+}
+
+// レスポンシブ対応
+@media screen and (max-width:750px) {
+	.catch_copy_wrapper {
+		display: none;
+		background-color: red;
+	}
+	.article_form_wrapper {
+		width: 100%;
+	}
 }
