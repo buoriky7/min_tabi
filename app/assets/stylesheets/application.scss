@@ -35,12 +35,17 @@ html, body {
 	height: 100%;
 }
 
+body {
+	background-image: url();
+	background-color: #33ccff;
+}
+
 #main {
-	height: 100%;
-	background-color: #ccc;
+	background-color: rgba(255, 255, 255, 0.5);
 	padding-top: 50px;
-	// max-width:1000px;
-	// margin: 0 auto;
+	max-width:1200px;
+	margin: 0 auto;
+	min-height: 100%;
 }
 
 /* ヘッダー */
@@ -58,10 +63,12 @@ html, body {
 	width: 800px;
 	background-color: #fff;
 	border-radius: 10px;
+	filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.6));
 }
 
 .sign_up, .sign_in {
 	padding: 20px;
+	margin-top: 60px;
 }
 
 .sign_in_title {
@@ -72,8 +79,16 @@ html, body {
 .f_short {
 	width: 80px;
 }
+.f_mediun {
+	width: 200px;
+}
 .f_long {
 	width: 70%;
+}
+
+// ボタン間の間隔
+.btn_spacing {
+	margin-right: 10%;
 }
 
 // 404エラー画面
@@ -93,14 +108,32 @@ html, body {
 	padding: 30px 0;
 }
 
+// home#index
+.home_box_wrapper {
+	margin-top: 100px;
+}
+.home_box_wrapper h1 {
+	text-align: center;
+	font-size: 50px;
+}
+.home_box {
+	width: 780px;
+	margin: 0 auto;
+	padding: 50px;
+	font-size: 20px;
+	letter-spacing: 5px;
+}
+
 // timelineのindexサムネイル
 .timeline-thumbnail-wrapper {
 	display: flex;
+	flex-wrap:wrap;
 }
 .timeline-thumbnail {
 	margin: 10px;
 	width: 200px;
 	height: 160px;
+	padding-bottom: 10px;
 	display: inline-block;
 	position: relative;
 }
