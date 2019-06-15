@@ -2,6 +2,7 @@
 	<!-- 左カラム -->
 	<div class="user_left_column">
 		<div class="user_left_column_content">
+			<div class="respoisive_hide_btn"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
 			<hr>
 			<%= link_to "プロフィール", user_path %>
         	<hr>
@@ -50,6 +51,8 @@
 				<% end %>
 			<% end %>
 		</div>
+		<!-- レスポンシブ時はボタンクリックで左メニューが出てくる -->
+		<div id="responsive_user_left_column" class="user_show_submenu_btn"><span class="btn btn-info">サブメニュー</span></div>
 		<div class="user_show_content">
 			<hr>
 			<h2>
@@ -70,14 +73,14 @@
 				<span class="user_show_tineline_last"><%= link_to @user.timelines.last.title, timeline_path(@user.timelines.last.id) %><span>
 				<hr>
 					<div>
-						<% @user.timelines.last(10).each do |timeline| %>
+						<% @user.timelines.last(8).each do |timeline| %>
 							<% if timeline.post_flag != 0 %>
 								<%= link_to timeline_path(timeline.id) do %>
 									<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "timeline-image" %>
 								<% end %>
 							<% end %>
 						<% end %>
-						<p><%= link_to "もっと見る", timelines_user_path(params[:id]) %></p>
+						<span><%= link_to "もっと見る", timelines_user_path(params[:id]) %></span>
 					<% end %>
 				</div>
 			<hr>

@@ -36,3 +36,15 @@ $(function () {
 		}
 	);
 });
+
+// user#show
+$(function () {
+	$('#responsive_user_left_column').click(
+		function() {
+			$('.user_left_column').show();
+		});
+	$('.respoisive_hide_btn').click(
+		function() {
+			$('.user_left_column').hide();
+		});
+});
