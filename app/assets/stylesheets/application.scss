@@ -47,6 +47,10 @@ html, body {
 #header_wrapper {
 	z-index: 50;
 }
+.search {
+	display: inline-block;
+	padding: 12px;
+}
 
 /* devise周り */
 .sign_wrapper {
@@ -134,6 +138,9 @@ html, body {
 .clipped {
 	color: #ccf;
 	background-color: #555;
+}
+.timeline_title_box {
+	height: 40px;
 }
 // Articleの星評価
 .star {
