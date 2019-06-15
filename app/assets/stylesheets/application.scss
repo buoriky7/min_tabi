@@ -179,3 +179,12 @@ body {
 	font-size: 12px;
 	color: orange;
 }
+
+// レスポンシブ
+// timeline#edit
+@media screen and (max-width: 750px) {
+	.sign_wrapper {
+	width: 80%;
+	}
+}
+
