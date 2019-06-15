@@ -142,8 +142,13 @@
 }
 
 // user#destroy_confirm
+.user_destroy_confirm_wrapper {
+	margin-top: 10%;
+	text-align: center;
+}
 .user_destroy_confirm_wrapper h2 {
 	line-height: 50px;
+	padding: 5px;
 }
 
 .destroy_confirm_induction {
@@ -163,4 +168,19 @@
 
 .mg50 {
 	margin-right: 50px;
+}
+
+// レスポンシブ
+
+.user_destroy_confirm_wrapper {
+	max-width: 100%;
+}
+.user_destroy_confirm_wrapper h2 {
+	font-size: 22px;
+}
+.destroy_confirm_induction {
+	max-width: 100%;
+	padding: 0px;
+	line-height: 40px;
+	font-size: 15px;
 }

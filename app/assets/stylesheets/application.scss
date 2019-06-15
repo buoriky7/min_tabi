@@ -168,6 +168,9 @@ body {
 // レスポンシブ
 // timeline#edit
 @media screen and (max-width: 750px) {
+	#main {
+		max-width:100%;
+	}
 	.sign_wrapper {
 	width: 80%;
 	}
