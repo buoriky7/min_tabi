@@ -22,6 +22,12 @@
 //= require_tree .
 
 $(function () {
+	$('#top_btn').click(function(){
+		$('html, body').animate({
+			'scrollTop' : 0
+		}, 300);
+		}
+	);
 	$('.timeline-thumbnail').hover(
 		function() {
 			$(this).find('.timeline-thumbnail-text_js').animate({
