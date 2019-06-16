@@ -157,8 +157,17 @@ body {
 	background-color: #555;
 }
 .timeline_title_box {
-	height: 40px;
+	height: 3em;
 }
+.timeline_visibility {
+	visibility: visible;
+}
+.timeline_visibility_hide {
+	visibility: hidden;
+}
+
+
+
 // Articleの星評価
 .star {
 	font-size: 12px;

@@ -28,10 +28,10 @@
 								<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
 							<% end %>
 						<% end %>
-						<p class="timeline_title_box">
+						<div class="timeline_title_box">
 							<span class="label label-info">New</span>
-							<span><%= clip.timeline.title %></span>
-						</p>
+							<span><%= clip.timeline.title.truncate(20) %></span>
+						</div>
 					</div>
 				<% end %>
 			<% end %>

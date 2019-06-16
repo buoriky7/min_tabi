@@ -27,12 +27,12 @@ $(function () {
 			$(this).find('.timeline-thumbnail-text_js').animate({
 				fontSize: '120%',
 				Color: 'red'
-			}, 100);
+			}, 200);
 		},
 		function() {
 			$(this).find('.timeline-thumbnail-text_js').animate({
 				fontSize: '100%'
-			}, 50);
+			}, 100);
 		}
 	);
 });
