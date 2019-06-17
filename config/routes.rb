@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   get 'clips/user' => 'clips#index_user', as: 'clips_user'
   get 'clips/other' => 'clips#index_other', as: 'clips_other'
   post 'clips/:id' => 'clips#create', as: 'clips_create'
-  resources :clips, only:[:index, :destroy, :update]
+  # テストclip
+  post 'test_clips/:timeline_id' => 'clips#test_create', as: 'test_clip'
+  delete 'test_clips/:timeline_id' => 'clips#test_destroy', as: 'test_clip_d'
+  # テストclip
+  resources :clips, only:[:index, :destroy]
   resources :articles, only:[:new, :create, :edit, :update, :destroy]
   get 'timelines/ranking_clip' => 'timelines#ranking_clip', as: 'ranking_clip'
   get 'timelines/ranking_article' => 'timelines#ranking_article', as: 'ranking_article'

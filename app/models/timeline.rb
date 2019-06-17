@@ -10,4 +10,8 @@ class Timeline < ApplicationRecord
 		clips.where(user_id: user.id).exists?
 	end
 
+	def clip_user(user_id)
+		clips.find_by(user_id: user.id)
+	end
+
 end
