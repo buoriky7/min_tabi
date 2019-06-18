@@ -1,3 +1,8 @@
+<!-- エラーメッセージ -->
+<% @timeline.errors.full_messages.each do |message| %>
+	<%= message %>
+<% end %>
+
 <div class="timeline_show_nav"><!-- TODO:css共通 user-index-title -->
 	<%= link_to user_path(@timeline.user_id) do %>
 		<span class="glyphicon glyphicon-user rank-btn" aria-hidden="true"></span><!-- TODO:css共通 -->
