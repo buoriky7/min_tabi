@@ -34,19 +34,9 @@
 										<span><%= timeline.created_at.strftime('%Y.%m.%d') %></span>
 									</div>
 								</div>
-								<!-- Clipボタン -->
-								<!-- TODO: 非同期でクリップさせる -->
-								<% if user_signed_in? %>
-									<%if timeline.cliped_by?(current_user) %>
-										<%= link_to clip_path(timeline.id), method: :delete do %>
-											<span class="glyphicon glyphicon-paperclip clip-btn clipped" aria-hidden="true"></span>
-										<% end %>
-									<% else %>
-										<%= link_to clip_path(timeline.id), method: :post do %>
-											<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-										<% end %>
-									<% end %>
-								<% end %>
+							<!-- Clipボタン -->
+								<%= render 'timelines/clip', timeline: timeline %>
+							<!-- Clipボタンここまで -->
 								<p>
 									<span><%= timeline.title.truncate(20) %></span>
 								</p>
