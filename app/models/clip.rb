@@ -5,6 +5,10 @@ class Clip < ApplicationRecord
 		belongs_to :user
 		belongs_to :timeline
 
+	# バリデーション
+		validates :user_id, presence: true
+		validates :timeline_id, presence: true
+
 
 	# Clipしたユーザーのidの有無を調べる(user)の引数にはView毎にユーザー情報(current_user)を渡すこと
 	def cliped_by?(user)

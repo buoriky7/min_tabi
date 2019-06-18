@@ -6,6 +6,7 @@ class Timeline < ApplicationRecord
 		belongs_to :user
 
 	# バリデーション
+		validates :title, presence: true
 		validate :article_presence?
 
 	# Clipしたユーザーのidの有無を調べる(user)の引数にはView毎にユーザー情報(current_user)を渡すこと
@@ -19,8 +20,11 @@ class Timeline < ApplicationRecord
 
 	# バリデーション用カスタムメソッド
 	def article_presence?
-		if articles.count == 0
-			errors.add(:articles, ": 一記事以上の投稿が必要です。" )
+		timeline_flag = Timeline.where(user_id: user.id).last
+		if timeline_flag.nil? || timeline_flag.post_flag == 0
+			if articles.count == 0
+				errors.add(:articles, ": 一記事以上の投稿が必要です。" )
+			end
 		end
 	end
 
