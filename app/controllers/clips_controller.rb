@@ -18,14 +18,20 @@ class ClipsController < ApplicationController
   end
 
   def create
-  @clip = Clip.create(user_id: current_user.id, timeline_id: params[:timeline_id])
-  @timeline = Timeline.find_by(id: params[:timeline_id])
+    @clip = Clip.create(user_id: current_user.id, timeline_id: params[:timeline_id])
+    @timeline = Timeline.find_by(id: params[:timeline_id])
+    if params[:t_show].to_i == 1
+      redirect_to timeline_path(@timeline.id)
+    end
   end
 
   def destroy
       @clip = Clip.find_by(user_id: current_user.id, timeline_id: params[:timeline_id])
       @clip.destroy
       @timeline = Timeline.find_by(id: params[:timeline_id])
+      if params[:t_show].to_i  == 1
+        redirect_to timeline_path(@timeline.id)
+      end
   end
 
   # テスト用
