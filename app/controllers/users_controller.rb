@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:show, :index, :index_desc, :edit, :update, :destroy_confirm]
   before_action :user_confirm!, only: [:edit, :update, :destroy_confirm, :destroy]
+  before_action :admin_confirm!, only: [:index]
 
   def show
   	@user = User.find(params[:id])
@@ -8,7 +9,6 @@ class UsersController < ApplicationController
 
   def index
   	@users = User.all.order(id: "ASC")
-  	@user = User.find(1) #<!-- TODO:テスト用。後で消去する-->
   end
 
   def index_desc
@@ -51,9 +51,9 @@ class UsersController < ApplicationController
   	params.require(:user).permit(:last_name, :first_name, :nickname, :email, :profile,  :header_image, :profile_image)
   end
 
-  def user_confirm!
-    if current_user.id != params[:id].to_i
-      flash[:notice] = "あなたのIDでは、この情報の削除、編集はできません。"
+  def admin_confirm!
+    if current_user.admin_flg == false
+      flash[:notice] = "このデータは管理者のみがアクセスできます"
       redirect_to timelines_path
     end
   end

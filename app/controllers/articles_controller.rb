@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :user_confirm!
 
   def new
     timeline = Timeline.where(user_id: current_user.id).last

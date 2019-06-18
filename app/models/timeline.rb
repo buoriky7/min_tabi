@@ -21,7 +21,7 @@ class Timeline < ApplicationRecord
 	# バリデーション用カスタムメソッド
 	def article_presence?
 		timeline_flag = Timeline.where(user_id: user.id).last
-		if timeline_flag.nil? || timeline_flag.post_flag == 0
+		unless timeline_flag.nil? || timeline_flag.post_flag == 1
 			if articles.count == 0
 				errors.add(:articles, ": 一記事以上の投稿が必要です。" )
 			end

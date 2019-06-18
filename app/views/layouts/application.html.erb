@@ -39,6 +39,7 @@
                 <% end %>
               </div>
               <ul class="nav navbar-nav">
+                <li><% if current_user.admin_flg == true %><%= link_to "ユーザー一覧", users_path %><% end %></li>
                 <li>
                   <% if timeline_flag.nil? || timeline_flag.post_flag == 1 %>
                     <%= link_to "新しい旅日記を投稿する", timelines_path, method: :post %>

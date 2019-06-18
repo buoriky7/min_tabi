@@ -19,4 +19,11 @@ class ApplicationController < ActionController::Base
 	def configure_permitted_parameters
 		devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :nickname])
 	end
+
+	def user_confirm!
+	    if current_user.admin_flg == false && current_user.id != params[:id].to_i
+		    flash[:notice] = "あなたのIDでは、この情報の削除、編集はできません。"
+		    redirect_to timelines_path
+	    end
+	end
 end
