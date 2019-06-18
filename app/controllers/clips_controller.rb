@@ -3,6 +3,7 @@ class ClipsController < ApplicationController
 
   def index
   	@clips = Clip.all.page(params[:page]).per(15)
+    @time_now = Time.now
   end
 
   def index_user

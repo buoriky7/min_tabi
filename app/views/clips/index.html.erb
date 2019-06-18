@@ -18,11 +18,15 @@
 								<span><%= clip.timeline.created_at.strftime('%Y.%m.%d') %></span>
 							</div>
 						</div>
-							<!-- Clipボタン -->
-								<%= render 'timelines/clip', timeline: clip.timeline %>
-							<!-- Clipボタンここまで -->
+						<!-- Clipボタン -->
+							<%= render 'timelines/clip', timeline: clip.timeline %>
+						<!-- Clipボタンここまで -->
+						<!-- new ラベル -->
+						<% if @time_now <= clip.timeline.articles.last.created_at.tomorrow %>
+							<span class="label label-info timeline-label">New</span>
+						<% end %>
+						<!-- new ラベルここまで -->
 						<div class="timeline_title_box">
-							<span class="label label-info">New</span>
 							<span><%= clip.timeline.title.truncate(20) %></span>
 						</div>
 					</div>

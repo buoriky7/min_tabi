@@ -4,15 +4,18 @@ class TimelinesController < ApplicationController
 
   def index
     @timelines = Timeline.all.page(params[:page]).per(10)
+    @time_now = Time.now
   end
 
   def index_user
     # @timelines = Timeline.where(user_id: params[:id]).page(params[:page]).per(10)
     @timelines = Timeline.all.page(params[:page]).per(10)
+    @time_now = Time.now
   end
 
   def index_other
     @timelines = Timeline.all.where.not(user_id: current_user.id).page(params[:page]).per(10)
+    @time_now = Time.now
   end
 
   def show
@@ -50,12 +53,13 @@ class TimelinesController < ApplicationController
   end
 
   def post
-    timeline = Timeline.find(params[:id])
-    timeline.post_flag = 1
-    if timeline.save
+    @timeline = Timeline.find(params[:id])
+    @timeline.post_flag = 1
+    if @timeline.save
       flash[:success] = "タイムラインを投稿しました！"
-      redirect_to timeline_path(timeline.id)
+      redirect_to timeline_path(@timeline.id)
     else
+      @articles = Article.where(timeline_id: @timeline.id).order(id: "DESC")
       flash[:danger] = "投稿に失敗しました"
       render :new
     end

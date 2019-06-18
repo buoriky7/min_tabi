@@ -165,6 +165,11 @@ body {
 .timeline_visibility_hide {
 	visibility: hidden;
 }
+.timeline-label {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+}
 
 .hide_btn {
 	display: none;

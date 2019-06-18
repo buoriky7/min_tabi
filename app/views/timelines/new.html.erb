@@ -1,8 +1,15 @@
+<!-- エラーメッセージ -->
+<% @timeline.errors.full_messages.each do |message| %>
+	<%= message %>
+<% end %>
+
 <div class="timeline_show_nav"><!-- TODO:css共通 user-index-title -->
 	<!-- ログイン中のユーザーだけ編集完了ボタンを押せる -->
 	<% if @timeline.user_id == current_user.id %>
 		<%= link_to "新しい記事を投稿する", new_article_path, class: 'btn btn-info btn_spacing' %>
-		<%= link_to "タイムラインを投稿する", timeline_post_path(@timeline.id), method: :patch, class: 'btn btn-info' %>
+		<% if @timeline.articles.count != 0 %>
+			<%= link_to "タイムラインを投稿する", timeline_post_path(@timeline.id), method: :patch, class: 'btn btn-info' %>
+		<% end %>
 	<% end %>
 </div>
 
