@@ -26,7 +26,6 @@
 								<%= render 'timelines/clip', timeline: timeline %>
 							<!-- Clipボタンここまで -->
 						<!-- new ラベル -->
-						<% binding.pry %>
 						<% if @time_now < timeline.articles.last.created_at.tomorrow %>
 							<span class="label label-info timeline-label">New</span>
 						<% end %>
