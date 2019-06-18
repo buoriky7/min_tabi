@@ -18,16 +18,9 @@
 								<span><%= clip.timeline.created_at.strftime('%Y.%m.%d') %></span>
 							</div>
 						</div>
-						<!-- Clipボタン -->
-						<% if clip.timeline.cliped_by?(current_user) %>
-							<%= link_to clip_path(clip.timeline.id), method: :delete do %>
-								<span class="glyphicon glyphicon-paperclip clip-btn clipped" aria-hidden="true"></span>
-							<% end %>
-						<% else %>
-							<%= link_to clip_path(clip.timeline.id), method: :post do %>
-								<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-							<% end %>
-						<% end %>
+							<!-- Clipボタン -->
+								<%= render 'timelines/clip', timeline: clip.timeline %>
+							<!-- Clipボタンここまで -->
 						<div class="timeline_title_box">
 							<span class="label label-info">New</span>
 							<span><%= clip.timeline.title.truncate(20) %></span>

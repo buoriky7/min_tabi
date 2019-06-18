@@ -20,15 +20,8 @@
 								</div>
 							</div>
 							<!-- Clipボタン -->
-							<% if timeline.cliped_by?(current_user) %>
-								<%= link_to clip_path(timeline.id), method: :delete do %>
-									<span class="glyphicon glyphicon-paperclip clip-btn clipped" aria-hidden="true"></span>
-								<% end %>
-							<% else %>
-								<%= link_to clip_path(timeline.id), method: :post do %>
-									<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-								<% end %>
-							<% end %>
+								<%= render 'timelines/clip', timeline: timeline %>
+							<!-- Clipボタンここまで -->
 							<p class="timeline_title_box">
 								<span class="label label-info">New</span>
 								<span><%= timeline.title.truncate(20) %></span>
