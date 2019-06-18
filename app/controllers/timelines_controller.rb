@@ -8,13 +8,12 @@ class TimelinesController < ApplicationController
   end
 
   def index_user
-    # @timelines = Timeline.where(user_id: params[:id]).page(params[:page]).per(10)
-    @timelines = Timeline.all.page(params[:page]).per(10)
+    @timelines = Timeline.where(user_id: current_user.id).order(id: 'DESC').page(params[:page]).per(10)
     @time_now = Time.now
   end
 
   def index_other
-    @timelines = Timeline.all.where.not(user_id: current_user.id).page(params[:page]).per(10)
+    @timelines = Timeline.where.not(user_id: current_user.id).order(id: 'DESC').page(params[:page]).per(10)
     @time_now = Time.now
   end
 

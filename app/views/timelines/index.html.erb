@@ -11,6 +11,7 @@
 <% end %>
 
 	<div class="container">
+		<!-- @s_times:検索結果を出力 => application_controller -->
 			<% @s_times.each do |timeline| %>
 				<% if timeline.post_flag != 0 %>
 					<%= link_to timeline_path(timeline.id) do %>

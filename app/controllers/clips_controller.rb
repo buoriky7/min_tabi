@@ -2,7 +2,7 @@ class ClipsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-  	@clips = Clip.all.page(params[:page]).per(15)
+  	@clips = Clip.all.order(id: 'DESC').page(params[:page]).per(15)
     @time_now = Time.now
   end
 
