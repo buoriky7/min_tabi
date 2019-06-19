@@ -7,6 +7,7 @@
 	display: flex;
 }
 .user_left_column {
+	display: block;
 	width: 25%;
 	background-color: #cfc;
 }
@@ -92,6 +93,11 @@
 	padding-left: 20px;
 }
 
+.user_show_submenu_btn {
+	display: none;
+	text-align: left;
+}
+
 // user#index
 .user-index-title {
 	background-color: #888;
@@ -142,8 +148,13 @@
 }
 
 // user#destroy_confirm
+.user_destroy_confirm_wrapper {
+	margin-top: 10%;
+	text-align: center;
+}
 .user_destroy_confirm_wrapper h2 {
 	line-height: 50px;
+	padding: 5px;
 }
 
 .destroy_confirm_induction {
@@ -163,4 +174,34 @@
 
 .mg50 {
 	margin-right: 50px;
+}
+
+// レスポンシブ
+@media screen and (max-width: 750px) {
+	// user#show
+	.user_left_column {
+		width: 100%;
+		z-index: 2;
+		display: none;
+	}
+	.user_right_column {
+		width: 100%;
+	}
+	// destroy_confirm
+	.user_destroy_confirm_wrapper {
+		max-width: 100%;
+	}
+	.user_destroy_confirm_wrapper h2 {
+		font-size: 22px;
+	}
+	.destroy_confirm_induction {
+		max-width: 100%;
+		padding: 0px;
+		line-height: 40px;
+		font-size: 15px;
+	}
+	.user_show_submenu_btn {
+		display: block;
+		text-align: right;
+	}
 }

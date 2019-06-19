@@ -6,19 +6,19 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field">
-        <span>お名前</span>><br />
+        <span>お名前</span><br />
         <%= f.text_field :last_name, required: true, autofocus: true, autocomplete: "last_name", placeholder: "旅行", class: "form-group" %>
         <%= f.text_field :first_name, required: true, autocomplete: "first_name", placeholder: "太郎", class: "form-group" %>
       </div>
 
       <div class="field">
         <%= f.label :nickname %><br />
-        <%= f.text_field :nickname, required: true, autocomplete: "nickname", placeholder: "サイト上で表示する名前" %>
+        <%= f.text_field :nickname, required: true, autocomplete: "nickname", placeholder: "サイト上で表示する名前", class: "f_mediun" %>
       </div>
 
       <div class="field">
         <%= f.label :email %><br />
-        <%= f.email_field :email, required: true, autocomplete: "email", placeholder: "mintabi@email.com", class: "form-group" %>
+        <%= f.email_field :email, required: true, autocomplete: "email", placeholder: "mintabi@email.com", class: "form-group f_mediun" %>
       </div>
 
       <div class="field">

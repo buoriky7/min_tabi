@@ -1,6 +1,10 @@
+<!-- エラーメッセージ -->
+<% @timeline.errors.full_messages.each do |message| %>
+	<%= message %>
+<% end %>
 <div class="timeline_show_nav"><!-- TODO:css共通 user-index-title -->
-	<%= link_to user_path(@timeline.id) do %>
-		<span class="glyphicon glyphicon-user lank-btn" aria-hidden="true"></span><!-- TODO:css共通 -->
+	<%= link_to user_path(@timeline.user_id) do %>
+		<span class="glyphicon glyphicon-user rank-btn" aria-hidden="true"></span><!-- TODO:css共通 -->
 	<% end %>
 	<span class="timeline_show_title">
 		<%= @timeline.title %>
@@ -11,15 +15,16 @@
 			<%= link_to "タイトルを編集する", edit_timeline_path, class: 'timeline-show-edit_icon' %>
 		<% end %>
 		<!-- お気に入り（Clip）機能 -->
-		<% if @timeline.cliped_by?(current_user) %>
-			<%= link_to clip_path(@timeline.id), method: :delete do %>
+		<!-- 他のclipボタンとrender先を差別化するため、t_show:をパラメータに渡す -->
+			<% if @timeline.cliped_by?(current_user) %>
+				<%= link_to timeline_clip_path('clip', timeline_id: @timeline.id, t_show: 1), method: :delete do %>
 				<span class="glyphicon glyphicon-paperclip" aria-hidden="true">クリップを解除</span>
-			<% end %>
-		<% else %>
-			<%= link_to clips_create_path(@timeline.id), method: :post do %>
+				<% end %>
+			<% else %>
+				<%= link_to timeline_clips_path(timeline_id: @timeline.id, t_show: 1), method: :post do %>
 				<span class="glyphicon glyphicon-paperclip" aria-hidden="true">この日記をクリップ</span>
+				<% end %>
 			<% end %>
-		<% end %>
 	<% end %>
 </div>
 
@@ -41,15 +46,15 @@
 									<tr>
 										<!-- article_iconの表示 -->
 										<!-- 3:出会い、出来事　2:ショッピング 1:グルメ 0:観光　default:0 -->
-										<td>
+										<td class="timeline_article_icon">
 											<% if article.article_icons.first.icon_id == 3 %>
-												<span class="glyphicon glyphicon-comment lank-btn" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-comment rank-btn" aria-hidden="true"></span>
 											<% elsif article.article_icons.first.icon_id ==2 %>
-												<span class="glyphicon glyphicon-shopping-cart lank-btn" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-shopping-cart rank-btn" aria-hidden="true"></span>
 											<% elsif article.article_icons.first.icon_id ==1 %>
-												<span class="glyphicon glyphicon-cutlery lank-btn" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-cutlery rank-btn" aria-hidden="true"></span>
 											<% else %>
-												<span class="glyphicon glyphicon-globe lank-btn" aria-hidden="true"></span>
+												<span class="glyphicon glyphicon-globe rank-btn" aria-hidden="true"></span>
 											<% end %>
 										</td>
 										<td></td>
@@ -70,7 +75,7 @@
 									</tr>
 									<tr>
 										<td></td>
-										<td>tweetする</td>
+										<td><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></td>
 									</tr>
 								</table>
 							</div>

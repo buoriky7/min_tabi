@@ -1,14 +1,5 @@
-<div class="timelines_index_header">
-	<h1 class="text-center">みんなの旅</h1>
-</div>
- <div class="clips-wrapper">
-		<%= link_to "全ての投稿", timelines_path, class: "clips-nav" %>
-		<%= link_to "あなたの投稿", timelines_user_path(current_user.id), class: "clips-nav" %>
-		<%= link_to "他の人の投稿", timelines_other_path, class: "clips-nav" %>
-</div>
 
-	<div class="container">
-			<% @timelines.each do |timeline| %>
+			<% timelines.each do |timeline| %>
 				<% if timeline.post_flag != 0 %>
 					<%= link_to timeline_path(timeline.id) do %>
 						<div class="timeline-thumbnail">
@@ -19,15 +10,11 @@
 									<span><%= timeline.created_at.strftime('%Y.%m.%d') %></span>
 								</div>
 							</div>
-							<!-- Clipボタン -->
+							<!-- テスト用Clipボタン -->
 								<%= render 'timelines/clip', timeline: timeline %>
-							<!-- Clipボタンここまで -->
-						<!-- new ラベル -->
-						<% if @time_now <= timeline.articles.last.created_at.tomorrow %>
-							<span class="label label-info timeline-label">New</span>
-						<% end %>
-						<!-- new ラベルここまで -->
+							<!-- テスト用Clipボタンここまで -->
 							<p class="timeline_title_box">
+								<span class="label label-info">New</span>
 								<span><%= timeline.title.truncate(20) %></span>
 							</p>
 							<% if user_signed_in? %>
@@ -39,5 +26,3 @@
 					<% end %>
 				<% end %>
 			<% end %>
-		<%= paginate @timelines %>
-	</div>

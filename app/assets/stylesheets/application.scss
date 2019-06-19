@@ -22,6 +22,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	color: #222;
+	font-family: "Tsukushi A Round Gothic", "筑紫A丸ゴシック", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "游ゴシック", YuGothic, sans-seri
 }
 
 a {
@@ -35,12 +36,17 @@ html, body {
 	height: 100%;
 }
 
+body {
+	background-image: url();
+	background-color: #33ccff;
+}
+
 #main {
-	height: 100%;
-	background-color: #ccc;
+	background-color: rgba(255, 255, 255, 0.5);
 	padding-top: 50px;
-	// max-width:1000px;
-	// margin: 0 auto;
+	max-width:1200px;
+	margin: 0 auto;
+	min-height: 100%;
 }
 
 /* ヘッダー */
@@ -58,10 +64,12 @@ html, body {
 	width: 800px;
 	background-color: #fff;
 	border-radius: 10px;
+	filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.6));
 }
 
 .sign_up, .sign_in {
 	padding: 20px;
+	margin-top: 60px;
 }
 
 .sign_in_title {
@@ -72,15 +80,22 @@ html, body {
 .f_short {
 	width: 80px;
 }
+.f_mediun {
+	width: 200px;
+}
 .f_long {
 	width: 70%;
+}
+
+// ボタン間の間隔
+.btn_spacing {
+	margin-right: 10%;
 }
 
 // 404エラー画面
 .error_wrapper {
 	margin: 0 50px;
 	padding: 50px 0;
-	background-color: rgba(0, 0, 0, 0.3);
 }
 
 .error_container {
@@ -93,14 +108,17 @@ html, body {
 	padding: 30px 0;
 }
 
+
 // timelineのindexサムネイル
 .timeline-thumbnail-wrapper {
 	display: flex;
+	flex-wrap:wrap;
 }
 .timeline-thumbnail {
 	margin: 10px;
 	width: 200px;
 	height: 160px;
+	padding-bottom: 10px;
 	display: inline-block;
 	position: relative;
 }
@@ -140,10 +158,64 @@ html, body {
 	background-color: #555;
 }
 .timeline_title_box {
-	height: 40px;
+	height: 3em;
 }
+.timeline_visibility {
+	visibility: visible;
+}
+.timeline_visibility_hide {
+	visibility: hidden;
+}
+.timeline-label {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+}
+
+.hide_btn {
+	display: none;
+}
+
 // Articleの星評価
 .star {
 	font-size: 12px;
 	color: orange;
+}
+
+// js用
+// 「閉じる」ボタン
+.respoisive_hide_btn {
+	display: none;
+}
+// scrollTopボタン
+.scroll_top_btn {
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	z-index: 10;
+	background-color: rgba(255, 255, 255, 0.7);
+	border: 1px solid rgba(150, 150, 150, 0.7);
+	font-size: 40px;
+	text-align: center;
+	padding-left: 2px;
+	position:fixed;
+	right: 10px;
+	bottom: 10px;
+}
+
+// レスポンシブ
+// timeline#edit
+@media screen and (max-width: 750px) {
+	#main {
+		max-width:100%;
+	}
+	.sign_wrapper {
+	width: 80%;
+	}
+	.respoisive_hide_btn {
+		display: block;
+		padding: 5px;
+		margin-top: 10px;
+		text-align: right;
+	}
 }

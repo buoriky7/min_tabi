@@ -22,17 +22,35 @@
 //= require_tree .
 
 $(function () {
+	$('#top_btn').click(function(){
+		$('html, body').animate({
+			'scrollTop' : 0
+		}, 300);
+		}
+	);
 	$('.timeline-thumbnail').hover(
 		function() {
 			$(this).find('.timeline-thumbnail-text_js').animate({
 				fontSize: '120%',
 				Color: 'red'
-			}, 100);
+			}, 200);
 		},
 		function() {
 			$(this).find('.timeline-thumbnail-text_js').animate({
 				fontSize: '100%'
-			}, 50);
+			}, 100);
 		}
 	);
+});
+
+// user#show
+$(function () {
+	$('#responsive_user_left_column').click(
+		function() {
+			$('.user_left_column').show();
+		});
+	$('.respoisive_hide_btn').click(
+		function() {
+			$('.user_left_column').hide();
+		});
 });

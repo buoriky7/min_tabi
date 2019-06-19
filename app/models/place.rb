@@ -3,6 +3,10 @@ class Place < ApplicationRecord
 		has_many :articles, dependent: :destroy
 		# belongs_to :user_id #TODOアソシエーションしてもuser_idを保存する方法
 
+	# バリデーション
+		validates :user_id, presence: true
+		validates :place_name, presence: true
+
 	# # articleとplaceにデータを保存する
 	# 	accepts_nested_attributes_for :articles
 

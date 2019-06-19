@@ -16,13 +16,14 @@
 		</tr>
 		<tr>
 			<td rowspan="3" width="110"><!-- TODO:user, :profile_image, に変更 -->
-				<%= attachment_image_tag @product, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", class: "user-index-profile-image" %>
+				<%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", class: "user-index-profile-image" %>
 			</td>
 			<td><h3><%= user.last_name %><%= user.first_name %> / <%= user.nickname %></h3></td>
 			<td><%= user.email %></td>
 		</tr>
 		<tr>
-			<td colspan="2"></td>
+			<td colspan="2">
+			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
