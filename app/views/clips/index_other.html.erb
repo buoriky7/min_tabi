@@ -1,13 +1,14 @@
 <div class="clips-wrapper">
 		<%= link_to "全ての投稿", clips_path, class: "clips-nav" %>
 		<%= link_to "あなたの投稿", clips_user_path, class: "clips-nav" %>
-		<%= link_to "他の人の投稿", clips_other_path, class: "clips-nav" %>
+		<!-- %= link_to "他の人の投稿", clips_other_path, class: "clips-nav" %> -->
 </div>
 
 <div class="container">
 	<h2 class="text-center">Clip</h2>
 		<div class="timeline-thumbnail-wrapper">
-			<% @clips.each do |clip| %>
+			<% @other_clips.each do |clip| %>
+			<% binding.pry %>
 				<%= link_to timeline_path(clip.timeline.id) do %>
 					<div class="timeline-thumbnail">
 						<%= attachment_image_tag clip.timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
@@ -18,22 +19,19 @@
 							</div>
 						</div>
 						<!-- Clipボタン -->
-						<% if clip.timeline.cliped_by?(current_user) %>
-							<%= link_to clip_path(clip.timeline.id), method: :delete do %>
-								<span class="glyphicon glyphicon-paperclip clip-btn clipped" aria-hidden="true"></span>
-							<% end %>
-						<% else %>
-							<%= link_to clip_path(clip.timeline.id), method: :post do %>
-								<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
-							<% end %>
+							<%= render 'timelines/clip', timeline: clip.timeline %>
+						<!-- Clipボタンここまで -->
+						<!-- new ラベル -->
+						<% if @time_now <= clip.timeline.articles.last.created_at.tomorrow %>
+							<span class="label label-info timeline-label">New</span>
 						<% end %>
-						<p class="timeline_title_box">
-							<span class="label label-info">New</span>
-							<span><%= clip.timeline.title %></span>
-						</p>
+						<!-- new ラベルここまで -->
+						<div class="timeline_title_box">
+							<span><%= clip.timeline.title.truncate(20) %></span>
+						</div>
 					</div>
 				<% end %>
 			<% end %>
 		</div>
-	<%= paginate @clips %>
+	<%= paginate @other_clips %>
 </div>

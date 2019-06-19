@@ -24,12 +24,4 @@ class ApplicationController < ActionController::Base
 	def after_sign_in_path_for(resource)
 		timelines_path
 	end
-
-	# 管理者・ログイン中のユーザー識別
-	def user_confirm!
-	    if current_user.admin_flg == false && current_user.id != params[:id].to_i
-		    flash[:notice] = "あなたのIDでは、この情報の削除、編集はできません。"
-		    redirect_to timelines_path
-	    end
-	end
 end

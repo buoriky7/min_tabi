@@ -1,7 +1,6 @@
 class TimelinesController < ApplicationController
   include CommonActions
-  before_action :authenticate_user!, only: [:index_user, :index_other, :new, :post, :create]
-  before_action :user_confirm!, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index_user, :index_other, :new, :post, :create, :edit, :update, :destroy]
 
   def index
     @timelines = Timeline.all.page(params[:page]).per(10)
