@@ -60,7 +60,10 @@ $(function () {
 						var lng = position.coords.longitude;
 						$('#val_latitude').val(lat);
 						$('#val_longitude').val(lng);
+						// 緯度・経度を住所に変換
+						// lat, lngの情報をまとめる
 						var latlng = new google.maps.LatLng(lat, lng);
+						// geocoderを使えるようにする
 						var geocoder = new google.maps.Geocoder();
 						 if (geocoder) {
 						 	geocoder.geocode({'latLng':latlng}, function(results, status) {
@@ -73,31 +76,6 @@ $(function () {
 						 		}
 						 	});
 						 }
-						
-					
-						// // latitude, longitudeを住所に変換
-						// function getAddress(latlng) {
-						// 	var geocoder = new google.maps.Geocoder();
-						// 	geocoder.geocode({
-						// 	// test
-						// latLng: LatLng}
-						// $('#val_place_address').val(LatLng);
-						// // test kokomade
-						// //
-						// // 
-						// // geocoder.geocode({
-					 // //    latLng: latlng
-						// //   }, function(results, status) {
-						// //     if (status == google.maps.GeocoderStatus.OK) {
-						// //       // results.length > 1 で返ってくる場合もありますが・・・。
-						// //       if (results[0].geometry) {
-						// //       	// 住所を取得(日本の場合だけ「日本, 」を削除)
-						// //           var address = results[0].formatted_address.replace(/^日本, /, '');
-						// //           $('#val_place_address').val(address);
-						// //       }
-						// //   }
-					
-						// }
 					}
 
 
