@@ -55,12 +55,52 @@ $(function () {
 				navigator.geolocation.getCurrentPosition(successGetPosition, failGetPosition, options);
 					// 取得に成功した場合
 					function successGetPosition(position) {
-						// alert( position.coords.latitude ) ;
+						// 緯度latitude・経度longitudeの取得
 						var lat = position.coords.latitude;
 						var lng = position.coords.longitude;
 						$('#val_latitude').val(lat);
 						$('#val_longitude').val(lng);
+						var latlng = new google.maps.LatLng(lat, lng);
+						var geocoder = new google.maps.Geocoder();
+						 if (geocoder) {
+						 	geocoder.geocode({'latLng':latlng}, function(results, status) {
+						 		if (status == google.maps.GeocoderStatus.OK) {
+						 			// 郵便番号を含めた住所を取得results[0]
+						 			if (results[0].geometry) {
+						 				var address = results[0].formatted_address.replace(/^日本, /, '');
+						 				$('#val_place_address').val(address);
+						 			}
+						 		}
+						 	});
+						 }
+						
+					
+						// // latitude, longitudeを住所に変換
+						// function getAddress(latlng) {
+						// 	var geocoder = new google.maps.Geocoder();
+						// 	geocoder.geocode({
+						// 	// test
+						// latLng: LatLng}
+						// $('#val_place_address').val(LatLng);
+						// // test kokomade
+						// //
+						// // 
+						// // geocoder.geocode({
+					 // //    latLng: latlng
+						// //   }, function(results, status) {
+						// //     if (status == google.maps.GeocoderStatus.OK) {
+						// //       // results.length > 1 で返ってくる場合もありますが・・・。
+						// //       if (results[0].geometry) {
+						// //       	// 住所を取得(日本の場合だけ「日本, 」を削除)
+						// //           var address = results[0].formatted_address.replace(/^日本, /, '');
+						// //           $('#val_place_address').val(address);
+						// //       }
+						// //   }
+					
+						// }
 					}
+
+
 					// 取得に失敗した場合
 					function failGetPosition(error) {
 						// エラーコード(error.code)の番号

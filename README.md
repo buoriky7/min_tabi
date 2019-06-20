@@ -44,3 +44,7 @@ https://qiita.com/tiara/items/4a1c98418917a0e74cbb#%E3%81%99%E3%82%8B%E3%81%93%E
 https://qiita.com/nojinoji/items/8b68abc0217bebb1f0c3
 現在位置の取得
 https://syncer.jp/how-to-use-geolocation-api
+緯度経度を住所に変換
+https://www.nanchatte.com/map/getAddressByLatLng.html
+https://sites.google.com/site/gmapsapi3/Home/services#ReverseGeocoding
+https://qiita.com/Arashi/items/33a605870d39aeac9a37
