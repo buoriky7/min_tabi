@@ -35,3 +35,12 @@ APIキーの環境変数化）
 vagrantリロードして使えなくなった場合は、もう一度exportするか、メンターさんに相談すること
 使用するときは以下のように記述
 <% ENV["GOOGLE_MAP_API_KEY"] %>
+
+##参考サイト
+###GOOGLE_MAP_API
+GOOGLE_MAP_APIキーの取得
+https://qiita.com/tiara/items/4a1c98418917a0e74cbb#%E3%81%99%E3%82%8B%E3%81%93%E3%81%A8
+必要モデルの作成
+https://qiita.com/nojinoji/items/8b68abc0217bebb1f0c3
+現在位置の取得
+https://syncer.jp/how-to-use-geolocation-api

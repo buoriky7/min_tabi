@@ -43,7 +43,6 @@
           <%= p.label :address %><br>
           <%= p.text_field :address, class: "f_long" %>
         <% end %>
-      <div id="place_save" class="btn btn-info btn-xs">現在地を取得する</div>
       </div>
       <!-- Placeの保存ここまで -->
       <!-- Article_iconの保存 -->
@@ -60,6 +59,10 @@
         <%= f.submit "投稿", class: "btn btn-info" %>
       </div>
     <% end %>
+    <!-- google map APIテスト -->
+      <%= render 'api_address' %>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>"></script>
+      <!-- google map APIテストここまで -->
   </div>
 
 </div>

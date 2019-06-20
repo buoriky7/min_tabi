@@ -7,6 +7,11 @@ class Place < ApplicationRecord
 		validates :user_id, presence: true
 		validates :address, presence: true
 
+	# Google API
+		reverse_geocoded_by :latitude, :longitude
+		after_validation :reverse_geocode
+
+
 	# # articleとplaceにデータを保存する
 	# 	accepts_nested_attributes_for :articles
 
