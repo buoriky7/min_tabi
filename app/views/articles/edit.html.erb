@@ -35,8 +35,8 @@
       <!-- Placeの保存は保留 -->
       <div class="form-group">
         <%= fields_for(@place) do |p|  %>
-          <%= p.label :place_name %><br>
-          <%= p.text_field :place_name, class: "f_long" %>
+          <%= p.label :address %><br>
+          <%= p.text_field :address, class: "f_long" %>
         <% end %>
       </div>
       <!-- Placeの保存ここまで -->

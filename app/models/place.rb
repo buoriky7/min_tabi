@@ -5,7 +5,7 @@ class Place < ApplicationRecord
 
 	# バリデーション
 		validates :user_id, presence: true
-		validates :place_name, presence: true
+		validates :address, presence: true
 
 	# # articleとplaceにデータを保存する
 	# 	accepts_nested_attributes_for :articles

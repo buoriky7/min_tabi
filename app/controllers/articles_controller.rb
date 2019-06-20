@@ -83,11 +83,10 @@ class ArticlesController < ApplicationController
     @article.place_id = @place.id
     if @article.update(article_params)
       flash[:success] = "記事を更新しました！"
-      timeline_posted = Timeline.where(user_id: current_user.id).last
-      if timeline_posted.post_flag == 1
-        redirect_to timeline_path(timeline_posted.id)
-      elsif timeline_posted.post_flag == 0
-          redirect_to new_timeline_path(timeline_posted.id)
+      if @article.timeline.post_flag == 1
+        redirect_to timeline_path(@article.timeline.id)
+      elsif @article.timeline.post_flag == 0
+          redirect_to new_timeline_path(@article.timeline.id)
       else
         flash[:danger] = "予期せぬエラーです"
         redirect_to timelines_path
@@ -125,6 +124,6 @@ class ArticlesController < ApplicationController
       )
   end
   def place_params
-    params.require(:place).permit(:place_name)
+    params.require(:place).permit(:address)
   end
 end

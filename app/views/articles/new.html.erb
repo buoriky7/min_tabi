@@ -37,12 +37,13 @@
           <%= f.radio_button :star, "4" %><span class="star">★★★★☆</span><br>
           <%= f.radio_button :star, "5" %><span class="star">★★★★★</span>
       </div>
-      <!-- Placeの保存は保留 -->
+      <!-- Placeの保存 -->
       <div class="form-group">
         <%= fields_for(@place) do |p|  %>
-          <%= p.label :place_name %><br>
-          <%= p.text_field :place_name, class: "f_long" %>
+          <%= p.label :address %><br>
+          <%= p.text_field :address, class: "f_long" %>
         <% end %>
+      <div id="place_save" class="btn btn-info btn-xs">現在地を取得する</div>
       </div>
       <!-- Placeの保存ここまで -->
       <!-- Article_iconの保存 -->
