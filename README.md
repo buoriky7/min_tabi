@@ -29,3 +29,9 @@ https://www.pakutaso.com/20190648165post-21303.html
 
 ##メモ
 管理者：User(3)テスト用管理者
+
+APIキーの環境変数化）
+.bash_profile ファイルにGOOGLE_MAP_APIのキーを保存済み。
+vagrantリロードして使えなくなった場合は、もう一度exportするか、メンターさんに相談すること
+使用するときは以下のように記述
+<% ENV["GOOGLE_MAP_API_KEY"] %>

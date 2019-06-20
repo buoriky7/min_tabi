@@ -32,3 +32,6 @@
 
 # [Add]mac Default file
 .DS_Store
+
+# gemfile追加
+/vendor/bundle
