@@ -1,5 +1,12 @@
-<div id="place_save" class="btn btn-info btn-xs">現在地を取得する</div>
-<input type="text" id="val_place_address">
-<!-- 緯度latitude、経度longitudeは隠しデータとして取得 -->
-<input type="hidden" id="val_latitude">
-<input type="hidden" id="val_longitude">
+<div class="form-group">
+    <%= fields_for(@place) do |p|  %>
+		<!-- google map API -->
+			<div id="place_save" class="btn btn-info btn-xs">現在地を取得する</div>
+			<%= p.label :address %><br>
+			<%= p.text_field :address, class: "f_long", id: "val_place_address"%>
+			<!-- 緯度latitude、経度longitudeは隠しデータとして取得 -->
+				<%= p.hidden_field :latitude, id: "val_latitude" %>
+				<%= p.hidden_field :longitude, id: "val_longitude" %>
+		<!-- google map APIここまで -->
+ <% end %>
+</div>

@@ -124,6 +124,6 @@ class ArticlesController < ApplicationController
       )
   end
   def place_params
-    params.require(:place).permit(:address)
+    params.require(:place).permit(:address, :latitude, :longitude)
   end
 end

@@ -13,6 +13,6 @@ class PlacesController < ApplicationController
 
   private
   def place_params
-  	params.require(:place).permit(:address, article_attributes:[:article_image, :caption, :body, :star] )
+  	params.require(:place).permit(:address, :latitude, :longitude, article_attributes:[:article_image, :caption, :body, :star] )
   end
 end

@@ -32,7 +32,7 @@ ja:
         body: 記事本文
         star: 評価
       place:
-        place_name: 地名
+        address: 地名
       timeline:
         title: タイトル
   date:
