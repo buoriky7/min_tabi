@@ -22,6 +22,7 @@
 //= require_tree .
 
 $(function () {
+	// ページトップに戻るボタン
 	$('#top_btn').click(function(){
 		$('html, body').animate({
 			'scrollTop' : 0
@@ -45,8 +46,8 @@ $(function () {
 
 	// article#new Placeのデータ取得
 	$('#place_save').click(function() {
-		// テスト用inpput inputに値を入力する
-		// $('#testt').val('test');
+		// ローディング画像表示
+			$('#loading').show();
 
 		// ユーサーの端末がGeolocation APIに対応しているか判別する
 			// 対応している場合
@@ -105,6 +106,8 @@ $(function () {
 			else {
 				alert('お使いの端末は、GeoLacation APIに対応していません。');
 			}
+		// ローディング画像消去
+			$('#loading').fadeOut();
 
 	});
 

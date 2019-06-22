@@ -41,6 +41,16 @@ body {
 	background-color: #33ccff;
 }
 
+// ローディング
+#loading {
+	display: none;
+	position: absolute;
+	left: 50%;
+	top: 20%;
+	margin-left: -30px;
+}
+
+// メイン画面
 #main {
 	background-color: rgba(255, 255, 255, 0.5);
 	padding-top: 50px;
