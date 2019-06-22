@@ -70,10 +70,10 @@
 			<% if timeline_flag.nil? %>
 			<span>まだ旅行記を投稿していません。</span>
 			<% else %>
-				<span class="user_show_tineline_last"><%= link_to @user.timelines.last.title, timeline_path(@user.timelines.last.id) %><span>
+				<span class="user_show_tineline_last"><%= link_to @user_timelines.last.title, timeline_path(@user_timelines.last.id) %><span>
 				<hr>
 					<div>
-						<% @user.timelines.last(8).each do |timeline| %>
+						<% @user_timelines.last(8).each do |timeline| %>
 							<% if timeline.post_flag != 0 %>
 								<%= link_to timeline_path(timeline.id) do %>
 									<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "timeline-image" %>
