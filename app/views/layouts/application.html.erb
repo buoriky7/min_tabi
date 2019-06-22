@@ -78,14 +78,16 @@
         </div>
       </nav>
     <!-- ヘッダーここまで -->
-    <div id="main">
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>">
-          <%= message %>
+        <!-- メイン画面 -->
+        <div id="main">
+          <% flash.each do |message_type, message| %>
+            <div class="alert alert-<%= message_type %>">
+              <%= message %>
+            </div>
+          <% end %>
+          <%= yield %>
+          <div id="top_btn" class="scroll_top_btn"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></div>
         </div>
-      <% end %>
-      <%= yield %>
-      <div id="top_btn" class="scroll_top_btn"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></div>
-    </div>
+        <!-- メイン画面ここまで -->
   </body>
 </html>

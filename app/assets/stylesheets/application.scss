@@ -41,6 +41,16 @@ body {
 	background-color: #33ccff;
 }
 
+// ローディング
+#loading {
+	display: none;
+	position: absolute;
+	left: 50%;
+	top: 20%;
+	margin-left: -30px;
+}
+
+// メイン画面
 #main {
 	background-color: rgba(255, 255, 255, 0.5);
 	padding-top: 50px;
@@ -92,22 +102,6 @@ body {
 	margin-right: 10%;
 }
 
-// 404エラー画面
-.error_wrapper {
-	margin: 0 50px;
-	padding: 50px 0;
-}
-
-.error_container {
-	margin: 0 auto;
-	text-align: center;
-}
-
-.error_container_message {
-	font-size: 22px;
-	padding: 30px 0;
-}
-
 
 // timelineのindexサムネイル
 .timeline-thumbnail-wrapper {
@@ -128,7 +122,7 @@ body {
 	padding-top: 30px;
 	text-align: center;
 	word-wrap: break-word;
-	background-color: rgba(0, 0, 0, 0.4);
+	background-color: rgba(200, 200, 200, 0.6);
 	position: absolute;
 	top: 0;
 	left: 0;

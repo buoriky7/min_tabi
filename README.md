@@ -27,6 +27,9 @@ Things you may want to cover:
 浅草岳から見る風景と守門岳（福島県）のフリー画像（写真）
 https://www.pakutaso.com/20190648165post-21303.html
 
+Ajaxload
+http://www.ajaxload.info/
+
 ##メモ
 管理者：User(3)テスト用管理者
 
@@ -48,3 +51,16 @@ https://syncer.jp/how-to-use-geolocation-api
 https://www.nanchatte.com/map/getAddressByLatLng.html
 https://sites.google.com/site/gmapsapi3/Home/services#ReverseGeocoding
 https://qiita.com/Arashi/items/33a605870d39aeac9a37
+
+###ロード画面
+画面読込中のグルグルまわるローディング画像を出す。jQuery・javascript
+http://mori-coding.blog.jp/archives/6760786.html
+jQueryでできる簡易ローディング画面の実装方法
+https://kigiroku.com/frontend/loder.html
+(非同期での要素の読み込みを待ってからロード画像を消すために以下)
+jQueryのDeferred基本編
+https://h5y1m141.github.io/step-up-javascript/doc/understanding_javascript/async_07.html
+
+###ルーティングエラー
+[Rails]404/500などのエラーページって結局どうすればいいの？
+https://qiita.com/dach1_ken/items/6bbdfdd56ef84e3b2233

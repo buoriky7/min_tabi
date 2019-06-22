@@ -1,5 +1,5 @@
 <div class="timelines_index_header">
-	<h1 class="text-center">みんなの旅</h1>
+	<span class="text-center">みんなの旅</span>
 </div>
 
 <% if user_signed_in? %>
@@ -33,7 +33,7 @@
 							<!-- new ラベルここまで -->
 							<!-- 削除ボタン -->
 								<div class="timeline_title_box">
-									<span><%= timeline.title.truncate(20) %></span>
+									<span><%= timeline.title.truncate(16) %></span>
 									<div class="timeline_visibility">
 										<% if user_signed_in? %>
 											<% if (timeline.user_id == current_user.id) %>

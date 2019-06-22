@@ -52,21 +52,22 @@
 									</tr>
 									<tr>
 										<td></td>
-										<td><%= article.caption %></td>
+										<td>
+											<% unless article.place.address.empty? %>
+												<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><%= article.place.address %>
+											<% end %>
+										</td>
 									</tr>
 									<tr>
 										<td></td>
-										<td><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><%= article.place.address %></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td>tweetする</td>
+										<td><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></td>
 									</tr>
 								</table>
 							</div>
 						</div>
 							<!-- Articleコンテンツ -->
 							<div class="timeline-show-article-wrapper">
+								<h3><%= article.caption %></h3>
 								<%= attachment_image_tag article, :article_image, :fill, 400, 300, format: 'jpeg', fallback: "no_image.jpg", :size=>"400x300" %>
 								<p>
 									<%= article.body %>

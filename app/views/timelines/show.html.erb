@@ -1,3 +1,4 @@
+
 <!-- エラーメッセージ -->
 <% @timeline.errors.full_messages.each do |message| %>
 	<%= message %>
@@ -12,7 +13,7 @@
 	<!-- ログイン中のユーザーだけ編集ボタンを押せる -->
 	<% if user_signed_in? %>
 		<% if @timeline.user_id == current_user.id %>
-			<%= link_to "タイトルを編集する", edit_timeline_path, class: 'timeline-show-edit_icon' %>
+			<span class='timeline-show-edit_icon' id='timeline_edit_modal'>タイトルを編集する</span>
 		<% end %>
 		<!-- お気に入り（Clip）機能 -->
 		<!-- 他のclipボタンとrender先を差別化するため、t_show:をパラメータに渡す -->
@@ -26,6 +27,21 @@
 				<% end %>
 			<% end %>
 	<% end %>
+	<!-- editモーダル -->
+<div class="timeline_edit_wrapper">
+	<div class="sign_wrapper">
+		<div class="timeline_edit">
+			<div class="text-right" id="timeline_edit_hide"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+				<%= form_for(@timeline) do |f| %>
+					<div class="timeline_edit_form">
+						<%= f.text_field :title, required: true, autofocus: true, class: "f_long" %>
+					</div>
+					<%= f.submit "更新", class: "btn btn-info" %>
+				<% end %>
+		</div>
+	</div>
+</div>
+<!-- editモーダルここまで -->
 </div>
 
 <div class="timeline_show_content_wrapper">
@@ -67,11 +83,11 @@
 									</tr>
 									<tr>
 										<td></td>
-										<td><%= article.caption %></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td><span class="glyphicon glyphicon-globe" aria-hidden="true"></span><%= article.place.address %></td>
+										<td>
+											<% unless article.place.address.empty? %>
+												<span class="glyphicon glyphicon-globe" aria-hidden="true"></span><%= article.place.address %>
+											<% end %>
+										</td>
 									</tr>
 									<tr>
 										<td></td>
@@ -82,6 +98,7 @@
 						</div>
 							<!-- Articleコンテンツ -->
 							<div class="timeline-show-article-wrapper">
+								<h3><%= article.caption %></h3>
 								<%= attachment_image_tag article, :article_image, :fill, 400, 300, format: 'jpeg', fallback: "no_image.jpg", :size=>"400x300" %>
 								<p>
 									<%= article.body %>

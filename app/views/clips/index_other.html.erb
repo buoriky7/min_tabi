@@ -1,37 +1,38 @@
 <div class="clips-wrapper">
 		<%= link_to "全ての投稿", clips_path, class: "clips-nav" %>
 		<%= link_to "あなたの投稿", clips_user_path, class: "clips-nav" %>
-		<!-- %= link_to "他の人の投稿", clips_other_path, class: "clips-nav" %> -->
+		<%= link_to "他の人の投稿", clips_other_path, class: "clips-nav" %>
 </div>
 
 <div class="container">
 	<h2 class="text-center">Clip</h2>
 		<div class="timeline-thumbnail-wrapper">
-			<% @other_clips.each do |clip| %>
-			<% binding.pry %>
-				<%= link_to timeline_path(clip.timeline.id) do %>
+			<% @clips.each do |clip| %>
+				<% if clip.timeline.user_id != current_user.id %>
 					<div class="timeline-thumbnail">
-						<%= attachment_image_tag clip.timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
-						<div class="timeline-thumbnail-text">
-							<div class="timeline-thumbnail-text_js">
-								<h3><%= clip.timeline.title.truncate(20) %></h3>
-								<span><%= clip.timeline.created_at.strftime('%Y.%m.%d') %></span>
+						<%= link_to timeline_path(clip.timeline.id) do %>
+							<%= attachment_image_tag clip.timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
+							<div class="timeline-thumbnail-text">
+								<div class="timeline-thumbnail-text_js">
+									<h3><%= clip.timeline.title.truncate(20) %></h3>
+									<span><%= clip.timeline.created_at.strftime('%Y.%m.%d') %></span>
+								</div>
 							</div>
-						</div>
-						<!-- Clipボタン -->
-							<%= render 'timelines/clip', timeline: clip.timeline %>
-						<!-- Clipボタンここまで -->
-						<!-- new ラベル -->
-						<% if @time_now <= clip.timeline.articles.last.created_at.tomorrow %>
-							<span class="label label-info timeline-label">New</span>
+							<!-- Clipボタン -->
+								<%= render 'timelines/clip', timeline: clip.timeline %>
+							<!-- Clipボタンここまで -->
+							<!-- new ラベル -->
+							<% if @time_now <= clip.timeline.articles.last.created_at.tomorrow %>
+								<span class="label label-info timeline-label">New</span>
+							<% end %>
+							<!-- new ラベルここまで -->
+							<div class="timeline_title_box">
+								<span><%= clip.timeline.title.truncate(16) %></span>
+							</div>
 						<% end %>
-						<!-- new ラベルここまで -->
-						<div class="timeline_title_box">
-							<span><%= clip.timeline.title.truncate(20) %></span>
-						</div>
 					</div>
 				<% end %>
 			<% end %>
 		</div>
-	<%= paginate @other_clips %>
+	<%= paginate @clips %>
 </div>

@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 	# timelineが投稿済みが否か判断する
 	helper_method :timeline_flag
 
+
 	def timeline_flag
 		@timeline_flag = Timeline.where(user_id: current_user.id).last
 	end

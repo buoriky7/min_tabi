@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'timelines/new/:id' => 'timelines#new', as: 'new_timeline'
   get 'timelines/user/:id' => 'timelines#index_user', as: 'timelines_user'
   get 'timelines/other' => 'timelines#index_other', as: 'timelines_other'
-  resources :timelines, only: [:index, :create, :edit, :show, :destroy, :update] do
+  resources :timelines, only: [:index, :create, :show, :destroy, :update] do
     resources :clips, only:[:create, :destroy]
   end
   resources :clips, only:[:index]
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get 'users/index_desc' => 'users#index_desc', as: 'users_index_desc'
   get 'users/:id/destroy_confirm' => 'users#destroy_confirm', as: 'destroy_confirm'
   resources :users, only:[:index, :show, :edit, :update, :destroy]
-  resource :homes, only: [:index]
+  resources :homes, only: [:index]
   root 'homes#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

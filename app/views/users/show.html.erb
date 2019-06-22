@@ -3,33 +3,27 @@
 	<div class="user_left_column">
 		<div class="user_left_column_content">
 			<div class="respoisive_hide_btn"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
-			<hr>
-			<%= link_to "プロフィール", user_path %>
-        	<hr>
-            <%= link_to "過去の投稿記事を見る", timelines_user_path(params[:id]) %>
-			<hr>
+				<%= link_to "プロフィール", user_path, class: "user_left_column_content_cell" %>
+	            <%= link_to "過去の投稿記事を見る", timelines_user_path(params[:id]), class: "user_left_column_content_cell" %>
 			<% if @user.id == current_user.id %>
 				<!-- 最後に投稿したTimelineの投稿フラグオフの時のみ「投稿前の記事（new_timeline_path）」が確認できる -->
                 <% if timeline_flag.nil? %>
 	            <% elsif timeline_flag.post_flag == 0 %>
-			        <%= link_to "編集中の記事を見る", new_timeline_path(timeline_flag.id) %>
-		            <hr>
+				        <%= link_to "編集中の記事を見る", new_timeline_path(timeline_flag.id), class: "user_left_column_content_cell" %>
                 <% end %>
 				<!-- 最後に投稿したTimelineの投稿フラグオン→new_timeline, オフ→new_article リンク分岐 -->
-                  <% if timeline_flag.nil? || timeline_flag.post_flag == 1 %>
-	                <%= link_to "新しい旅日記を投稿する", timelines_path, method: :post %>
-					<hr>
-                  <% else %>
-	                <%= link_to "新規投稿", new_article_path %>
-					<hr>
+                <% if timeline_flag.nil? || timeline_flag.post_flag == 1 %>
+		                <%= link_to "新しい旅日記を投稿する", timelines_path, method: :post, class: "user_left_column_content_cell" %>
+                <% else %>
+		                <%= link_to "新規投稿", new_article_path, class: "user_left_column_content_cell" %>
                   <% end %>
 				<!-- % end %> -->
-				<%= link_to "お気に入り一覧", clips_path %>
-				<hr>
-				<%= link_to "ユーザー情報を編集する", edit_user_path %>
-				<hr>
-				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-				<%= link_to "退会する", destroy_confirm_path %>
+					<%= link_to "お気に入り一覧", clips_path, class: "user_left_column_content_cell" %>
+					<%= link_to "ユーザー情報を編集する", edit_user_path, class: "user_left_column_content_cell" %>
+					<%= link_to  destroy_confirm_path, class: "user_left_column_content_cell" do %>
+						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>退会する
+					<% end %>
+
 			<% end %>
 		</div>
 	</div>
@@ -70,10 +64,10 @@
 			<% if timeline_flag.nil? %>
 			<span>まだ旅行記を投稿していません。</span>
 			<% else %>
-				<span class="user_show_tineline_last"><%= link_to @user.timelines.last.title, timeline_path(@user.timelines.last.id) %><span>
+				<span class="user_show_tineline_last"><%= link_to @user_timelines.last.title, timeline_path(@user_timelines.last.id) %><span>
 				<hr>
 					<div>
-						<% @user.timelines.last(8).each do |timeline| %>
+						<% @user_timelines.last(8).each do |timeline| %>
 							<% if timeline.post_flag != 0 %>
 								<%= link_to timeline_path(timeline.id) do %>
 									<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 200, format: 'jpeg', fallback: "no_image.jpg", class: "timeline-image" %>
