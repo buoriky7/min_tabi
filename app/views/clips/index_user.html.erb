@@ -1,16 +1,16 @@
 <div class="clips-wrapper">
 		<%= link_to "全ての投稿", clips_path, class: "clips-nav" %>
 		<%= link_to "あなたの投稿", clips_user_path, class: "clips-nav" %>
-		<!-- %= link_to "他の人の投稿", clips_other_path, class: "clips-nav" %> -->
+		<%= link_to "他の人の投稿", clips_other_path, class: "clips-nav" %>
 </div>
 
 <div class="container">
 	<h2 class="text-center">Clip</h2>
 		<div class="timeline-thumbnail-wrapper">
-			<% @timelines.each do |timeline| %>
-				<% timeline.clips.each do |clip| %>
+			<% @clips.each do |clip| %>
+				<% if clip.timeline.user_id == current_user.id %>
 					<div class="timeline-thumbnail">
-					<%= link_to timeline_path(clip.timeline.id) do %>
+						<%= link_to timeline_path(clip.timeline.id) do %>
 							<%= attachment_image_tag clip.timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
 							<div class="timeline-thumbnail-text">
 								<div class="timeline-thumbnail-text_js">
@@ -34,5 +34,5 @@
 				<% end %>
 			<% end %>
 		</div>
-	<%= paginate @timelines %>
+	<%= paginate @clips %>
 </div>

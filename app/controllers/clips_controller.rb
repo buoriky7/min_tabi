@@ -7,17 +7,13 @@ class ClipsController < ApplicationController
   end
 
   def index_user
-    @timelines = Timeline.where(user_id: current_user.id).order(id: 'DESC').page(params[:page]).per(15).includes(:clips)
+    @clips = Clip.where(user_id: current_user.id).order(id: 'DESC').page(params[:page]).per(15)
     @time_now = Time.now
   end
 
   def index_other
-    # 他人のtimeline かつ　clip.user_id == current_user.id のデータをどうやって取ってくればいいのか？
-    # @timelines = Timeline.where(user_id: current_user.id)
-    # @clips = Clip.where(user_id: current_user.id)
-    # binding.pry
-    # @other_clips = @clips.select{ |timeline| timeline.user_id != current_user.id }
-    # @time_now = Time.now
+    @clips = Clip.where(user_id: current_user.id).order(id: 'DESC').page(params[:page]).per(15)
+    @time_now = Time.now
   end
 
   def create
