@@ -28,7 +28,7 @@
 						<% end %>
 						<!-- new ラベルここまで -->
 							<p class="timeline_title_box">
-								<span><%= timeline.title.truncate(20) %></span>
+								<span><%= timeline.title.truncate(16) %></span>
 							</p>
 							<% if user_signed_in? %>
 								<% if (timeline.user_id == current_user.id) %>
