@@ -60,3 +60,7 @@ https://kigiroku.com/frontend/loder.html
 (非同期での要素の読み込みを待ってからロード画像を消すために以下)
 jQueryのDeferred基本編
 https://h5y1m141.github.io/step-up-javascript/doc/understanding_javascript/async_07.html
+
+###ルーティングエラー
+Railsで404/500エラーの処理
+https://qiita.com/zeppekipanda/items/fb1ea251197003deec12
