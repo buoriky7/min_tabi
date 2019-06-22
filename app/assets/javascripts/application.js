@@ -47,7 +47,12 @@ $(function () {
 	// article#new Placeのデータ取得
 	$('#place_save').click(function() {
 		// ローディング画像表示
-			$('#loading').show();
+		$('#loading').show();
+		// ローディング画像消去
+		var d = new $.Deferred();
+		d.done().then(function(){
+			$('#loading').fadeOut();
+		});
 
 		// ユーサーの端末がGeolocation APIに対応しているか判別する
 			// 対応している場合
@@ -77,6 +82,7 @@ $(function () {
 						 		}
 						 	});
 						 }
+						 d.resolve();
 					}
 
 
@@ -96,18 +102,21 @@ $(function () {
 						var errorNo = error.code;
 						var errorMessage ='[エラー番号:' + errorNo + ']\n' + errorInfo[errorNo];
 						alert(errorMessage);
+						d.resolve();
 					}
 					// 5000sを超える場合は処理を中止
 					var options = {
 						'timeout': 5000
 					}
+					return d.promise();
+
 			}
 			// 対応していない場合
 			else {
 				alert('お使いの端末は、GeoLacation APIに対応していません。');
+				return d.promise();
 			}
-		// ローディング画像消去
-			$('#loading').fadeOut();
+
 
 	});
 

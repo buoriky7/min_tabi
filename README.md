@@ -57,3 +57,6 @@ https://qiita.com/Arashi/items/33a605870d39aeac9a37
 http://mori-coding.blog.jp/archives/6760786.html
 jQueryでできる簡易ローディング画面の実装方法
 https://kigiroku.com/frontend/loder.html
+(非同期での要素の読み込みを待ってからロード画像を消すために以下)
+jQueryのDeferred基本編
+https://h5y1m141.github.io/step-up-javascript/doc/understanding_javascript/async_07.html
