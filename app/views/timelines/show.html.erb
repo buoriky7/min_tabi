@@ -83,10 +83,6 @@
 									</tr>
 									<tr>
 										<td></td>
-										<td><%= article.caption %></td>
-									</tr>
-									<tr>
-										<td></td>
 										<td><span class="glyphicon glyphicon-globe" aria-hidden="true"></span><%= article.place.address %></td>
 									</tr>
 									<tr>
@@ -98,6 +94,7 @@
 						</div>
 							<!-- Articleコンテンツ -->
 							<div class="timeline-show-article-wrapper">
+								<h3><%= article.caption %></h3>
 								<%= attachment_image_tag article, :article_image, :fill, 400, 300, format: 'jpeg', fallback: "no_image.jpg", :size=>"400x300" %>
 								<p>
 									<%= article.body %>
