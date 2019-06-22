@@ -9,10 +9,20 @@
 .user_left_column {
 	display: block;
 	width: 25%;
-	background-color: #cfc;
+	background-color: #88eeef;
 }
 .user_left_column_content {
 	padding: 0 3%;
+	font-size: 17px;
+}
+.user_left_column_content_cell {
+	display: block;
+	width: 100%;
+	padding: 20px 0;
+	border-bottom: 1px solid #58a;
+}
+.user_left_column_content_cell:hover {
+	background-color: #fff;
 }
 
 .user_show_wrapper hr {
@@ -21,12 +31,12 @@
 
 .user_right_column {
 	width: 75%;
-	background-color: #ccf;
+	background-color: #fff;
 }
 .user_header {
 	width: 100%;
 	height: 250px;
-	background-color: #0d0;
+	background-color: #ccd;
 	position: relative;
 	border-bottom: 4px solid #ccc;
 }
