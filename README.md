@@ -62,5 +62,5 @@ jQueryのDeferred基本編
 https://h5y1m141.github.io/step-up-javascript/doc/understanding_javascript/async_07.html
 
 ###ルーティングエラー
-Railsで404/500エラーの処理
-https://qiita.com/zeppekipanda/items/fb1ea251197003deec12
+[Rails]404/500などのエラーページって結局どうすればいいの？
+https://qiita.com/dach1_ken/items/6bbdfdd56ef84e3b2233

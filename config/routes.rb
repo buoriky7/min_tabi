@@ -22,9 +22,7 @@ Rails.application.routes.draw do
   get 'users/index_desc' => 'users#index_desc', as: 'users_index_desc'
   get 'users/:id/destroy_confirm' => 'users#destroy_confirm', as: 'destroy_confirm'
   resources :users, only:[:index, :show, :edit, :update, :destroy]
-  resource :homes, only: [:index]
+  resources :homes, only: [:index]
   root 'homes#index'
-  # 404NotFound
-  get '*path', controller: 'application', action: 'render_404'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
