@@ -52,7 +52,11 @@
 									</tr>
 									<tr>
 										<td></td>
-										<td><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><%= article.place.address %></td>
+										<td>
+											<% unless article.place.address.empty? %>
+												<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><%= article.place.address %>
+											<% end %>
+										</td>
 									</tr>
 									<tr>
 										<td></td>
