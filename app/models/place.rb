@@ -8,8 +8,8 @@ class Place < ApplicationRecord
 		validates :address, presence: true
 
 	# Google API
-		reverse_geocoded_by :latitude, :longitude
-		after_validation :reverse_geocode
+		# reverse_geocoded_by :latitude, :longitude
+		# after_validation :reverse_geocode
 
 
 	# # articleとplaceにデータを保存する
