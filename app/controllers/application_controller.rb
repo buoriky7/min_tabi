@@ -3,6 +3,13 @@ class ApplicationController < ActionController::Base
 	before_action :set_search
 	# timelineが投稿済みが否か判断する
 	helper_method :timeline_flag
+	# 例外処理
+	rescue_from ActiveRecord::RecordNotFound, with: :render_404
+	rescue_from ActionController::RoutingError, with: :render_404
+
+	def render_404
+		render template: 'errors/error_404', status: 404, layout: 'application', content_type: 'text/html'
+	end
 
 	def timeline_flag
 		@timeline_flag = Timeline.where(user_id: current_user.id).last
