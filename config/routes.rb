@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'timelines/new/:id' => 'timelines#new', as: 'new_timeline'
   get 'timelines/user/:id' => 'timelines#index_user', as: 'timelines_user'
   get 'timelines/other' => 'timelines#index_other', as: 'timelines_other'
-  resources :timelines, only: [:index, :create, :edit, :show, :destroy, :update] do
+  resources :timelines, only: [:index, :create, :show, :destroy, :update] do
     resources :clips, only:[:create, :destroy]
   end
   resources :clips, only:[:index]

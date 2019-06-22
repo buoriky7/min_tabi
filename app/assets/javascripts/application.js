@@ -107,6 +107,16 @@ $(function () {
 			}
 
 	});
+
+	// timeline#edit
+	$('#timeline_edit_modal').click(
+		function(){
+			$('.timeline_edit_wrapper').show();
+	});
+	$('#timeline_edit_hide').click(
+		function(){
+			$('.timeline_edit_wrapper').hide();
+	});
 });
 
 // user#show
