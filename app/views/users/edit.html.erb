@@ -1,53 +1,55 @@
 <div class="user_edit_wrapper">
-  <div class="user_edit">
-    <h2>ユーザー情報の編集</h2>
+  <div class="sign_wrapper">
+    <div class="user_edit">
+      <h2>ユーザー情報の編集</h2>
 
-    <%= form_for(@user) do |f| %>
-      <!-- エラーメッセージ -->
-      <% if @user.errors.any? %>
-      <h3><%= @user.errors.count %>件のエラーが発生しました</h3>
-        <ul>
-          <% @user.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+      <%= form_for(@user) do |f| %>
+        <!-- エラーメッセージ -->
+        <% if @user.errors.any? %>
+        <h3><%= @user.errors.count %>件のエラーが発生しました</h3>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <div class="form-group">
+        	<span>お名前</span><br>
+          <%= f.label :last_name %><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", required: true %>
+          <%= f.label :first_name %><%= f.text_field :first_name, autocomplete: "first_name", required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :nickname %><br>
+          <%= f.text_field :nickname, autocomplete: "nickname", class: "user_edit_field", required: true %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :email %><br>
+          <%= f.email_field :email, autocomplete: "email", class: "user_edit_field" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :profile %><br>
+          <%= f.text_area :profile, autocomplete: "profile", class: "user_edit_field" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :profile_image %><br>
+          <%= f.attachment_field :profile_image %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :header_image %><br>
+          <%= f.attachment_field :header_image %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "更新", class: "btn btn-info" %>
+        </div>
       <% end %>
 
-      <div class="form-group">
-      	<span>お名前</span><br>
-        <%= f.label :last_name %><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", required: true %>
-        <%= f.label :first_name %><%= f.text_field :first_name, autocomplete: "first_name", required: true %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :nickname %><br>
-        <%= f.text_field :nickname, autocomplete: "nickname", class: "user_edit_field", required: true %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :email %><br>
-        <%= f.email_field :email, autocomplete: "email", class: "user_edit_field" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :profile %><br>
-        <%= f.text_area :profile, autocomplete: "profile", class: "user_edit_field" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :profile_image %><br>
-        <%= f.attachment_field :profile_image %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :header_image %><br>
-        <%= f.attachment_field :header_image %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "更新", class: "btn btn-info" %>
-      </div>
-    <% end %>
-
+    </div>
   </div>
 </div>
