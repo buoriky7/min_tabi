@@ -17,5 +17,128 @@
 //= require jquery_ujs
 //= require cocoon
 //[Add]---
-//= require turbolinks
+//[Delete]turbolinks
+//= require bootstrap-sprockets
 //= require_tree .
+
+$(function () {
+	// ページトップに戻るボタン
+	$('#top_btn').click(function(){
+		$('html, body').animate({
+			'scrollTop' : 0
+		}, 300);
+		}
+	);
+	$('.timeline-thumbnail').hover(
+		function() {
+			$(this).find('.timeline-thumbnail-text_js').animate({
+				fontSize: '120%',
+				Color: 'red'
+			}, 200);
+		},
+		function() {
+			$(this).find('.timeline-thumbnail-text_js').animate({
+				fontSize: '100%'
+			}, 100);
+		}
+	);
+
+
+	// article#new Placeのデータ取得
+	$('#place_save').click(function() {
+		// ローディング画像表示
+		$('#loading').show();
+		// ローディング画像消去
+		var d = new $.Deferred();
+		d.done().then(function(){
+			$('#loading').fadeOut();
+		});
+
+		// ユーサーの端末がGeolocation APIに対応しているか判別する
+			// 対応している場合
+			if (navigator.geolocation) {
+				// 現在位置を取得する
+				navigator.geolocation.getCurrentPosition(successGetPosition, failGetPosition, options);
+					// 取得に成功した場合
+					function successGetPosition(position) {
+						// 緯度latitude・経度longitudeの取得
+						var lat = position.coords.latitude;
+						var lng = position.coords.longitude;
+						$('#val_latitude').val(lat);
+						$('#val_longitude').val(lng);
+						// 緯度・経度を住所に変換
+						// lat, lngの情報をまとめる
+						var latlng = new google.maps.LatLng(lat, lng);
+						// geocoderを使えるようにする
+						var geocoder = new google.maps.Geocoder();
+						 if (geocoder) {
+						 	geocoder.geocode({'latLng':latlng}, function(results, status) {
+						 		if (status == google.maps.GeocoderStatus.OK) {
+						 			// 郵便番号を含めた住所を取得results[0]
+						 			if (results[0].geometry) {
+						 				var address = results[0].formatted_address.replace(/^日本, /, '');
+						 				$('#val_place_address').val(address);
+						 			}
+						 		}
+						 	});
+						 }
+						 d.resolve();
+					}
+
+
+					// 取得に失敗した場合
+					function failGetPosition(error) {
+						// エラーコード(error.code)の番号
+						// 0:UNKNOWN_ERROR
+						// 1:PERMISSION_DENIED
+						// 2:POSITION_UNAVAILABLE
+						// 3:TIMEOUT
+						var errorInfo = [
+							'原因不明のエラーが発生しました。',
+							'位置情報の取得が許可されませんでした。',
+							'電波状況などで位置情報が取得できませんでした。',
+							'位置情報の取得に時間がかかり過ぎて、タイムアウトしました。'
+						]
+						var errorNo = error.code;
+						var errorMessage ='[エラー番号:' + errorNo + ']\n' + errorInfo[errorNo];
+						alert(errorMessage);
+						d.resolve();
+					}
+					// 5000sを超える場合は処理を中止
+					var options = {
+						'timeout': 5000
+					}
+					return d.promise();
+
+			}
+			// 対応していない場合
+			else {
+				alert('お使いの端末は、GeoLacation APIに対応していません。');
+				return d.promise();
+			}
+
+
+	});
+
+	// timeline#edit
+	$('#timeline_edit_modal').click(
+		function(){
+			$('.timeline_edit_wrapper').show();
+	});
+	$('#timeline_edit_hide').click(
+		function(){
+			$('.timeline_edit_wrapper').hide();
+	});
+});
+
+// user#show
+$(function () {
+	$('#responsive_user_left_column').click(
+		function() {
+			$('.user_left_column').show();
+		});
+	$('.respoisive_hide_btn').click(
+		function() {
+			$('.user_left_column').hide();
+		});
+});

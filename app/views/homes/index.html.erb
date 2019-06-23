@@ -1,2 +1,19 @@
-<h1>Homes#index</h1>
-<p>Find me in app/views/homes/index.html.erb</p>
+<div class="home_box_wrapper">
+	<h1>みんなの旅日記</h1>
+	<div class="home_box">
+		<p>
+			旅行の写真を見返すことって、案外少なくありませんか？<br>
+			旅行の写真を友人に見せる時、いちいちギャラリーを開いて<br>
+			日付やサムネイルを確認して探すのは面倒ですよね。
+		</p>
+		<p>
+			<span>みんなの旅日記</span>は、<br>
+			旅行先でSNS感覚で写真を投稿するだけで<br>
+			あなたオリジナルの旅行記を作成するサービスです。
+		</p>
+	</div>
+</div>
+<div class="text-center">
+	<%= link_to "始める", new_user_registration_path, class:"btn btn-default btn-lg btn_spacing" %>
+	<%= link_to "旅行記をみる", timelines_path, class:"btn btn-default btn-lg" %>
+</div>

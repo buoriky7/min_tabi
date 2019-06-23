@@ -1,3 +1,217 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// user#show
+.user_show_wrapper {
+	display: flex;
+}
+.user_left_column {
+	display: block;
+	width: 25%;
+	background-color: #88eeef;
+}
+.user_left_column_content {
+	padding: 0 3%;
+	font-size: 17px;
+}
+.user_left_column_content_cell {
+	display: block;
+	width: 100%;
+	padding: 20px 0;
+	border-bottom: 1px solid #58a;
+}
+.user_left_column_content_cell:hover {
+	background-color: #fff;
+}
+
+.user_show_wrapper hr {
+	margin: 30px 0 3px;
+}
+
+.user_right_column {
+	width: 75%;
+	background-color: #fff;
+}
+.user_header {
+	width: 100%;
+	height: 254px;
+	background-color: #ccd;
+	position: relative;
+	border-bottom: 4px solid #ccc;
+}
+.user_header_image {
+	width: 100%;
+	height: 250px;
+}
+.user_show_content {
+	padding: 0 5%;
+}
+
+.image-radius {
+	width: 30px;
+	height: 30px;
+	padding: 5px;
+	border-radius: 15px;
+	background-color: #fff;
+	text-align: center;
+	font-size: 15px;
+	color: #ccc;
+}
+.image-radius:hover {
+	background-color: #ddd;
+	color: #000;
+}
+.header-image-btn {
+	position: absolute;
+	top: 200px;
+	right: 30px;
+}
+.profile-image_wrapper {
+	width: 120px;
+	height: 120px;
+	position: relative;
+	top: -60px;
+	left: 40px;
+}
+.profile-image {
+	width: 120px;
+	height: 120px;
+	border-radius: 60px;
+	background-color: #fff;
+	border: 4px solid #ccc;
+}
+.profile-image-btn {
+	position: absolute;
+	top: 85px;
+	right: 5px;
+}
+
+.inline {
+	display: inline-block;
+}
+.timeline-image {
+	width: 100px;
+	height: 100px;
+	border-radius: 5px;
+	margin: 5px;
+	display: inline-block;
+}
+.user_show_tineline_last {
+	font-size: 20px;
+	color: #333;
+	padding-left: 20px;
+}
+
+.user_show_submenu_btn {
+	display: none;
+	text-align: left;
+}
+
+// user#index
+.user-index-title {
+	background-color: #888;
+	padding: 5px 0;
+	padding-left: 50px;
+}
+
+.user-index-title h2 {
+	font-size: 20px;
+}
+
+.user-index-btn_wrapper {
+	text-align: right;
+	padding: 10px 0;
+	padding-right: 30px;
+}
+
+.user-index-content {
+	margin: 0 auto;
+	padding: 20px 50px;
+}
+
+.user-index-content th {
+	font-size: 16px;
+	font-weight: lighter;
+	padding: 3px;
+}
+
+.user-index-profile-image {
+	width: 100px;
+	height: 100px;
+	border-radius: 50px;
+	background-color: #fff;
+	border: 4px solid #555;
+}
+
+// user#edit
+.user_edit_wrapper, .user_destroy_confirm_wrapper {
+	margin: 0 auto;
+	width: 800px;
+	padding: 20px 0;
+}
+.user_edit {
+	padding: 30px 10px;
+}
+.user_edit_field {
+	width: 400px;
+}
+
+// user#destroy_confirm
+.user_destroy_confirm_wrapper {
+	margin-top: 10%;
+	text-align: center;
+}
+.user_destroy_confirm_wrapper h2 {
+	line-height: 50px;
+	padding: 5px;
+}
+
+.destroy_confirm_induction {
+	padding: 15px;
+	line-height: 40px;
+	font-size: 18px;
+}
+
+.destroy_confirm_induction a {
+	color: #333;
+	text-decoration: none;
+}
+
+.destroy_confirm_btn {
+	margin: 20px 30px;
+}
+
+.mg50 {
+	margin-right: 50px;
+}
+
+// レスポンシブ
+@media screen and (max-width: 750px) {
+	// user#show
+	.user_left_column {
+		width: 100%;
+		z-index: 2;
+		display: none;
+	}
+	.user_right_column {
+		width: 100%;
+	}
+	// destroy_confirm
+	.user_destroy_confirm_wrapper {
+		max-width: 100%;
+	}
+	.user_destroy_confirm_wrapper h2 {
+		font-size: 22px;
+	}
+	.destroy_confirm_induction {
+		max-width: 100%;
+		padding: 0px;
+		line-height: 40px;
+		font-size: 15px;
+	}
+	.user_show_submenu_btn {
+		display: block;
+		text-align: right;
+	}
+}

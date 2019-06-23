@@ -1,3 +1,186 @@
 // Place all the styles related to the Timelines controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// timelines#index
+.timelines_index_header {
+	width: 100%;
+	height: 200px;
+	background-image: url('timeline_back.jpg');
+	background-position: 0 10%;
+	background-size: cover;
+	background-color: #fff;
+	text-align: center;
+}
+.timelines_index_header img {
+	width: 100%;
+}
+.timelines_index_header span {
+	font-size: 33px;
+	color: rgba(255, 255, 255, 0.8);
+	padding: 20px;
+}
+
+// timeline#show,new
+.timeline_show_nav {
+	background-color: #8dd;
+	padding: 10px 0 5px 50px;
+}
+.timeline_show_title {
+	font-size: 15px;
+}
+.timeline-show-edit_icon {
+	display: inline-block;
+	padding: 5px;
+	margin-left: 30px;
+	color: #58d;
+}
+
+.timeline_show_content_wrapper {
+	width: 100%;
+	background-color: #eff;
+}
+.timeline_show_day {
+	width: 100%;
+	padding-bottom: 15px;
+	padding-left: 10px;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.timeline_column_wrapper {
+	background-color: #eff;
+}
+
+.timeline_show_content {
+	display: flex;
+	background-color: #fff;
+	margin-left: 50px;
+	border-left: 5px solid #338;
+}
+.timeline_left_column_t {
+	width: 200px;
+	padding-top: 20px;
+	padding-right: 20px;
+	position: relative;
+	top: -35px;
+ 	left: -18px;
+}
+.timeline_left_column_t table {
+	font-size: 16px;
+	width: 180px;
+}
+.timeline-show-article-wrapper {
+	width: 80%;
+	padding-top: 10px;
+	padding-left: 20px;
+	// background-color: #ddf;
+}
+.timeline-show-btn {
+	display: inline-block;
+	padding: 10px;
+}
+
+// 右カラム
+// .timeline-right-column {
+// 	background-color: blue;
+// 	z-index: 5;
+// }
+
+// timeline#edit
+.timeline_edit_wrapper {
+	margin: 10px 0;
+	z-index: 60;
+	display: none;
+}
+.timeline_edit {
+	padding: 30px;
+}
+.timeline_edit_form {
+	padding: 20px 0;
+}
+
+// timelines#ranking
+.timelines-wrapper {
+	width: 100%;
+	height: 100%;
+	display: flex;
+}
+.timelines-nav {
+	width: 100%;
+	display: inline-block;
+	background-color: #fff;
+	border-right: 1px solid #333;
+	padding: 10px;
+	text-align: center;
+	font-size: 15px;
+	color: #333;
+}
+.timelines-nav:hover {
+	background-color: #ccf;
+}
+
+.ranking-wrapper {
+	width: 100%;
+	display: flex;
+}
+
+.rank_image {
+	width: 220px;
+}
+
+.rank {
+	width: 100%;
+	position: relative;
+}
+.rank img {
+	width: 100%;
+	height: 200px;
+}
+.rank-btn {
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+	padding: 5px;
+	background-color: #fff;
+	font-size: 20px;
+	text-align: center;
+}
+.rank_1 {
+	color: gold;
+}
+.rank_2 {
+	color: silver;
+}
+.rank_3 {
+	color: beige;
+}
+
+// レスポンシブ
+@media screen and (max-width: 750px) {
+
+
+	.timeline_show_content {
+		display: block;
+		margin-left: 0;
+		border-left: none;
+	}
+	.timeline_left_column_t {
+		width: 100%;
+		padding-top: 5px;
+		padding-right: 0;
+		position: static;
+	}
+	.timeline_left_column_t table {
+		width: 100%;
+	}
+	.timeline-show-article-wrapper {
+		width: 90%;
+		margin: 0 auto;
+	}
+	.timeline_article_icon {
+		width: 45px;
+		text-align: center;
+	}
+
+}

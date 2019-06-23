@@ -41,8 +41,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # [Add]エラー画面を詳しくする
   # Adds support for Capybara system testing and selenium driver
-gem 'capybara', '>= 2.15' #同じGemをインストールするときはバージョンを揃える
-gem 'selenium-webdriver'
 gem 'rspec-rails'  # この行を追加
 end
 
@@ -56,6 +54,7 @@ group :development do
   # [Add]エラー画面を詳しくする
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'pry-byebug'
 end
 
 group :test do
@@ -73,9 +72,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # sign_in,up
 gem 'devise'
 
-# 画像のアップロード
-gem "refile", require: "refile/rails", github: 'manfe/refile'
-gem "refile-mini_magick"
+
 
 # 一対多のフォーム作成
 gem 'cocoon'
@@ -87,8 +84,15 @@ gem 'kaminari','~> 1.1.1'
 gem "jquery-rails"
 
 # Bootstrapを使用する
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.4.1'
 
 # 検索バー
 gem 'ransack'
+
+# 画像のアップロード
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
+
+# Google API 関連。住所入力で緯度経度を表示できる
+gem 'geocoder'
 

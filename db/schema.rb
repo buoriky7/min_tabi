@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_05_094152) do
+ActiveRecord::Schema.define(version: 2019_06_20_065849) do
 
   create_table "article_icons", force: :cascade do |t|
     t.integer "article_id"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2019_06_05_094152) do
     t.integer "user_id"
     t.integer "place_id"
     t.string "caption", null: false
-    t.integer "article_image_id"
+    t.string "article_image_id"
     t.text "body"
     t.integer "star", default: 0
     t.datetime "created_at", null: false
@@ -41,9 +41,11 @@ ActiveRecord::Schema.define(version: 2019_06_05_094152) do
 
   create_table "places", force: :cascade do |t|
     t.integer "user_id"
-    t.text "place_name"
+    t.text "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "latitude"
+    t.float "longitude"
   end
 
   create_table "timelines", force: :cascade do |t|
@@ -52,6 +54,7 @@ ActiveRecord::Schema.define(version: 2019_06_05_094152) do
     t.integer "clips_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "post_flag", default: 0
   end
 
   create_table "users", force: :cascade do |t|

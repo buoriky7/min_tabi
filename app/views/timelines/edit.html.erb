@@ -1,2 +1,13 @@
-<h1>Timelines#edit</h1>
-<p>Find me in app/views/timelines/edit.html.erb</p>
+<div class="timeline_edit_wrapper">
+	<div class="sign_wrapper">
+		<div class="timeline_edit">
+			<h2>タイトルを編集する</h2>
+				<%= form_for(@timeline) do |f| %>
+					<div class="timeline_edit_form">
+						<%= f.text_field :title, required: true, autofocus: true, class: "f_long" %>
+					</div>
+					<%= f.submit "投稿", class: "btn btn-info" %>
+				<% end %>
+		</div>
+	</div>
+</div>

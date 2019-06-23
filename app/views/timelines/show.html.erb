@@ -1,2 +1,143 @@
-<h1>Timelines#show</h1>
-<p>Find me in app/views/timelines/show.html.erb</p>
+
+<!-- エラーメッセージ -->
+<% @timeline.errors.full_messages.each do |message| %>
+	<%= message %>
+<% end %>
+<div class="timeline_show_nav"><!-- TODO:css共通 user-index-title -->
+	<%= link_to user_path(@timeline.user_id) do %>
+		<span class="glyphicon glyphicon-user rank-btn" aria-hidden="true"></span><!-- TODO:css共通 -->
+	<% end %>
+	<span class="timeline_show_title">
+		<%= @timeline.title %>
+	</span>
+	<!-- ログイン中のユーザーだけ編集ボタンを押せる -->
+	<% if user_signed_in? %>
+		<% if @timeline.user_id == current_user.id %>
+			<span class='timeline-show-edit_icon' id='timeline_edit_modal'>タイトルを編集する</span>
+		<% end %>
+		<!-- お気に入り（Clip）機能 -->
+		<!-- 他のclipボタンとrender先を差別化するため、t_show:をパラメータに渡す -->
+			<% if @timeline.cliped_by?(current_user) %>
+				<%= link_to timeline_clip_path('clip', timeline_id: @timeline.id, t_show: 1), method: :delete do %>
+				<span class="glyphicon glyphicon-paperclip" aria-hidden="true">クリップを解除</span>
+				<% end %>
+			<% else %>
+				<%= link_to timeline_clips_path(timeline_id: @timeline.id, t_show: 1), method: :post do %>
+				<span class="glyphicon glyphicon-paperclip" aria-hidden="true">この日記をクリップ</span>
+				<% end %>
+			<% end %>
+	<% end %>
+	<!-- editモーダル -->
+<div class="timeline_edit_wrapper">
+	<div class="sign_wrapper">
+		<div class="timeline_edit">
+			<div class="text-right" id="timeline_edit_hide"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+				<%= form_for(@timeline) do |f| %>
+					<div class="timeline_edit_form">
+						<%= f.text_field :title, required: true, autofocus: true, class: "f_long" %>
+					</div>
+					<%= f.submit "更新", class: "btn btn-info" %>
+				<% end %>
+		</div>
+	</div>
+</div>
+<!-- editモーダルここまで -->
+</div>
+
+<div class="timeline_show_content_wrapper">
+				<!-- TODO: ここからArticle繰り返し -->
+				<!-- Article表示部分 -->
+				<% @timeline.articles.each do |article| %>
+	<!-- TODO: ここから日毎に繰り返し -->
+	<!-- Articleにモデルを追加？　年月日のみを取得する？うーん、created_atのデータだけで「日が違う」を判断したいところ -->
+	<div class="timeline_show_day">
+		<!-- <span> %= article.created_at.strftime('%Y.%m.%d (%A)') %></span> -->
+	</div>
+		<div class="timeline_column_wrapper">
+					<div class="timeline_show_content">
+						<!-- 左カラム -->
+						<div class="timeline_left_column">
+							<div class="timeline_left_column_t">
+								<table>
+									<tr>
+										<!-- article_iconの表示 -->
+										<!-- 3:出会い、出来事　2:ショッピング 1:グルメ 0:観光　default:0 -->
+										<td class="timeline_article_icon">
+											<% if article.article_icons.first.icon_id == 3 %>
+												<span class="glyphicon glyphicon-comment rank-btn" aria-hidden="true"></span>
+											<% elsif article.article_icons.first.icon_id ==2 %>
+												<span class="glyphicon glyphicon-shopping-cart rank-btn" aria-hidden="true"></span>
+											<% elsif article.article_icons.first.icon_id ==1 %>
+												<span class="glyphicon glyphicon-cutlery rank-btn" aria-hidden="true"></span>
+											<% else %>
+												<span class="glyphicon glyphicon-globe rank-btn" aria-hidden="true"></span>
+											<% end %>
+										</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<th> <%= article.created_at.strftime('%c') %></th>
+										<!-- TODO:日毎に繰り返し表示するとき、時間のみ表示 -->
+										<!-- <th> %= article.created_at.strftime('%Y.%m.%d (%c) %H:%m') %></th> -->
+									</tr>
+									<tr>
+										<td></td>
+										<td>
+											<% unless article.place.address.empty? %>
+												<span class="glyphicon glyphicon-globe" aria-hidden="true"></span><%= article.place.address %>
+											<% end %>
+										</td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+							<!-- Articleコンテンツ -->
+							<div class="timeline-show-article-wrapper">
+								<h3><%= article.caption %></h3>
+								<%= attachment_image_tag article, :article_image, :fill, 400, 300, format: 'jpeg', fallback: "no_image.jpg", :size=>"400x300" %>
+								<p>
+									<%= article.body %>
+								</p>
+								<p>
+									<% if article.star == 1 %>
+										<span class="star">★☆☆☆☆</span>
+									<% elsif article.star == 2 %>
+										<span class="star">★★☆☆☆</span>
+									<% elsif article.star == 3 %>
+										<span class="star">★★★☆☆</span>
+									<% elsif article.star == 4 %>
+										<span class="star">★★★★☆</span>
+									<% elsif article.star == 5 %>
+										<span class="star">★★★★★</span>
+									<% else %>
+									<% end %>
+								<p>
+								</p>
+									<div class="timeline-show-btn">
+										<% if user_signed_in? %>
+											<% if (@timeline.user_id == current_user.id) %>
+												<!-- Article編集、削除 -->
+													<%= link_to "編集", edit_article_path(article.id), class: "btn btn-warning btn-xs" %>
+													<%= link_to "削除", article_path(article.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-xs" %>
+											<% end %>
+										<% end %>
+									</div>
+								</p>
+							</div>
+							<!-- TODO: Article繰り返し　ここまで -->
+					</div>
+				<% end %>
+			</div>
+
+	<!-- TODO: 日毎に繰り返し　ここまで -->
+</div>
+
+<!-- 右カラム --><!-- 
+<div class="timeline-right-column">
+	<span>linklink</span>
+</div> -->

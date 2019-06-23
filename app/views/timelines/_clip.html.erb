@@ -1,0 +1,16 @@
+<% if user_signed_in? %>
+	<% if timeline.cliped_by?(current_user) %>
+	<div id="clip-btn-js<%= timeline.id %>">
+		<%= link_to timeline_clip_path('clip', timeline_id: timeline.id), method: :delete, remote: true do %>
+			<span class="glyphicon glyphicon-paperclip clip-btn clipped" aria-hidden="true"></span>
+		<% end %>
+		</div>
+	<% else %>
+	<div id="clip-btn-js<%= timeline.id %>">
+		<%= link_to timeline_clips_path(timeline.id), method: :post, remote: true do %>
+			<span class="glyphicon glyphicon-paperclip clip-btn" aria-hidden="true"></span>
+		<% end %>
+	</div>
+	<% end %>
+<% end %>
+

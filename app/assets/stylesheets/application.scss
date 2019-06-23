@@ -1,0 +1,215 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ /* bootstrap読み込み */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	color: #222;
+	font-family: "Tsukushi A Round Gothic", "筑紫A丸ゴシック", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "游ゴシック", YuGothic, sans-seri
+}
+
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	background-image: url();
+	background-color: #33ccff;
+}
+
+// ローディング
+#loading {
+	display: none;
+	position: absolute;
+	left: 50%;
+	top: 20%;
+	margin-left: -30px;
+}
+
+// メイン画面
+#main {
+	background-color: rgba(255, 255, 255, 0.5);
+	padding-top: 50px;
+	max-width:1200px;
+	margin: 0 auto;
+	min-height: 100%;
+}
+
+/* ヘッダー */
+#header_wrapper {
+	z-index: 50;
+}
+.search {
+	display: inline-block;
+	padding: 12px;
+}
+
+/* devise周り */
+.sign_wrapper {
+	margin: 0 auto;
+	width: 800px;
+	background-color: #fff;
+	border-radius: 10px;
+	filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.6));
+}
+
+.sign_up, .sign_in {
+	padding: 20px;
+	margin-top: 60px;
+}
+
+.sign_in_title {
+	background-color: #ddd;
+}
+
+/* フォームの幅 */
+.f_short {
+	width: 80px;
+}
+.f_mediun {
+	width: 200px;
+}
+.f_long {
+	width: 70%;
+}
+
+// ボタン間の間隔
+.btn_spacing {
+	margin-right: 10%;
+}
+
+
+// timelineのindexサムネイル
+.timeline-thumbnail-wrapper {
+	display: flex;
+	flex-wrap:wrap;
+}
+.timeline-thumbnail {
+	margin: 10px;
+	width: 200px;
+	height: 160px;
+	padding-bottom: 10px;
+	display: inline-block;
+	position: relative;
+}
+.timeline-thumbnail-text {
+	width: 200px;
+	height: 160px;
+	padding-top: 30px;
+	text-align: center;
+	word-wrap: break-word;
+	background-color: rgba(200, 200, 200, 0.6);
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.timeline-thumbnail-text h3 {
+	font-size: 150%;
+}
+.clip-btn {
+	width: 30px;
+	height: 30px;
+	padding: 5px;
+	border-radius: 15px;
+	background-color: #fff;
+	opacity: 0.5;
+	text-align: center;
+	font-size: 20px;
+	color: #ccc;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+.clip-btn:hover {
+	opacity: 0.7;
+}
+.clipped {
+	color: #ccf;
+	background-color: #555;
+}
+.timeline_title_box {
+	height: 3em;
+}
+.timeline_visibility {
+	visibility: visible;
+}
+.timeline_visibility_hide {
+	visibility: hidden;
+}
+.timeline-label {
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+}
+
+.hide_btn {
+	display: none;
+}
+
+// Articleの星評価
+.star {
+	font-size: 12px;
+	color: orange;
+}
+
+// js用
+// 「閉じる」ボタン
+.respoisive_hide_btn {
+	display: none;
+}
+// scrollTopボタン
+.scroll_top_btn {
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	z-index: 10;
+	background-color: rgba(255, 255, 255, 0.7);
+	border: 1px solid rgba(150, 150, 150, 0.7);
+	font-size: 40px;
+	text-align: center;
+	padding-left: 2px;
+	position:fixed;
+	right: 10px;
+	bottom: 10px;
+}
+
+// レスポンシブ
+// timeline#edit
+@media screen and (max-width: 750px) {
+	#main {
+		max-width:100%;
+	}
+	.sign_wrapper {
+	width: 80%;
+	}
+	.respoisive_hide_btn {
+		display: block;
+		padding: 5px;
+		margin-top: 10px;
+		text-align: right;
+	}
+}

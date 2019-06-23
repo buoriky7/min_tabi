@@ -1,0 +1,39 @@
+// Place all the styles related to the Articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// new
+.article_wrapper {
+	padding-top: 20px;
+	height: 100%;
+	display: flex;
+}
+
+.catch_copy_wrapper {
+	width: 50%;
+	opacity: 0.8;
+	background-image: url(timeline_back.jpg);
+	padding-top: 50px;
+}
+.catch_copy {
+	font-size: 30px;
+	color: rgba(50, 50, 100, 0.9);
+	padding: 3%;
+}
+
+.article_form_wrapper {
+	background-color: #fff;
+	width: 50%;
+	padding-left: 3%;
+}
+
+// レスポンシブ対応
+@media screen and (max-width:750px) {
+	.catch_copy_wrapper {
+		display: none;
+		background-color: red;
+	}
+	.article_form_wrapper {
+		width: 100%;
+	}
+}
