@@ -2,10 +2,15 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
 
+# RSpecの書き方の勉強に書いたテストコード（まだよくわからない）
   describe "GET #show" do
-    it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
+    context "user#showが正しく表示される" do
+      before do
+        subject {get :show, params: params}
+      end
+      it "リクエストが200となる" do
+        expect(response.status).to eq 200
+      end
     end
   end
 
@@ -17,9 +22,13 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "GET #edit" do
-    it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
+    context "user#editが正しく表示される" do
+      before do
+        subject {get :edit, params: params}
+      end
+      it "リクエストが200となる" do
+        expect(response.status).to eq 200
+      end
     end
   end
 
