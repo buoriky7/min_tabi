@@ -1,27 +1,36 @@
-# README
+#みんなの旅日記
+気軽に旅の思い出を記録できるサービス
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##概要
+旅行の写真を見返すことって、案外少なくありませんか？
+考えてみれば、旅行の写真をいちいちフォルダ分けするのは面倒です。SNSや日記アプリは手軽ですが、１回の旅行ごとに記事を検索して…なんて使い方をするのはやっぱり面倒です。
+友人に「この前こんなところに行ってきたんだけど…」と切り出したあと、写真を見せるのにスマホのギャラリーを開いて、旅行の日時や無数に並ぶサムネイルを頼りに目的の写真を探す時間は、居心地が悪いものです。
+もっと気軽に旅の思い出を、記録できるサービスはないでしょうか？
 
-Things you may want to cover:
+みんなの旅日記では、
+旅行に行った現地で写真を撮って短文と一緒に投稿すれば、あなたオリジナルの旅日記を作成することができます。
 
-* Ruby version
+##使い方
+###ログインなしでできる操作
+・他人が投稿した旅日記を見る
+・ランキングを見る
 
-* System dependencies
+###ログインするとできること
+・他人が投稿した旅日記を見る
+・ランキングを見る
+・旅日記を投稿する
+・お気に入りの旅日記をクリップし、いつでも見返せる
 
-* Configuration
+登録に必要な情報は
+「本名」「ニックネーム」「Eメール」「パスワード」です。
 
-* Database creation
+###旅日記を投稿する
+操作は簡単です。
+旅先で写真を撮ったらサイトにアクセスし、記事を投稿しましょう（写真をつけずに投稿することもできます）
+旅行が終わったら「旅を終了する」ボタンを押します。
+これで、あなたオリジナルの旅日記が完成します！
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+あなたは友人や家族に見せたり、旅日記を見返して思い出に浸ったりして楽しむことができます。
 
 ##使用素材
 浅草岳から見る風景と守門岳（福島県）のフリー画像（写真）
@@ -29,15 +38,6 @@ https://www.pakutaso.com/20190648165post-21303.html
 
 Ajaxload
 http://www.ajaxload.info/
-
-##メモ
-管理者：User(3)テスト用管理者
-
-APIキーの環境変数化）
-.bash_profile ファイルにGOOGLE_MAP_APIのキーを保存済み。
-vagrantリロードして使えなくなった場合は、もう一度exportするか、メンターさんに相談すること
-使用するときは以下のように記述
-<% ENV["GOOGLE_MAP_API_KEY"] %>
 
 ##参考サイト
 ###GOOGLE_MAP_API
