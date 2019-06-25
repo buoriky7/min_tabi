@@ -4,7 +4,9 @@
 		<div class="user_left_column_content">
 			<div class="respoisive_hide_btn"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
 				<%= link_to "プロフィール", user_path, class: "user_left_column_content_cell" %>
-	            <%= link_to "過去の投稿記事を見る", timelines_user_path(params[:id]), class: "user_left_column_content_cell" %>
+					<% if timeline_flag.present? %>
+            <%= link_to "過去の投稿記事を見る", timelines_user_path(params[:id]), class: "user_left_column_content_cell" %>
+          <% end %>
 			<% if @user.id == current_user.id %>
 				<!-- 最後に投稿したTimelineの投稿フラグオフの時のみ「投稿前の記事（new_timeline_path）」が確認できる -->
                 <% if timeline_flag.nil? %>
@@ -20,8 +22,13 @@
 				<!-- % end %> -->
 					<%= link_to "お気に入り一覧", clips_path, class: "user_left_column_content_cell" %>
 					<%= link_to "ユーザー情報を編集する", edit_user_path, class: "user_left_column_content_cell" %>
-					<%= link_to  destroy_confirm_path, class: "user_left_column_content_cell" do %>
-						<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>退会する
+					<!-- admin_flgがtrueの時はユーザー一覧ページに飛べる -->
+					<% if current_user.admin_flg == true %>
+						<%= link_to "ユーザー一覧ページ", users_path, class: "user_left_column_content_cell" %>
+					<% else %>
+						<%= link_to  destroy_confirm_path, class: "user_left_column_content_cell" do %>
+							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>退会する
+						<% end %>
 					<% end %>
 
 			<% end %>
@@ -62,7 +69,7 @@
 			<hr>
 			<h3 class="inline">最近の旅</h3>
 			<% if timeline_flag.nil? %>
-			<span>まだ旅行記を投稿していません。</span>
+				<span>まだ旅行記を投稿していません。</span>
 			<% else %>
 				<span class="user_show_tineline_last"><%= link_to @user_timelines.last.title, timeline_path(@user_timelines.last.id) %><span>
 				<hr>
@@ -75,9 +82,9 @@
 							<% end %>
 						<% end %>
 						<span><%= link_to "もっと見る", timelines_user_path(params[:id]) %></span>
-					<% end %>
-				</div>
-			<hr>
+					</div>
+				<hr>
+			<% end %>
 		</div>
 	</div>
 </div>
