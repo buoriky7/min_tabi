@@ -27,7 +27,7 @@
 						<%= link_to "ユーザー一覧ページ", users_path, class: "user_left_column_content_cell" %>
 					<% else %>
 						<%= link_to  destroy_confirm_path, class: "user_left_column_content_cell" do %>
-							<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>退会する
+							<span class="glyphicon glyphicon-exclamation-sign warn" aria-hidden="true"></span>退会する
 						<% end %>
 					<% end %>
 
@@ -69,7 +69,7 @@
 			<hr>
 			<h3 class="inline">最近の旅</h3>
 			<% if timeline_flag.nil? %>
-				<span>まだ旅行記を投稿していません。</span>
+				<p>まだ旅行記を投稿していません。</p>
 			<% else %>
 				<span class="user_show_tineline_last"><%= link_to @user_timelines.last.title, timeline_path(@user_timelines.last.id) %><span>
 				<hr>

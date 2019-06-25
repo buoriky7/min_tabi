@@ -37,7 +37,17 @@
 https://www.pakutaso.com/20190648165post-21303.html
 
 Ajaxload<br>
-http://www.ajaxload.info/
+http://www.ajaxload.info/<br>
+
+TWBSColor<br>
+（※カラーパレットから色を選ぶだけで必要なCSSを書き出してくれる。）<br>
+https://work.smarchal.com/twbscolor/
+
+###配色パターン
+配色パターン見本40選：ベストな色の組み合わせを探せるツール<br>
+https://saruwakakun.com/design/gallery/palette<br>
+万人受けする配色（#1B435D #78BBE6 #D5EEFF #F99F48）<br>
+元気・アクティブ系の配色パターン（#1C75BC #5CC0EF #F9A638）
 
 ## 参考サイト
 ### GOOGLE_MAP_API
