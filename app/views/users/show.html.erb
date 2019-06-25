@@ -65,7 +65,7 @@
 				</h2>
 			<hr>
 			<h3>プロフィール</h3>
-				<p><%= @user.profile %></p>
+				<p><%= simple_format(@user.profile) %></p>
 			<hr>
 			<h3 class="inline">最近の旅</h3>
 			<% if timeline_flag.nil? %>
