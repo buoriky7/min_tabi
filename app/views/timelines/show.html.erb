@@ -4,9 +4,11 @@
 	<%= message %>
 <% end %>
 <div class="timeline_show_nav"><!-- TODO:css共通 user-index-title -->
-	<%= link_to user_path(@timeline.user_id) do %>
-		<span class="glyphicon glyphicon-user rank-btn" aria-hidden="true"></span><!-- TODO:css共通 -->
+	<!-- ユーザアイコン -->
+	<%= link_to user_path(@timeline.user_id), class: "timeline_user_icon" do %>
+		<%= attachment_image_tag @timeline.user, :profile_image, :fill, 30, 30, format: 'jpeg', fallback: "no_image.jpg", :size=>"30x30", class: "timeline_user_icon_img" %>
 	<% end %>
+	<!-- ユーザーアイコンここまで -->
 	<span class="timeline_show_title">
 		<%= @timeline.title %>
 	</span>

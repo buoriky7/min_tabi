@@ -26,6 +26,14 @@
 	background-color: #8dd;
 	padding: 10px 0 5px 50px;
 }
+.timeline_user_icon {
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+}
+.timeline_user_icon_img {
+	border-radius: 50%;
+}
 .timeline_show_title {
 	font-size: 15px;
 }
@@ -60,7 +68,7 @@
 }
 .timeline_left_column_t {
 	width: 200px;
-	padding-top: 20px;
+	margin-top: 20px;
 	padding-right: 20px;
 	position: relative;
 	top: -35px;
