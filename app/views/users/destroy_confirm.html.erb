@@ -1,5 +1,5 @@
 <div class="user_destroy_confirm_wrapper">
-	<h2>退会すると、今までに投稿した記事は全て削除されます。</h2>
+	<h2 class="warn">退会すると、今までに投稿した記事は全て削除されます。</h2>
 	<div class="destroy_confirm_induction">
 		<%= link_to "投稿した記事を編集したい場合はこちら", timelines_user_path(current_user.id) %><br>
 		<%= link_to "投稿した記事を削除したい場合はこちら", timelines_user_path(current_user.id) %><br>
@@ -7,7 +7,7 @@
 	</div>
 	<h2>本当に退会しますか？</h2>
 	<div>
-		<%= link_to "はい", user_path, method: :delete, data: {confirm: "投稿記事が消去されます。本当によろしいですか？"}, class: "btn btn-info btn-lg mg50" %>
+		<%= link_to "はい", user_path, method: :delete, data: {confirm: "投稿記事が消去されます。本当によろしいですか？"}, class: "btn btn-danger btn-lg mg50" %>
 		<%= link_to "いいえ", user_path(@user.id), class: "btn btn-info btn-lg" %>
 	</div>
 

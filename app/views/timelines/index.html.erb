@@ -27,8 +27,10 @@
 								<%= render 'timelines/clip', timeline: timeline %>
 							<!-- Clipボタンここまで -->
 							<!-- new ラベル -->
-							<% if @time_now < timeline.articles.last.created_at.tomorrow %>
-								<span class="label label-info timeline-label">New</span>
+							<% if timeline.articles.count >= 1 %>
+								<% if @time_now < timeline.articles.last.created_at.tomorrow %>
+									<span class="label label-info timeline-label">New</span>
+								<% end %>
 							<% end %>
 							<!-- new ラベルここまで -->
 							<!-- 削除ボタン -->
@@ -36,7 +38,7 @@
 									<span><%= timeline.title.truncate(16) %></span>
 									<div class="timeline_visibility">
 										<% if user_signed_in? %>
-											<% if (timeline.user_id == current_user.id) %>
+											<% if current_user.admin_flg == true || timeline.user_id == current_user.id %>
 												<%= link_to "削除", timeline_path(timeline.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-xs" %>
 											<% else %>
 												<span class="btn btn-xs opasity: 1"></span>

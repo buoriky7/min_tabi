@@ -1,7 +1,9 @@
 <div class="user_edit_wrapper">
   <div class="sign_wrapper">
-    <div class="user_edit">
+    <div class="user_edit_title">
       <h2>ユーザー情報の編集</h2>
+    </div>
+    <div class="user_edit">
 
       <%= form_for(@user) do |f| %>
         <!-- エラーメッセージ -->
@@ -15,7 +17,7 @@
         <% end %>
 
         <div class="form-group">
-        	<span>お名前</span><br>
+        	<strong>お名前</strong><br>
           <%= f.label :last_name %><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", required: true %>
           <%= f.label :first_name %><%= f.text_field :first_name, autocomplete: "first_name", required: true %>
         </div>
