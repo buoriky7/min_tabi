@@ -12,7 +12,7 @@
 	</span>
 	<!-- ログイン中のユーザーだけ編集ボタンを押せる -->
 	<% if user_signed_in? %>
-		<% if @timeline.user_id == current_user.id %>
+		<% if current_user.admin_flg == true || @timeline.user_id == current_user.id %>
 			<span class='timeline-show-edit_icon' id='timeline_edit_modal'>タイトルを編集する</span>
 		<% end %>
 		<!-- お気に入り（Clip）機能 -->
@@ -120,7 +120,7 @@
 								</p>
 									<div class="timeline-show-btn">
 										<% if user_signed_in? %>
-											<% if (@timeline.user_id == current_user.id) %>
+											<% if current_user.admin_flg == true || @timeline.user_id == current_user.id %>
 												<!-- Article編集、削除 -->
 													<%= link_to "編集", edit_article_path(article.id), class: "btn btn-warning btn-xs" %>
 													<%= link_to "削除", article_path(article.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-xs" %>

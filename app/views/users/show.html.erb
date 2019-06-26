@@ -71,9 +71,16 @@
 			<% if timeline_flag.nil? %>
 				<p>まだ旅行記を投稿していません。</p>
 			<% else %>
-				<span class="user_show_tineline_last"><%= link_to @user_timelines.last.title, timeline_path(@user_timelines.last.id) %><span>
+				<span class="user_show_tineline_last">
+					<% @user_timelines.reverse_each do |timeline_last| %>
+						<% if timeline_last.post_flag != 0 %>
+							<%= link_to timeline_last.title, timeline_path(timeline_last.id) %><span>
+							<% break %>
+						<% end %>
+					<% end %>
 				<hr>
 					<div>
+						<!-- 過去の投稿を画像で表示する -->
 						<% @user_timelines.last(8).each do |timeline| %>
 							<% if timeline.post_flag != 0 %>
 								<%= link_to timeline_path(timeline.id) do %>

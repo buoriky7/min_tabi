@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create]
 
   def new
     timeline = Timeline.where(user_id: current_user.id).last
@@ -19,10 +19,7 @@ class ArticlesController < ApplicationController
   	@article = Article.find(params[:id])
     @place = Place.find_by(id: @article.place_id)
     # TODO: timeline#edit,newと共通の処理。まとめたい
-    if @article.user_id != current_user.id
-      flash[:notice] = "あなたのIDでは、この情報の削除、編集はできません。"
-      redirect_to timelines_path
-    end
+    article_edit_confirm!(@article)
   end
 
   def create
@@ -61,6 +58,7 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
+    article_edit_confirm!(@article)
     @article.article_icons.each do |article_icon|
         article_icon.timeline_id = @article.timeline_id
     end
@@ -99,16 +97,24 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
+    article_edit_confirm!(@article)
+    timeline = @article.timeline
     if @article.destroy
-      flash[:success] = "記事を削除しました！"
-      timeline_posted = Timeline.where(user_id: current_user.id).last
-      if timeline_posted.post_flag == 1
-        redirect_to timeline_path(timeline_posted.id)
-      elsif timeline_posted.post_flag == 0
-          redirect_to new_timeline_path(timeline_posted.id)
+      # timelineの持つ記事が0になった場合、自動的にtimelineを削除
+      if timeline.articles.blank?
+          timeline.destroy
+          flash[:success] = "記事を削除しました！　※記事数が 0 になったので、旅行記が削除されました。"
+          redirect_to timelines_path
       else
-        flash[:danger] = "予期せぬエラーです"
-        redirect_to timelines_path
+        flash[:success] = "記事を削除しました！"
+        if timeline.post_flag == 1
+          redirect_to timeline_path(timeline.id)
+        elsif timeline.post_flag == 0
+            redirect_to new_timeline_path(timeline.id)
+        else
+          flash[:danger] = "予期せぬエラーです"
+          redirect_to timelines_path
+        end
       end
     else
       flash[:danger] = "記事の削除に失敗しました。"
@@ -125,5 +131,11 @@ class ArticlesController < ApplicationController
   end
   def place_params
     params.require(:place).permit(:address, :latitude, :longitude)
+  end
+  def article_edit_confirm!(models)
+    if current_user.admin_flg == false && current_user.id != models.user_id
+      flash[:notice] = "あなたのIDでは、この情報の削除、編集はできません。"
+      redirect_to timelines_path
+    end
   end
 end

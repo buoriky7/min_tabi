@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-    @user_timelines = Timeline.where(user_id: current_user.id).where(post_flag: 1)
+    @user_timelines = Timeline.where(user_id: @user.id).where(post_flag: 1)
   end
 
   def index
