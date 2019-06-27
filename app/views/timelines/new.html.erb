@@ -70,7 +70,8 @@
 								<h3><%= article.caption %></h3>
 								<%= attachment_image_tag article, :article_image, :fill, 400, 300, format: 'jpeg', fallback: "no_image.jpg", :size=>"400x300" %>
 								<!-- article_imageを拡大表示するモーダル -->
-								<%= render 'timelines/article_image_modal', article: article %>
+								<!-- 時間切れ。メモ飲み残す -->
+								<!-- %= render 'timelines/article_image_modal', article: article %> -->
 								<!-- article_imageを拡大表示するモーダルここまで -->
 								<p>
 									<%= simple_format(article.body) %>
