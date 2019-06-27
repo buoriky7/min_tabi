@@ -1,0 +1,11 @@
+  // timeline#show, new
+  // 画像大きいサイズモーダル表示
+  $("#article_image_modal_open_<%= article.id %>").click(
+    function() {
+      // $('.article_image').attr('src', $('#article_image_modal_open').attr('src'));
+      $("#article_image_modal_<%= article.id %>").fadeIn(300);
+    });
+  $("#article_image_modal_hide_<%= article.id %>").click(
+    function() {
+      $("#article_image_modal_<%= article.id %>").fadeOut(300);
+    });
