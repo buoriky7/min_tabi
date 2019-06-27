@@ -137,11 +137,11 @@ $(function () {
 	// timeline#edit
 	$('#timeline_edit_modal').click(
 		function(){
-			$('.timeline_edit_wrapper').show();
+			$('.timeline_edit_wrapper').slideDown();
 	});
 	$('#timeline_edit_hide').click(
 		function(){
-			$('.timeline_edit_wrapper').hide();
+			$('.timeline_edit_wrapper').slideUp();
 	});
 });
 
