@@ -29,6 +29,7 @@ $(function () {
 		}, 300);
 		}
 	);
+	// timelineサムネイル画像 hover時のアニメーション
 	$('.timeline-thumbnail').hover(
 		function() {
 			$(this).find('.timeline-thumbnail-text_js').animate({
@@ -119,6 +120,19 @@ $(function () {
 
 
 	});
+
+  // timeline#show, new
+  // Article画像を表示するモーダルを表示
+  // 1枚ならば表示できたが、個別のデータが取得できずに諦めた
+  $(".article_image_modal_open").click(
+    function() {
+      // $('.article_image').attr('src', $('#article_image_modal_open').attr('src'));
+      $(".article_image_modal").fadeIn(300);
+    });
+  $(".article_image_modal_hide").click(
+    function() {
+      $(".article_image_modal").fadeOut(300);
+    });
 
 	// timeline#edit
 	$('#timeline_edit_modal').click(

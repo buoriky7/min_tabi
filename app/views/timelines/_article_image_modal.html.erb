@@ -1,0 +1,13 @@
+<!-- article_imageを拡大表示するモーダル -->
+<!-- article_image_modal は　js用 -->
+<div class="article_image_modal_wrapper" id="article_image_modal>">
+  <div class="article_image_modal_image_wrapper">
+    <!-- xボタン article_image_modal_hide は js用 -->
+    <div class="text-right" id="article_image_modal_hide"><span class="glyphicon glyphicon-remove rank-btn" aria-hidden="true"></span></div>
+    <!-- xボタンここまで -->
+    <div class="article_image_modal_image">
+      <%= attachment_image_tag article, :article_image,  format: 'jpeg', fallback: "no_image.jpg" %>
+      <!-- <img class="article_image"> -->
+    </div>
+  </div>
+</div>

@@ -5,57 +5,51 @@
 
 <h2 class="text-center">クリップ数ランキング</h2>
 
-<div class="container">
-	<div class="row">
+<!-- ランキングここから -->
+<div class="rank_index_content">
+	<% @all_ranks.each.with_index(1) do |timeline, i| %>
+		<div class="rank_index_infobox_wrapper">
+			<div class="rank_index_infobox_title">
+		<!-- 1,2,3位にはアイコンを表示 -->
+            <% if i == 1 %>
+              <span class="glyphicon glyphicon-tower rank-btn rank_1" aria-hidden="true"></span>
+            <% elsif i == 2 %>
+              <span class="glyphicon glyphicon-tower rank-btn rank_2" aria-hidden="true"></span>
+            <% elsif i == 3 %>
+              <span class="glyphicon glyphicon-tower rank-btn rank_3" aria-hidden="true"></span>
+            <% end %>
+            <h3>第<%= i %>位</h3>
+                <span>（クリップ数：<%= timeline.clips.size %>）</span>
+			</div>
+			<div class="rank_index_infobox">
+				<div class="rank_index_user_image">
+					<%= link_to timeline_path(timeline.id) do %>
+              <div class="timeline-thumbnail">
+                <%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
+                <div class="timeline-thumbnail-text">
+                  <div class="timeline-thumbnail-text_js">
+                    <h3><%= timeline.title.truncate(20) %></h3>
+                    <span><%= timeline.created_at.strftime('%Y.%m.%d') %></span>
+                  </div>
+                </div>
+              <!-- Clipボタン -->
+                <%= render 'timelines/clip', timeline: timeline %>
+              <!-- Clipボタンここまで -->
+           <% end %>
+              </div>
+				</div>
+        <div class="rank_index_user_body">
+          <h4><%= timeline.title.truncate(20) %></h4>
+          <p><% if timeline.articles.first != nil %><%= timeline.articles.first.body.truncate(80) %><% end %></p>
+        </div>
 
-		<% @all_ranks.each.with_index(1) do |timeline, i| %>
-			<table class="table">
-				<tr>
-					<td colspan="2">
-						<!-- 1,2,3位にはアイコンを表示 -->
-						<% if i == 1 %>
-							<span class="glyphicon glyphicon-tower rank-btn rank_1" aria-hidden="true"></span>
-						<% elsif i == 2 %>
-							<span class="glyphicon glyphicon-tower rank-btn rank_2" aria-hidden="true"></span>
-						<% elsif i == 3 %>
-							<span class="glyphicon glyphicon-tower rank-btn rank_3" aria-hidden="true"></span>
-						<% end %>
-						第<%= i %>位
-					</td>
-				</tr>
-				<tr>
-					<td rowspan="2" class="rank_image">
-						<%= link_to timeline_path(timeline.id) do %>
-							<div class="timeline-thumbnail">
-								<%= attachment_image_tag timeline.articles.first, :article_image, :fill, 200, 160, format: 'jpeg', fallback: "no_image.jpg", :size =>'200x160' %>
-								<div class="timeline-thumbnail-text">
-									<div class="timeline-thumbnail-text_js">
-										<h3><%= timeline.title.truncate(20) %></h3>
-										<span><%= timeline.created_at.strftime('%Y.%m.%d') %></span>
-									</div>
-								</div>
-							<!-- Clipボタン -->
-								<%= render 'timelines/clip', timeline: timeline %>
-							<!-- Clipボタンここまで -->
-								<p>
-									<span><%= timeline.title.truncate(20) %></span>
-								</p>
-								<td style="text-align: left;">
-									<p>（クリップ数：<%= timeline.clips.size %>）</p>
-									<% timeline.articles.first(10).each do |article| %>
-										<%= attachment_image_tag article, :article_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", :size =>'50x50' %>
-									<% end %>
-								</td>
-							</div>
-						<% end %>
-					</td>
-				</tr>
-				<tr><td>
-					<% if timeline.articles.first != nil %><%= timeline.articles.first.body.truncate(80) %><% end %>
-				</td></tr>
-				</tr>
-			</table>
-		<% end %>
-
-	</div>
+			</div>
+				<div class="rank_index_user_infobox">
+					<% timeline.articles.first(10).each do |article| %>
+            <%= attachment_image_tag article, :article_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", :size =>'50x50' %>
+          <% end %>
+				</div>
+		</div>
+	<% end %>
 </div>
+<!-- ランキングここまで -->

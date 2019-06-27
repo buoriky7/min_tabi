@@ -29,21 +29,21 @@
 				<% end %>
 			<% end %>
 	<% end %>
-	<!-- editモーダル -->
-<div class="timeline_edit_wrapper">
-	<div class="sign_wrapper">
-		<div class="timeline_edit">
-			<div class="text-right" id="timeline_edit_hide"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
-				<%= form_for(@timeline) do |f| %>
-					<div class="timeline_edit_form">
-						<%= f.text_field :title, required: true, autofocus: true, class: "f_long" %>
-					</div>
-					<%= f.submit "更新", class: "btn btn-info" %>
-				<% end %>
+		<!-- editモーダル -->
+	<div class="timeline_edit_wrapper">
+		<div class="sign_wrapper">
+			<div class="timeline_edit">
+				<div class="text-right" id="timeline_edit_hide"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>
+					<%= form_for(@timeline) do |f| %>
+						<div class="timeline_edit_form">
+							<%= f.text_field :title, required: true, autofocus: true, class: "f_long" %>
+						</div>
+						<%= f.submit "更新", class: "btn btn-info" %>
+					<% end %>
+			</div>
 		</div>
 	</div>
-</div>
-<!-- editモーダルここまで -->
+	<!-- editモーダルここまで -->
 </div>
 
 <div class="timeline_show_content_wrapper">
@@ -101,7 +101,21 @@
 							<!-- Articleコンテンツ -->
 							<div class="timeline-show-article-wrapper">
 								<h3><%= article.caption %></h3>
-								<%= attachment_image_tag article, :article_image, :fill, 400, 300, format: 'jpeg', fallback: "no_image.jpg", :size=>"400x300" %>
+									<%= attachment_image_tag article, :article_image, :fill, 400, 300, format: 'jpeg', fallback: "no_image.jpg", :size=>"400x300" %>
+									<!-- TODO:画像を個別にモーダル表示させるようにしたかったが、時間切れ。メモ飲み残す -->
+											<!-- routes を追加し、link_toでArticle画像を囲い、remote: trueで画面を呼び出すようにすればよかったか？ もしくはbuttomタグ -->
+											<!-- <scropt>タグでjsファイルを読み込めばよかったか？ -->
+												<!-- jsファイルでthisを使用する -->
+												<!-- data- タグを利用する(data-article="article_image_#{article.id}) -->
+											<!-- 上記の方法のどれかで実装できたかもしれない -->
+											<!-- jsファイルがそもそも読み込めていないので、原因を突き止めて解決しても良かったかもしれない -->
+										<!-- <div id="article_image_modal_open_#{article.id}"> -->
+										<!-- %= link_to article_image_modal_path do %> -->
+										<!-- %= render 'timelines/article_image_modal', article: article %> -->
+										<!-- % end %> -->
+										<!-- </div> -->
+									<!-- %= article.id %> -->
+									<!-- article_imageを拡大表示するモーダルここまで -->
 								<p>
 									<%= simple_format(article.body) %>
 								</p>
@@ -139,7 +153,3 @@
 	<!-- TODO: 日毎に繰り返し　ここまで -->
 </div>
 
-<!-- 右カラム --><!-- 
-<div class="timeline-right-column">
-	<span>linklink</span>
-</div> -->
